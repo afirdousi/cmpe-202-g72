@@ -1,3 +1,4 @@
+
 public class Rule {
 	
 	String  ruleType;//For each module like member,vehicle...

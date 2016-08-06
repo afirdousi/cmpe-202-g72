@@ -1,3 +1,4 @@
+
 public class Payment {
 	
 	ScheduledRide rideDetails;//to get ride information
