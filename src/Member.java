@@ -81,4 +81,12 @@ public class Member {
 		this.email = email;
 	}
 	
+	public List<Member> setupMockMember() {
+		
+		List<Member> members = new ArrayList<Member>();
+		
+		return members;
+		
+	}
+	
 }

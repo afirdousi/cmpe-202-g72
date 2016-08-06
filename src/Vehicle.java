@@ -81,5 +81,14 @@ public class Vehicle {
 	public void setVehicleColor(String color){}
 	
 	public void getVehicleColor(){}
+	
+	public List<Vehicle> setupMockVehicles() {
+		
+		List<Vehicle> vehicles = new ArrayList<Vehicle>();
+		
+		return vehicles;
+		
+	}
+	
 
 }
