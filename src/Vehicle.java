@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Vehicle {
 	
 	String  make;
@@ -10,21 +13,63 @@ public class Vehicle {
 	boolean hasWheelchair;
 	boolean hasInfantchair;
 	boolean hasAC;
-	Member vehicleOwner;
+	Vehicle vehicleOwner;
 	/*Need to discuss
 	String  licenceNumber*/
+	
+	List<Vehicle> vehicles = new ArrayList<Vehicle>();
 
-	public void createVehicle(){}
+	public void createVehicle(Vehicle v){
+		this.vehicles.add(v);
+	}
 	
-	public void retriveVehicle(){}
+	public Vehicle searchVehicle(String vehicleIdentificationNumber){
+		
+		 Vehicle result = new Vehicle();
+		
+		for(Vehicle vehicle : vehicles){
+			if(vehicle.vehicleIdentificationNumber== vehicleIdentificationNumber){
+				result = vehicle;
+				break;
+			}
+		}
+		
+		return result;
+	}
 	
-	public void updateVehicle(){}
+	public void updateVehicle(Vehicle v){
+		for(Vehicle vehicle : vehicles){
+			if(v.vehicleIdentificationNumber == vehicle.vehicleIdentificationNumber){
+				vehicle.make = v.make;
+				vehicle.type = v.type;
+				vehicle.model = v.model ;
+				vehicle.year = v.year;
+				
+				vehicle.color = v.color;
+				vehicle.seats = v.seats;
+				vehicle.hasWheelchair = v.hasWheelchair;
+				vehicle.hasInfantchair  = v.hasInfantchair;
+				vehicle.hasAC = v.hasAC;
+				vehicle.vehicleOwner  = v.vehicleOwner;
+				
+				break;
+			}
+		}
+		
+	}
 	
-	public void deleteVehicle(String Id){}
+	public void deleteVehicle(String vehicleIdentificationNumber){
+		for(Vehicle v : vehicles){
+			if(v.vehicleIdentificationNumber==vehicleIdentificationNumber){
+				this.vehicles.remove(v);
+				
+				break;
+			}
+		}
+
+	}
 	
 	public void selectVehicle(String Id){}
-	
-	public void searchVehicle(String Id){}
 	
 	public void sortVehicle(){}	//ascending order
 	//Will add all getter and setter for this Vehicle class  
