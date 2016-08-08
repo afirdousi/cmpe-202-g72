@@ -1,3 +1,5 @@
+package com.project.lts.notification;
+
 
 public class Message {
 	

@@ -1,3 +1,5 @@
+import com.project.lts.member.Member;
+
 public class Request {
 
 	//TimeStamp  requestTime;

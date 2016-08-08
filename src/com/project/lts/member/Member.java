@@ -1,10 +1,11 @@
+package com.project.lts.member;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Member {
-	String  name;
-	String  email;
-	String  phoneNumber;
+	private String  name;
+	private String  email;
+	private String  phoneNumber;
 	String  address;
 	String  password;
 	String  dob;
@@ -37,9 +38,9 @@ public class Member {
 	public void updateMember(Member m){
 		for(Member member : members){
 			if(m.ID==ID){
-				member.name = m.name;
-				member.email = m.email;
-				member.phoneNumber = m.phoneNumber;
+				member.setName(m.getName());
+				member.setEmail(m.getEmail());
+				member.setPhoneNumber(m.getPhoneNumber());
 				member.address = m.address;
 				member.password = m.password;
 				member.dob = m.dob;
@@ -69,16 +70,16 @@ public class Member {
 	//Will add all getter and setter for this class  
 	
 	public void setMemberName(String name){
-		this.name = name;
+		this.setName(name);
 		
 	}
 	
 	public String getMemberName(){
-		return this.name;
+		return this.getName();
 	}
 	
 	public void setMemberEmail(String email){
-		this.email = email;
+		this.setEmail(email);
 	}
 	
 	public List<Member> setupMockMember() {
@@ -87,6 +88,30 @@ public class Member {
 		
 		return members;
 		
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }

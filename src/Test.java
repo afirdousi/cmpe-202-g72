@@ -1,6 +1,10 @@
 import java.util.*;
-import java.io.*;
+import com.project.lts.member.*;
 
+import com.project.lts.member.Member;
+import com.project.lts.notification.Notification;
+
+import java.io.*;
 
 public class Test {
 	public static void main(String[] args) throws IOException {
@@ -8,19 +12,19 @@ public class Test {
 		Notification notfication = new Notification();
 		
 		Member m1 = new Member();
-		m1.name = "Srinath Jagganath";
-		m1.phoneNumber = "562-682-4406";
-		m1.email = "sjsrinath92@gmail.com";
+		m1.setName("Srinath Jagganath");
+		m1.setPhoneNumber("562-682-4406");
+		m1.setEmail("sjsrinath92@gmail.com");
 		
 		Member m2 = new Member();
-		m2.name = "Sumit Mendiratta";
-		m2.phoneNumber = "669-232-7803";
-		m2.email = "sumit.mendiratta@gmail.com";
+		m2.setName("Sumit Mendiratta");
+		m2.setPhoneNumber("669-232-7803");
+		m2.setEmail("sumit.mendiratta@gmail.com");
 		
 		Member m3 = new Member();
-		m3.name = "Anas Raza Firdousi";
-		m3.phoneNumber = "408-816-4966";
-		m3.email = "anas.firdousi@gmail.com";
+		m3.setName("Anas Raza Firdousi");
+		m3.setPhoneNumber("408-816-4966");
+		m3.setEmail("anas.firdousi@gmail.com");
 		
 		//TEST:01
 		System.out.println("TEST 001");

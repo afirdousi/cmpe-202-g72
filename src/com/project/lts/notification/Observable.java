@@ -1,4 +1,8 @@
+package com.project.lts.notification;
+
 import java.util.*;
+
+import com.project.lts.member.Member;
 
 public class Observable {
 	
