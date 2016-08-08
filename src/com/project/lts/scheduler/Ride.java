@@ -1,6 +1,7 @@
+package com.project.lts.scheduler;
 public class Ride {
 	
-	ScheduledRide schduledRideDetails;
+	//ScheduledRide schduledRideDetails;
 	String  riderFeedback;
 	String  driverFeedback;
 	String  riderRatings;

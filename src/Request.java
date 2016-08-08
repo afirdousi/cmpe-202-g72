@@ -1,4 +1,5 @@
 import com.project.lts.member.Member;
+import com.project.lts.vehicle.Vehicle;
 
 public class Request {
 

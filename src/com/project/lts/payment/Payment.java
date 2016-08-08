@@ -1,6 +1,7 @@
+package com.project.lts.payment;
 public class Payment {
 	
-	ScheduledRide rideDetails;//to get ride information
+	//ScheduledRide rideDetails;//to get ride information
 	String amount;
 	String coupon;
 	String paymentConfirmationNumber;
