@@ -1,4 +1,4 @@
-
+package com.project.lts.scheduler;
 public class CalculateState implements State{
 
 	private ScheduledRideInterface sc;
@@ -12,14 +12,8 @@ public class CalculateState implements State{
 	}
 	
 	public String calculateRide(boolean x){
-		// Make a call to 'Route' class to calculate the routes.
-		//Then select a route based on the request.
-		if(x==true){
 		sc.setState(new DispatchState(sc));
-		return "State 2: Successful \nRoute Calculated, Ready for dispatch!";
-		}
-		else
-			return "State 2: Fail \nRoute not available!!";
+		return "Route Calculated, Ready for dispatch!";
 	}
 	public String dispatchRide(boolean x){
 		return "Request is being processed";

@@ -1,4 +1,4 @@
-
+package com.project.lts.scheduler;
 public class WaitState implements State{
 	
 	private ScheduledRideInterface sc;
@@ -8,13 +8,12 @@ public class WaitState implements State{
 	}
 
 	public String receiveRequest(boolean x){
-		//Receieve request from the 'Request' class.
 		if (x==true){
 		sc.setState(new CalculateState(sc));
-		return "State 1: Successful \nReceived Request! Ready to generate the route!";
+		return "Received Request";
 		}
 		else
-			return"State 1: Fail \nRequest not received!!\n";
+			return"Request not received";
 	}
 	
 	public String calculateRide(boolean y){
