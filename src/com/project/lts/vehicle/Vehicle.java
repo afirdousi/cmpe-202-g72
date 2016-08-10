@@ -1,95 +1,130 @@
+/*
+* File created by : Thiagarajan Natarajan
+* Date : August 09, 2016
+* Subject : CMPE 202 - Summer 2016 - Group G72
+*/
+
 package com.project.lts.vehicle;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Vehicle {
-	
-	String  make;
-	String  type;
-	String  model;
-	String  year;
-	String  vehicleIdentificationNumber;
-	String  color;
-	int seats;
-	boolean hasWheelchair;
-	boolean hasInfantchair;
-	boolean hasAC;
-	Vehicle vehicleOwner;
-	/*Need to discuss
-	String  licenceNumber*/
-	
-	List<Vehicle> vehicles = new ArrayList<Vehicle>();
+import com.project.lts.vehicle.VPending;
+import com.project.lts.vehicle.VehicleState;
 
-	public void createVehicle(Vehicle v){
-		this.vehicles.add(v);
+public abstract class Vehicle
+{
+	
+	public String vId;
+	public String vModel;
+	public String vYear;
+	public String vIn;
+	public int vehicleType;
+	public VehicleState vehicleState;
+	public int vHealth;
+	public String vDriver;
+	public String location;
+	public String vehicleCost;
+	
+	public Vehicle(){
+		vehicleState = new VPending();
 	}
 	
-	public Vehicle searchVehicle(String vehicleIdentificationNumber){
-		
-		 Vehicle result = new Vehicle();
-		
-		for(Vehicle vehicle : vehicles){
-			if(vehicle.vehicleIdentificationNumber== vehicleIdentificationNumber){
-				result = vehicle;
-				break;
-			}
-		}
-		
-		return result;
-	}
 	
-	public void updateVehicle(Vehicle v){
-		for(Vehicle vehicle : vehicles){
-			if(v.vehicleIdentificationNumber == vehicle.vehicleIdentificationNumber){
-				vehicle.make = v.make;
-				vehicle.type = v.type;
-				vehicle.model = v.model ;
-				vehicle.year = v.year;
-				
-				vehicle.color = v.color;
-				vehicle.seats = v.seats;
-				vehicle.hasWheelchair = v.hasWheelchair;
-				vehicle.hasInfantchair  = v.hasInfantchair;
-				vehicle.hasAC = v.hasAC;
-				vehicle.vehicleOwner  = v.vehicleOwner;
-				
-				break;
-			}
-		}
-		
-	}
 	
-	public void deleteVehicle(String vehicleIdentificationNumber){
-		for(Vehicle v : vehicles){
-			if(v.vehicleIdentificationNumber==vehicleIdentificationNumber){
-				this.vehicles.remove(v);
-				
-				break;
-			}
-		}
+	public String getLocation() {
+		return location;
+	}
 
-	}
-	
-	public void selectVehicle(String Id){}
-	
-	public void sortVehicle(){}	//ascending order
-	//Will add all getter and setter for this Vehicle class  
-	
-	public void setVehicleModel(String model){}
-	
-	public void getVehicleModel(){}
-	
-	public void setVehicleColor(String color){}
-	
-	public void getVehicleColor(){}
-	
-	public List<Vehicle> setupMockVehicles() {
-		
-		List<Vehicle> vehicles = new ArrayList<Vehicle>();
-		
-		return vehicles;
-		
-	}
-	
 
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+
+
+	public String getvDriver() {
+		return vDriver;
+	}
+
+
+
+	public void setvDriver(String vDriver) {
+		this.vDriver = vDriver;
+	}
+
+
+
+	public String getvId() {
+		return vId;
+	}
+
+
+	public void setvId(String vId) {
+		this.vId = vId;
+	}
+
+
+	public String getvModel() {
+		return vModel;
+	}
+
+
+	public void setvModel(String vModel) {
+		this.vModel = vModel;
+	}
+
+
+	public String getvYear() {
+		return vYear;
+	}
+
+
+	public void setvYear(String vYear2) {
+		this.vYear = vYear2;
+	}
+
+
+	public String getvIn() {
+		return vIn;
+	}
+
+
+	public void setvIn(String vIn) {
+		this.vIn = vIn;
+	}
+
+
+
+	public int getvHealth() {
+		return vHealth;
+	}
+
+
+	public void setvHealth(int vHealth2) {
+		this.vHealth = vHealth2;
+	}
+	
+	public void setVehicleState(VehicleState vs) {
+		vehicleState = vs;	
+	}
+	
+	public VehicleState getVehicleState() {
+		return vehicleState;	
+	}
+	
+	public void setVehicleType(int vType) {
+		// TODO implement me	
+		vehicleType = vType;
+	}
+	
+	public int getVehicleType() {
+		return vehicleType;	
+	}
+	
+	public void decorateVehicle() {
+		// TODO implement me	
+	}
+	
+	public abstract double cost();
+	public abstract String getFeatureDescription();
+	
 }
