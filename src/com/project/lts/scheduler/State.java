@@ -1,9 +1,14 @@
 package com.project.lts.scheduler;
+
+import java.util.List;
+
+import com.project.lts.routing.*;
+
 public interface State {
 
-	public String receiveRequest(boolean x);
+	public void receiveRequest(int source, int destination);
 	
-	public String calculateRide(boolean y);
+	public List<List<Vertex>> calculateRide(int source, int destination);
 	
-	public String dispatchRide(boolean z);
+	public void dispatchRide(List<List<Vertex>> suggestedRoutes);
 }

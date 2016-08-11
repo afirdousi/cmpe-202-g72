@@ -1,4 +1,10 @@
 package com.project.lts.scheduler;
+
+import java.util.List;
+
+import com.project.lts.routing.Route;
+import com.project.lts.routing.Vertex;
+
 public class WaitState implements State{
 	
 	private ScheduledRideInterface sc;
@@ -7,19 +13,20 @@ public class WaitState implements State{
 		sc=s;
 	}
 
-	public String receiveRequest(boolean x){
-		if (x==true){
+	public void receiveRequest(int source, int destination){
+		
+		System.out.println("Request received for route : " + source + " to " + destination);
+		
+		System.out.println("Current request state : WAIT");
+		System.out.println("Setting request state : CALCULATE");
 		sc.setState(new CalculateState(sc));
-		return "Received Request";
-		}
-		else
-			return"Request not received";
+
 	}
 	
-	public String calculateRide(boolean y){
-		return "Request must be received";
+	public List<List<Vertex>> calculateRide(int source, int destination){
+		return null;
 	}
-	public String dispatchRide(boolean z){
-		return "Request must be received";
+	public void dispatchRide(List<List<Vertex>> suggestedRoutes){
+		
 	}
 }
