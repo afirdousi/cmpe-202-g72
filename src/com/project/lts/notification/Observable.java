@@ -2,7 +2,7 @@ package com.project.lts.notification;
 
 import java.util.*;
 
-import com.project.lts.member.Member;
+import com.project.lts.accounts.Member;
 
 public class Observable {
 	
