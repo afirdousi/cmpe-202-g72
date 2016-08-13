@@ -10,11 +10,11 @@ public interface ScheduledRideInterface {
 	
 	public void setState(State s);
 
-	public void receiveRequest(int source, int destination);
+	public void receiveRequest(String source, String destination);
 	
-	public List<List<Vertex>> calculateRide(int source, int destination);
+	public List<List<Vertex>> calculateRide(String source, String destination);
 	
-	public void dispatchRide(List<List<Vertex>> suggestedRoutes);
+	public void dispatchRide(List<List<Vertex>> suggestedRoutes,int algoType);
 	
 }
 

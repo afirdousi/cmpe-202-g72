@@ -15,24 +15,22 @@ import com.project.lts.vehicle.WheelChair;
 
 public class VehicleManager
 {
-	Vehicle veh;
-	ArrayList<Vehicle> vArr;
+	public Vehicle veh;
+	public ArrayList<Vehicle> vehicles;
+	
 	public VehicleManager(){
 		veh = new Car();
-		this.vArr = new ArrayList<Vehicle>();
+		this.vehicles = new ArrayList<Vehicle>();
 		//super();
-		
+	}
+
+	public ArrayList<Vehicle> setMockVehicles() {
 		initVehicleData();
+		return vehicles;
 	}
 
-	public ArrayList<Vehicle> getvArr() {
-		return vArr;
-	}
-
-
-
-	public void setvArr(ArrayList<Vehicle> vArr) {
-		this.vArr = vArr;
+	public void setvehicles(ArrayList<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 
 	public void initVehicleData() {
@@ -47,7 +45,7 @@ public class VehicleManager
 		v1.setvDriver("D0001");
 		v1.setLocation("SJC");
 		v1.setVehicleState(new VActive());
-        this.vArr.add(v1);
+        this.vehicles.add(v1);
 
 		Vehicle v2 = new Car();
 		v2.setvId("V0002");
@@ -59,7 +57,7 @@ public class VehicleManager
 		v2.setvDriver("D0002");
 		v2.setLocation("SJC");
 		v2.setVehicleState(new VActive());
-         this.vArr.add(v2);
+         this.vehicles.add(v2);
                 
 		Vehicle v3 = new Car();
 		v3.setvId("V0003");
@@ -71,7 +69,7 @@ public class VehicleManager
 		v3.setvDriver("D0003");
 		v3.setLocation("SJC");
 		v3.setVehicleState(new VActive());
-                this.vArr.add(v3);
+                this.vehicles.add(v3);
 
 		Vehicle v4 = new Car();
 		v4.setvId("V0004");
@@ -83,7 +81,7 @@ public class VehicleManager
 		v4.setvDriver("D0004");
 		v4.setLocation("SJC");
 		v4.setVehicleState(new VActive());
-        this.vArr.add(v4);
+        this.vehicles.add(v4);
 
 		Vehicle v5 = new Car();
 		v5.setvId("V0005");
@@ -95,7 +93,7 @@ public class VehicleManager
 		v5.setvDriver("D0005");
 		v5.setLocation("SFO");
 		v5.setVehicleState(new VActive());
-        this.vArr.add(v5);
+        this.vehicles.add(v5);
 
 		Vehicle v6 = new Car();
 		v6.setvId("V0006");
@@ -107,7 +105,7 @@ public class VehicleManager
 		v6.setvDriver("D0006");
 		v6.setLocation("SFO");
 		v6.setVehicleState(new VActive());
-                this.vArr.add(v6);
+                this.vehicles.add(v6);
 
 		Vehicle v7 = new Car();
 		v7.setvId("V0007");
@@ -119,7 +117,7 @@ public class VehicleManager
 		v7.setvDriver("D0007");
 		v7.setLocation("SFO");
 		v7.setVehicleState(new VActive());
-                this.vArr.add(v7);
+                this.vehicles.add(v7);
 
 		Vehicle v8 = new Car();
 		v8.setvId("V0008");
@@ -131,7 +129,7 @@ public class VehicleManager
 		v8.setvDriver("D0008");
 		v8.setLocation("SFO");
 		v8.setVehicleState(new VActive());
-                this.vArr.add(v8);
+                this.vehicles.add(v8);
 
 		Vehicle v9 = new Car();
 		v9.setvId("V0009");
@@ -143,7 +141,7 @@ public class VehicleManager
 		v9.setvDriver("D0009");
 		v9.setLocation("MTV");
 		v9.setVehicleState(new VActive());
-                this.vArr.add(v9);
+                this.vehicles.add(v9);
 
 		Vehicle v10 = new Car();
 		v10.setvId("V0010");
@@ -155,7 +153,7 @@ public class VehicleManager
 		v10.setvDriver("D0010");
 		v10.setLocation("MTV");
 		v10.setVehicleState(new VActive());
-                this.vArr.add(v10);
+                this.vehicles.add(v10);
  
 		Vehicle v11 = new Car();
 		v11.setvId("V0011");
@@ -167,7 +165,7 @@ public class VehicleManager
 		v11.setvDriver("D0011");
 		v11.setLocation("RWC");
 		v11.setVehicleState(new VActive());
-                this.vArr.add(v11);
+                this.vehicles.add(v11);
 
 		Vehicle v12 = new Car();
 		v12.setvId("V0012");
@@ -179,7 +177,7 @@ public class VehicleManager
 		v12.setvDriver("D0012");
 		v12.setLocation("RWC");
 		v12.setVehicleState(new VActive());
-                this.vArr.add(v12);
+                this.vehicles.add(v12);
 
 		Vehicle v13 = new Car();
 		v13.setvId("V0013");
@@ -191,7 +189,7 @@ public class VehicleManager
 		v13.setvDriver("D0012");
 		v13.setLocation("RWC");
 		v13.setVehicleState(new VActive());
-                this.vArr.add(v13);
+                this.vehicles.add(v13);
 
 		Vehicle v14 = new Car();
 		v14.setvId("V0014");
@@ -203,7 +201,7 @@ public class VehicleManager
 		v14.setvDriver("D0012");
 		v14.setLocation("RWC");
 		v14.setVehicleState(new VActive());
-                this.vArr.add(v14);
+                this.vehicles.add(v14);
 
 		Vehicle v15 = new Car();
 		v15.setvId("V0015");
@@ -215,7 +213,7 @@ public class VehicleManager
 		v15.setvDriver("D0012");
 		v15.setLocation("RWC");
 		v15.setVehicleState(new VActive());
-                this.vArr.add(v15);
+                this.vehicles.add(v15);
 		
 	
 
@@ -225,7 +223,7 @@ public class VehicleManager
 		
 		
 		Vehicle veh = new Car();
-		int vIdSize = this.vArr.size();
+		int vIdSize = this.vehicles.size();
 		String vId = "V000" + (vIdSize + 1);
 		veh.setvId(vId);
 		veh.setvModel(vModel);
@@ -237,10 +235,10 @@ public class VehicleManager
 		veh.setLocation(location);
 		System.out.println("Vehicle added - Vehicle ID:" + veh.getvId()+" Vehicle Driver ID:" + veh.getvDriver());
 		//add to array
-		//this.vArr.add(veh);
+		//this.vehicles.add(veh);
 		if (voption ==1) {
 			WheelChair wc = new WheelChair(veh);
-			this.vArr.add(wc);
+			this.vehicles.add(wc);
 			wc.setvId(vId);
 			wc.setvModel(vModel);
 			wc.setvYear(vYear);
@@ -265,7 +263,7 @@ public class VehicleManager
 				iseat.setvHealth(vHealth);
 				iseat.setvDriver(vDriver);
 				iseat.setLocation(location);
-				this.vArr.add(iseat);
+				this.vehicles.add(iseat);
 				System.out.println("------------------------------------------------------------");
 				System.out.println("DECORATOR Pattern..adding Infant car seat  = "+iseat.getFeatureDescription()); 
 				   
@@ -275,7 +273,7 @@ public class VehicleManager
 					
 					System.out.println("------------------------------------------------------------");
 					System.out.println("DECORATOR Pattern..adding No Special features"); 
-					this.vArr.add(veh);   
+					this.vehicles.add(veh);   
 				}	
 			
 			
@@ -289,27 +287,24 @@ public class VehicleManager
 		// Retrieves all the vehicles added
 		System.out.println("Retrieved Vehicles");
 		System.out.println("Model      Vechile ID    Location     Feature    Driver");
-		for (Vehicle v : this.vArr) {
+		for (Vehicle v : this.vehicles) {
 			System.out.println(v.vModel+" * "+v.vId+" * "+v.location+" * "+v.getFeatureDescription()+" * "+v.getvDriver());
 			
 		}
-
-
-		
 	}
 	
 	public void deleteVehicle(String vId) {
 		// TODO implement me	
 	  /* 
-		for (Vehicle v : this.vArr) {
+		for (Vehicle v : this.vehicles) {
 
 			System.out.println("Vehicle " +v);
 			if (v.getvId().equals(vId)){
-				this.vArr.remove(v);
+				this.vehicles.remove(v);
 				System.out.println("Vehicle of ID "+vId+" has been removed");
 			}
 	*/
-       for(Iterator<Vehicle> iter = vArr.iterator(); iter.hasNext(); ) {
+       for(Iterator<Vehicle> iter = vehicles.iterator(); iter.hasNext(); ) {
             Vehicle v1 = iter.next();
             if(v1.getvId().equals(vId)) {
                iter.remove();
@@ -319,20 +314,15 @@ public class VehicleManager
 		
         //Print the content after deletion
         System.out.println("List of available vehicles after deletion");
-        for(Iterator<Vehicle> iter = vArr.iterator(); iter.hasNext(); ) {
+        for(Iterator<Vehicle> iter = vehicles.iterator(); iter.hasNext(); ) {
             Vehicle v1 = iter.next();
             System.out.println(v1.vModel+v1.vId+v1.location+v1.getFeatureDescription()+v1.getvDriver());
         }
 }
-			
-	
-		
-        
-
 		
 	public void updateVehicle(String vId, String vDriver) {
 		
-		for (Vehicle v : this.vArr) {
+		for (Vehicle v : this.vehicles) {
 
 			if (v.getvId().equals(vId)){
 				v.setvDriver(vDriver);

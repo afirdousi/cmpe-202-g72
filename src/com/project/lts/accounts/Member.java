@@ -26,6 +26,12 @@ public abstract class Member
 	String memPrefpmt;
 	String memCreditcard;
 	String memCreditexpdate;
+	String memCreditCVV;
+	String memPaypalId;
+	String memPrimeflag;
+	String memType; //C: Regular Rider //D:Driver
+	
+	
 	public String getMemCreditexpdate() {
 		return memCreditexpdate;
 	}
@@ -62,10 +68,7 @@ public abstract class Member
 
 
 
-	String memCreditCVV;
-	String memPaypalId;
-	String memPrimeflag;
-	String memType;
+	
 	
 	//Account account;
 	

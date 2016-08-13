@@ -19,15 +19,15 @@ public class ScheduledRide implements ScheduledRideInterface {
 		state= new WaitState(this);
 	}
 	
-	public void receiveRequest(int source, int destination){
+	public void receiveRequest(String source, String destination){
 		state.receiveRequest(source, destination);
 	}
 	
-	public List<List<Vertex>> calculateRide(int source, int destination){
+	public List<List<Vertex>> calculateRide(String source, String destination){
 		return state.calculateRide(source,destination);
 	}
-	public void dispatchRide(List<List<Vertex>> suggestedRoutes){
-		state.dispatchRide(suggestedRoutes);
+	public void dispatchRide(List<List<Vertex>> suggestedRoutes,int algoType){
+		state.dispatchRide(suggestedRoutes,algoType);
 	}
 	
 	public void setState(State s){

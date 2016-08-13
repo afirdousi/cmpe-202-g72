@@ -13,7 +13,7 @@ public class WaitState implements State{
 		sc=s;
 	}
 
-	public void receiveRequest(int source, int destination){
+	public void receiveRequest(String source, String destination){
 		
 		System.out.println("Request received for route : " + source + " to " + destination);
 		
@@ -23,10 +23,10 @@ public class WaitState implements State{
 
 	}
 	
-	public List<List<Vertex>> calculateRide(int source, int destination){
+	public List<List<Vertex>> calculateRide(String source, String destination){
 		return null;
 	}
-	public void dispatchRide(List<List<Vertex>> suggestedRoutes){
+	public void dispatchRide(List<List<Vertex>> suggestedRoutes,int algoType){
 		
 	}
 }

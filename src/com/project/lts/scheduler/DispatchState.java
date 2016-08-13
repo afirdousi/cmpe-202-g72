@@ -14,30 +14,45 @@ public class DispatchState implements State{
 		sc=s;
 	}
 
-	public void receiveRequest(int source, int destination){
+	public void receiveRequest(String source, String destination){
 		System.out.println("Request received for route : " + source + " to " + destination);
 	}
 	
-	public List<List<Vertex>> calculateRide(int source, int destination){
+	public List<List<Vertex>> calculateRide(String source, String destination){
 		return null;
 	}
-	public void dispatchRide(List<List<Vertex>> suggestedRoutes){
+	public void dispatchRide(List<List<Vertex>> suggestedRoutes,int algoType){
 		
 		System.out.println("Ride ready for dispatch");
-		System.out.println("Select one route \n\n \t [1]Least Distance	[2]Least Cost");  // Need to fix this menu
-		Scanner selectedRoute = new Scanner(System.in);
-		System.out.println();
-		int selection = selectedRoute.nextInt();
 		
-		if(selection == 1){
-			System.out.println(suggestedRoutes.get(0));
+		String algoName;
+		if(algoType==0){
+			algoName = " Distance";
+		}else{
+			algoName = " Cost";
 		}
+		System.out.println("Algorithm Selected : Minimum" + algoName);
 		
-		if(selection == 2){
-			System.out.println(suggestedRoutes.get(1));
-		}
-
-		selectedRoute.close();
+//		System.out.println("Select one route \n\n \t [1]Least Distance	[2]Least Cost");  // Need to fix this menu
+		//Scanner selectedRoute = new Scanner(System.in);
+//		System.out.println();
+		
+		
+		//TODO: Define separate flavor of dispatchRide which prompts to choose the algo
+//		int selection = selectedRoute.nextInt();
+//		
+//		if(selection == 1){
+//			System.out.println(suggestedRoutes.get(0));
+//		}
+//		
+//		if(selection == 2){
+//			System.out.println(suggestedRoutes.get(1));
+//		}
+		
+		//algoType : 0 > Least Distance , 1 > Lease Cost 
+		System.out.println(suggestedRoutes.get(algoType));
+		
+		//selectedRoute.close();
 		
 		sc.setState(new WaitState(sc));
 		System.out.println("Ride dispatched");

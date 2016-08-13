@@ -16,7 +16,6 @@ import java.util.Scanner;
  */
 
 public class AccountClient
-
 {
 
 	Scanner console1;
@@ -278,6 +277,5 @@ public class AccountClient
 	}
 
 }
-
 
 
