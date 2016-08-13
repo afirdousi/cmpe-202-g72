@@ -20,7 +20,7 @@ public class AccountClient
 {
 
 	Scanner console1;
-	public long custid = 8;
+	public long custid = 18;
 	public long sysadmid = 2;
 	public long sysownerid = 2;
 	public long serviceproid = 2;
@@ -58,15 +58,27 @@ public class AccountClient
 
 	public void processRequest() {
 	
-		member1 = new Customer("Cust002", "James", "LastJames", "James02@yahoo.com", "4085550002", "Cust2 Address1", "Cust2 Address2", "Cust2 City", "Cust2 State", "90002", "Email", "Cash", "1234567890120002", "Y", "PREMIER", "C","10/17","555","james_paypalid");
+		member1 = new Customer("Cust001", "James", "LastJames", "James01@yahoo.com", "4085550001", "1 Address1", "1 Address2", "SJC", "CA", "95050", "Email", "CreditCard", "1234567890120002", "Y", "PREMIER", "C","10/17","555","james_crcardid");
 		members1.add(member1);
-		member1 = new Customer("Cust006", "Robert", "Rob6Lname", "Cust06@yahoo.com", "4085550006", "Cust6 Address1", "Cust6 Address2", "Cust6 City", "Cust6 State", "90006", "Email", "Cash", "6234567890120006", "Y", "PREMIER", "C","06/18","666","robert_paypal_id");
+		member1 = new Customer("Cust002", "Andy", "LastAndy", "andy01@yahoo.com", "4085550002", "1 Address1", "1 Address2", "SJC", "CA", "95050", "Email", "PayPal", "2234567890120002", "Y", "PREMIER", "C","10/17","555","andy_paypalid");
 		members1.add(member1);
-		member1 = new Customer("Cust007", "Jack", "JackLname", "Jack07@yahoo.com", "4085550007", "Cust7 Address1", "Cust7 Address2", "Cust7 City", "Cust7 State", "90007", "Email", "Cash", "7234567890120007", "N", "PREMIER", "C","11/17","777","jack_paypal_id");
+		member1 = new Customer("Cust003", "Albert", "LastAlbert", "albert01@yahoo.com", "4085550003", "1 Address1", "1 Address2", "SJC", "CA", "95050", "Email", "CreditCard", "3234567890120002", "Y", "PREMIER", "C","10/17","555","albert_crcardid");
 		members1.add(member1);
-		member1 = new Customer("Cust008", "Barbara", "Cust8Lname", "Cust08@yahoo.com", "4085550008", "Cust8 Address1", "Cust8 Address2", "Cust8 City", "Cust8 State", "90008", "Email", "Cash", "8234567890120008", "Y", "PREMIER", "C","02/18","888","barb_paypal_id");
+		member1 = new Customer("Cust004", "Allen", "LastAllen", "allen01@yahoo.com", "4085550004", "1 Address1", "1 Address2", "SJC", "CA", "95050", "Email", "PayPal", "4234567890120002", "Y", "PREMIER", "C","10/17","555","allen_paypalid");
 		members1.add(member1);
-
+		member1 = new Customer("Cust005", "Bob", "LastBob", "bob01@yahoo.com", "4085550005", "1 Address1", "1 Address2", "SFO", "CA", "95050", "Email", "CreditCard", "5234567890120002", "Y", "PREMIER", "C","10/17","555","bob_crcardid");
+		members1.add(member1);
+		member1 = new Customer("Cust006", "Bill", "LastBill", "bill01@yahoo.com", "4085550006", "1 Address1", "1 Address2", "SFO", "CA", "94002", "Email", "PayPal", "6234567890120002", "Y", "PREMIER", "C","10/17","555","bill_paypalid");
+		members1.add(member1);
+		member1 = new Customer("Cust007", "Charley", "LastCharley", "charley01@yahoo.com", "4085550007", "1 Address1", "1 Address2", "MTV", "CA", "90002", "Email", "PayPal", "7234567890120002", "Y", "PREMIER", "C","10/17","555","charley_paypalid");
+		members1.add(member1);
+		member1 = new Customer("Cust008", "David", "LastDavid", "david01@yahoo.com", "4085550008", "1 Address1", "1 Address2", "MTV", "CA", "90002", "Email", "CreditCard", "8234567890120002", "Y", "PREMIER", "C","10/17","555","david_crcardid");
+		members1.add(member1);
+		member1 = new Customer("Cust009", "Donald", "LastDonald", "donlad01@yahoo.com", "4085550009", "1 Address1", "1 Address2", "RWC", "CA", "90002", "Email", "PayPal", "9234567890120002", "Y", "PREMIER", "C","10/17","555","donald_paypalid");
+		members1.add(member1);
+		member1 = new Customer("Cust0010", "Patricia", "LastPatricia", "patricia01@yahoo.com", "4085550010", "1 Address1", "1 Address2", "RWC", "CA", "90002", "Email", "CreditCard", "1034567890120002", "Y", "PREMIER", "C","10/17","555","patricia_paypalid");
+		members1.add(member1);
+		
 		//Added on Aug 7 2016
 		System.out.println("Customers initialized successfully..");
 
@@ -223,7 +235,7 @@ public class AccountClient
 		  System.out.println("Enter Prime Member Flag ");
 		  console1 = new Scanner(System.in);
 		  strmPrimeflag = (console1.nextLine());
-		  System.out.println("Enter Member type: Customer/Sysadmin/Service Provider/Owner(C/S/D/O)");
+		  System.out.println("Enter Member type: Customer/Driver(C/D)");
 		  console1 = new Scanner(System.in);
 		  strmmemType = (console1.nextLine());
 
@@ -236,13 +248,11 @@ public class AccountClient
 	{
 
 		
-		switch (strmmemType) {
 
-		case "C": {
 			System.out.println("Member type = " + strmmemType);
 			custid++;
 			member1 = new Customer("null", "null", "Natar", null, null, null, null, null, null, null, null, null, null,
-					null, "PREMIER", "D","null","null","null");
+					null, "PREMIER", "","null","null","null");
 			member1.setnMemberID("Cust00" + custid);
 			member1.setMemFname(strmFName);
 			member1.setMemLname(strmLName);
@@ -262,16 +272,8 @@ public class AccountClient
 			member1.setMemCreditCVV(strmCVV);
 			member1.setMemPaypalId(strmPayPalId);
 			mops.addMembers(member1, members1);
-			break;
-		}
+		
 
-		default: {
-
-			System.out.println("Invalid option");
-			break;
-		}
-
-		}
 
 	}
 
