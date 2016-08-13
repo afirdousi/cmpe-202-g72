@@ -10,7 +10,6 @@ package com.project.lts.accounts;
  * 
  * Author:  Thiagarajan Natarajan
  * Purpose: Member CRUD operations
- * Date: 08/01/2015
  */
 
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public class AccountManager {
 	public AccountManager() {
 
 		this.mArr = new ArrayList<Member>();
-
+/*
 		Member m1 = new Customer("Cust002", "Ronak", "Cust2Lname", "Cust02@yahoo.com", "4085550002", "Cust2 Address1",
 				"Cust2 Address2", "Cust2 City", "Cust2 State", "90002", "Email", "Cash", "1234567890120002", "Y",
 				"PREMIER", "C","null","null","null");
@@ -40,7 +39,7 @@ public class AccountManager {
 				"Cust2 Address2", "Cust2 City", "Cust2 State", "90002", "Email", "Cash", "1234567890120002", "Y",
 				"PREMIER", "C","null","null","null");
 		mArr.add(m2);
-
+*/
 	}
 
 
