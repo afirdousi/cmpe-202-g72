@@ -1,5 +1,7 @@
 package com.project.lts.payment;
 
+import com.project.lts.notification.Notification;
+
 public class CreditCardStrategy implements PaymentStrategy {
 	private String name;
 	private String cardNumber;
@@ -14,6 +16,10 @@ public class CreditCardStrategy implements PaymentStrategy {
 	}
 	@Override
 	public void pay(int amount) {
+		/*String message=amount +" paid with credit/debit card";
+		Notification n=new Notification();
+		n.setMessage(message);
+		n.send();*/
 		System.out.println(amount +" paid with credit/debit card");
 	}
 }
