@@ -83,6 +83,7 @@ public class VehicleClient {
 			else if (s == 2){
 				
 				vm.retrieveVehicle();
+				System.out.println("------------------------------------");
 				System.out.println("Vehicle has been retrieved");
 				
 			}
