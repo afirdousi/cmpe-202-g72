@@ -11,7 +11,7 @@ public class Payment {
 		boolean isCoupon;
 		
 		
-		
+		//Changed 8/13/2016
 		public void sendPayment(int amount){			
 			
 			rideAmount=amount;						

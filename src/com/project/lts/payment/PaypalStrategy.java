@@ -11,6 +11,10 @@ public class PaypalStrategy implements PaymentStrategy {
 	
 	@Override
 	public void pay(int amount) {
+		/*String message=amount +" paid using Paypal";
+		Notification n=new Notification();
+		n.setMessage(message);
+		n.send();*/
 		System.out.println(amount + " paid using Paypal.");
 	}
 
