@@ -39,47 +39,82 @@ public class Test {
 	public static void renderHeader(){
 		clearConsole();
 		System.out.println("|--------------------------------------------------------------------------|");
-		System.out.println("|----------------------Lyft Ride Management System-------------------------|");
+		System.out.println("|-----------------Lyft Ride & Carpool Management System--------------------|");
 		System.out.println("|--------------------------------------------------------------------------|");
 	}
 
 	public static void renderMainMenu(){
 		renderHeader();
 		System.out.println("\n");
-		System.out.println("[1] Sign Up \n [2] Login \n [3] Close \n");
+		System.out.println("[1] Sign Up \n [2] Login \n [3] Exit \n");
+		
+		Scanner scan = new Scanner(System.in);
+		int choice = Integer.parseInt(scan.nextLine());
+
+		switch (choice) {
+		case 1:
+			render(STATE.SIGN_UP);
+			break;
+		case 2:
+			render(STATE.LOGIN);
+			break;
+		case 3:
+			System.out.println("Return to Main Menu");
+			break;
+		default:
+			System.out.println("Invalid Option .... Please Try Again");
+			render(STATE.MAIN_MENU);
+			break;
+		}
+		
+		
 	}
 
 	public static void renderSignUpMenu(){
-		renderHeader();
-		System.out.println("Sing Up\n \n");
+		//renderHeader();
+		System.out.println("Sign Up\n \n");
 		System.out.println("\n[1] Home \n [2] Profile \n [3] Update Profile \n [4] Schedule Ride \n [5] My Rides \n [6]Reports");
 		//System.out.println("\t[1] Home \t\t \n\n Enter Pickup Location: \n\n Enter Dropoff Location: \n\n Enter Type of Car: \n\n Enter No. of Seats: \n\n Do you need infant seat?[Y/N]: \n\n Enter \n\n Enter ");
 		//System.out.println("\t[1] Home  \n\n \t 001 \t 8/10/2016\t SJC\t SFO\t $10.00 \n\t 002 \t 8/9/2016\t SJC\t RDC\t $27.00 \n\t 003 \t 8/9/2016\t SJC\t RCT\t $42.00 ");
 	}
 	
-	public static void renderLogin(){
-		renderHeader();
+	public static int renderLogin(){
+		//renderHeader();
+		
+		Scanner scan = new Scanner(System.in);
+		String userName,password;// = Integer.parseInt(scan.nextLine());
+		
 		System.out.println("\n");
-		System.out.println("\n[1] Home \n [2] Profile \n [3] Update Profile \n [4] Schedule Ride \n [5] My Rides \n [6]Reports");
+		System.out.println("\n[1] Enter Username:");
+		userName = scan.nextLine();
+		System.out.println("\n[1] Enter Password:");
+		password = scan.nextLine();
+		
+		if(userName=="test" && password =="123"){
+			return 1;
+		}else{
+			System.out.println("Wrong credentials");
+			return -1;
+		}
 	}
 	
 	public static void renderMemberMenu(){
 
-		renderHeader();
+		//renderHeader();
 		System.out.println("\n");
 		System.out.println("\n[1] Home \n [2] Profile \n [3] Update Profile \n  [4] Schedule Ride \n [5] My Rides \n [6]Reports");
 	}
 	
 	public static void renderVehicleMenu(){
 
-		renderHeader();
+		//renderHeader();
 		System.out.println("\n");
 		System.out.println("\n[1] Home \n [2] Profile \n [3] Update Profile \n  [4] Schedule Ride \n [5] My Rides \n [6]Reports");
 	}
 	
 	public static void renderScheduleMenu(){
 
-		renderHeader();
+		//renderHeader();
 		System.out.println("\n");
 		System.out.println("\n[1] Home \n [2] Profile \n [3] Update Profile \n  [4] Schedule Ride \n [5] My Rides \n [6]Reports");
 	}
@@ -111,7 +146,11 @@ public class Test {
 	
 	public static void main(String[] args){
 		
+		//////////////////////////////////////////////////////////////
 		//Environment Setup
+		//////////////////////////////////////////////////////////////
+		
+		
 		System.out.println("Setting up environment...");
 		
 		System.out.println("*********************************");
@@ -122,7 +161,7 @@ public class Test {
 		accManager.setMockMembers();
 		
 		for (Member m : accManager.members) {
-			System.out.println("ID :" + m.getnMemberID() + " | First Name " + m.getMemFname() + "| Email "  + m.getMemEmail());
+			//System.out.println("ID :" + m.getnMemberID() + " | First Name " + m.getMemFname() + "| Email "  + m.getMemEmail());
 		}
 		
 		System.out.println("\nSTATUS: 10 Members created.\n");
@@ -135,7 +174,7 @@ public class Test {
 		vehManager.setMockVehicles();
 		
 		for (Vehicle v : vehManager.vehicles) {
-			System.out.println("ID : " +v.vId + " | "  + v.getvDriver());
+			//System.out.println("ID : " +v.vId + " | "  + v.getvDriver());
 		}
 		
 		System.out.println("\nSTATUS: 10 Vehicles created.\n");
@@ -148,7 +187,7 @@ public class Test {
 		schManager.setupMockRide(accManager.members);
 		
 		for (Ride v : schManager.currentRides) {
-			System.out.println("ID : " + v.getID() + " | Customer : " + v.getMemberName() + " | From :" + v.getSource() + " | To :" + v.getDestination());
+			//System.out.println("ID : " + v.getID() + " | Customer : " + v.getMemberName() + " | From :" + v.getSource() + " | To :" + v.getDestination());
 		}
 		
 		System.out.println("\nSTATUS: 10 Mock Rides ready to be scheduled.\n");
@@ -168,7 +207,19 @@ public class Test {
 			scheduleRideManager.receiveRequest(source,destination);
 			suggestedRoutes  = scheduleRideManager.calculateRide(source, destination);
 			scheduleRideManager.dispatchRide(suggestedRoutes,0);
-		}		
+		}	
+		
+		
+		//////////////////////////////////////////////////////////////
+		//Menu Setup
+		//////////////////////////////////////////////////////////////
+		
+		render(STATE.MAIN_MENU);
+		
+		
+		
+		
+		
 		
 	}
 

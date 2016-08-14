@@ -27,11 +27,7 @@ public class AccountManager {
 	public Member member;
     public Notification notificationManager = new Notification();
 	public AccountManager() {
-
 		this.members = new ArrayList<Member>();
-	
-		
-
 	}
 //Aug 13 2016 modifying members to members1
 	public void setMockMembers() {
