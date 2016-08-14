@@ -25,6 +25,7 @@ public class VehicleManager
 	}
 
 	public ArrayList<Vehicle> setMockVehicles() {
+		
 		initVehicleData();
 		return vehicles;
 	}
@@ -224,6 +225,7 @@ public class VehicleManager
 		
 		Vehicle veh = new Car();
 		int vIdSize = this.vehicles.size();
+		System.out.println("Size of Vehicle arraylist = "+vIdSize);
 		String vId = "V000" + (vIdSize + 1);
 		veh.setvId(vId);
 		veh.setvModel(vModel);

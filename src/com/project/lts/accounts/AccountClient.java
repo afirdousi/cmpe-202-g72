@@ -19,7 +19,7 @@ public class AccountClient
 {
 
 	Scanner console1;
-	public long custid = 18;
+	public long custid = 10;
 	public long sysadmid = 2;
 	public long sysownerid = 2;
 	public long serviceproid = 2;
@@ -49,7 +49,7 @@ public class AccountClient
 	public ServiceProvider member3;
 	public SystemOwner member4;*/
 	AccountManager mops = new AccountManager();
-
+    
 	public AccountClient(){
 		
 		
@@ -57,7 +57,7 @@ public class AccountClient
 
 	public void processRequest() {
 	
-		member1 = new Customer("Cust001", "James", "LastJames", "James01@yahoo.com", "4085550001", "1 Address1", "1 Address2", "SJC", "CA", "95050", "Email", "CreditCard", "1234567890120002", "Y", "PREMIER", "C","10/17","555","james_crcardid");
+		/*member1 = new Customer("Cust001", "James", "LastJames", "James01@yahoo.com", "4085550001", "1 Address1", "1 Address2", "SJC", "CA", "95050", "Email", "CreditCard", "1234567890120002", "Y", "PREMIER", "C","10/17","555","james_crcardid");
 		members1.add(member1);
 		member1 = new Customer("Cust002", "Andy", "LastAndy", "andy01@yahoo.com", "4085550002", "1 Address1", "1 Address2", "SJC", "CA", "95050", "Email", "PayPal", "2234567890120002", "Y", "PREMIER", "C","10/17","555","andy_paypalid");
 		members1.add(member1);
@@ -79,8 +79,9 @@ public class AccountClient
 		members1.add(member1);
 		
 		//Added on Aug 7 2016
-		System.out.println("Customers initialized successfully..");
-
+		System.out.println("Customers initialized successfully..");*/
+        //Added on Aug 13 2016
+		mops.setMockMembers();
 
 		do {
 
@@ -116,6 +117,7 @@ public class AccountClient
 				console1 = new Scanner(System.in);
 				strmFName = (console1.nextLine());
 				mops.retrieveCustomer(strmFName);
+			
 
 			}
 

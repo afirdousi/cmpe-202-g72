@@ -15,6 +15,7 @@ public class VehicleClient {
 	public static String vId;
 	public static  List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	static VehicleManager vm = new VehicleManager();
+    
 	
 	//public static void main(String[] args){
 	public void manageVehicle(){
@@ -23,6 +24,8 @@ public class VehicleClient {
 			String vDriver;
 			//Added Aug 7
 			int s =0;
+			  //Added Aug 13 2016 by Thiagu N
+			   vm.setMockVehicles();
 			do {
 			   System.out.println("LTS Vehicle Management");
 			   System.out.println("------------------------");
@@ -35,6 +38,7 @@ public class VehicleClient {
 			   System.out.println("Enter your option");
 			   Scanner scanner3 = new Scanner(System.in );
 			   s = scanner3.nextInt ();
+			 
 			   if (s == 1){
 				
 				Scanner sc = new Scanner(System.in);

@@ -17,83 +17,108 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import com.project.lts.accounts.*;
+import com.project.lts.notification.Notification;
 
 public class AccountManager {
 
 	Customer cs;
-
 	public ArrayList<Member> members;
 	public Member member;
-
+    public Notification notificationManager = new Notification();
 	public AccountManager() {
 
 		this.members = new ArrayList<Member>();
+	
+		
 
 	}
-
+//Aug 13 2016 modifying members to members1
 	public void setMockMembers() {
-
+		
 		member = new Customer("Cust001", "James", "LastJames", "James01@yahoo.com", "4085550001", "1 Address1",
 				"1 Address2", "SJC", "CA", "95050", "Email", "CreditCard", "1234567890120002", "Y", "PREMIER", "C",
 				"10/17", "555", "james_crcardid");
-		members.add(member);
+		
+		//members.add(member);
+		AccountClient.members1.add(member);
 		member = new Customer("Cust002", "Andy", "LastAndy", "andy01@yahoo.com", "4085550002", "1 Address1",
 				"1 Address2", "SJC", "CA", "95050", "Email", "PayPal", "2234567890120002", "Y", "PREMIER", "C", "10/17",
 				"555", "andy_paypalid");
-		members.add(member);
+		//members.add(member);
+		AccountClient.members1.add(member);
 		member = new Customer("Cust003", "Albert", "LastAlbert", "albert01@yahoo.com", "4085550003", "1 Address1",
 				"1 Address2", "SJC", "CA", "95050", "Email", "CreditCard", "3234567890120002", "Y", "PREMIER", "C",
 				"10/17", "555", "albert_crcardid");
-		members.add(member);
+		//members.add(member);
+		AccountClient.members1.add(member);
 		member = new Customer("Cust004", "Allen", "LastAllen", "allen01@yahoo.com", "4085550004", "1 Address1",
 				"1 Address2", "SJC", "CA", "95050", "Email", "PayPal", "4234567890120002", "Y", "PREMIER", "C", "10/17",
 				"555", "allen_paypalid");
-		members.add(member);
+		//members.add(member);
+		AccountClient.members1.add(member);
 		member = new Customer("Cust005", "Bob", "LastBob", "bob01@yahoo.com", "4085550005", "1 Address1", "1 Address2",
 				"SFO", "CA", "95050", "Email", "CreditCard", "5234567890120002", "Y", "PREMIER", "C", "10/17", "555",
 				"bob_crcardid");
-		members.add(member);
+		//members.add(member);
+		AccountClient.members1.add(member);
 		member = new Customer("Cust006", "Bill", "LastBill", "bill01@yahoo.com", "4085550006", "1 Address1",
 				"1 Address2", "SFO", "CA", "94002", "Email", "PayPal", "6234567890120002", "Y", "PREMIER", "C", "10/17",
 				"555", "bill_paypalid");
-		members.add(member);
+		//members.add(member);
+		AccountClient.members1.add(member);
 		member = new Customer("Cust007", "Charley", "LastCharley", "charley01@yahoo.com", "4085550007", "1 Address1",
 				"1 Address2", "MTV", "CA", "90002", "Email", "PayPal", "7234567890120002", "Y", "PREMIER", "C", "10/17",
 				"555", "charley_paypalid");
-		members.add(member);
+		//members.add(member);
+		AccountClient.members1.add(member);
 		member = new Customer("Cust008", "David", "LastDavid", "david01@yahoo.com", "4085550008", "1 Address1",
 				"1 Address2", "MTV", "CA", "90002", "Email", "CreditCard", "8234567890120002", "Y", "PREMIER", "C",
 				"10/17", "555", "david_crcardid");
-		members.add(member);
+		//members.add(member);
+		AccountClient.members1.add(member);
 		member = new Customer("Cust009", "Donald", "LastDonald", "donlad01@yahoo.com", "4085550009", "1 Address1",
 				"1 Address2", "RWC", "CA", "90002", "Email", "PayPal", "9234567890120002", "Y", "PREMIER", "C", "10/17",
 				"555", "donald_paypalid");
-		members.add(member);
+		//members.add(member);
+		AccountClient.members1.add(member);
 		member = new Customer("Cust0010", "Patricia", "LastPatricia", "patricia01@yahoo.com", "4085550010",
 				"1 Address1", "1 Address2", "RWC", "CA", "90002", "Email", "CreditCard", "1034567890120002", "Y",
 				"PREMIER", "C", "10/17", "555", "patricia_paypalid");
-		members.add(member);
+		//members.add(member);
+		//Aug 13 2016 Added 
+		AccountClient.members1.add(member);
+		
 
 	}
 
 	public void addMembers(Member m, List<Member> members)
 	// This method add members to Member array members
 	{
+        System.out.println("In addMembers method -- Is member list empty"+AccountClient.members1.isEmpty());
+		if (!AccountClient.members1.isEmpty()) {
 
-		if (!members.isEmpty()) {
+			//members.add(m);
+			//Aug 13 2016 Added 
+			AccountClient.members1.add(m);
+			//Aug 13 2016 Observer pattern changes Notification
+			notificationManager.reset();
 
-			members.add(m);
-			System.out.println("After adding the size of the members arraylist = " + members.size());
+			notificationManager.setListener(m);
+
+			notificationManager.setMessage("Member Notified   "+m.getMemEmail());
+			notificationManager.send();
+			System.out.println("After adding the size of the members arraylist = " + AccountClient.members1.size());
 
 			// sortMembers(members);
-			for (int i = 0; i < members.size(); i++)
+			for (int i = 0; i < AccountClient.members1.size(); i++)
 
 			{
 
-				System.out.println("\n" + members.get(i).getnMemberID() + " " + members.get(i).getMemFname() + " * "
-						+ members.get(i).getMemLname() + " * " + members.get(i).getMemEmail() + " * "
-						+ members.get(i).getMemPhone() + " * " + members.get(i).getMemRole() + " Member type= "
-						+ members.get(i).getMemType());
+				System.out.println("\n" + AccountClient.members1.get(i).getnMemberID() + " " +  AccountClient.members1.get(i).getMemFname() + " * "
+						+  AccountClient.members1.get(i).getMemLname() + " * " +  AccountClient.members1.get(i).getMemEmail() + " * "
+						+  AccountClient.members1.get(i).getMemPhone() + " * " +  AccountClient.members1.get(i).getMemRole() + " Member type= "
+						+  AccountClient.members1.get(i).getMemType());
 				// System.out.println(members.get(i).getMemLname());
 
 			}
@@ -108,16 +133,16 @@ public class AccountManager {
 
 			System.out.println("Printing after deletion..");
 
-			for (int i = 0; i < this.members.size(); i++) {
+			for (int i = 0; i < AccountClient.members1.size(); i++) {
 
-				if (this.members.get(i).getMemFname().equalsIgnoreCase(CustFName)) {
-					System.out.println("Member First name in delete " + this.members.get(i).memFname);
-					this.members.remove(i);
+				if (AccountClient.members1.get(i).getMemFname().equalsIgnoreCase(CustFName)) {
+					System.out.println("Member First name in delete " + AccountClient.members1.get(i).memFname);
+					AccountClient.members1.remove(i);
 				}
 
 			}
 			System.out.println("Member has been deleted successfully!");
-			System.out.println("Size of the list after delete operation is " + this.members.size());
+			System.out.println("Size of the list after delete operation is " + AccountClient.members1.size());
 		}
 
 	}
@@ -126,18 +151,18 @@ public class AccountManager {
 		boolean retflag = false;
 		System.out.println("Printing after retrieving ..");
 
-		for (int i = 0; i < this.members.size() && !retflag; i++) {
+		for (int i = 0; i < AccountClient.members1.size() && !retflag; i++) {
 
-			if (this.members.get(i).getnMemberID().equalsIgnoreCase(memberId)) {
+			if (AccountClient.members1.get(i).getnMemberID().equalsIgnoreCase(memberId)) {
 				//
-				System.out.println("\n" + this.members.get(i).getnMemberID() + " " + this.members.get(i).getMemFname()
-						+ " * " + this.members.get(i).getMemLname() + " * " + this.members.get(i).getMemEmail() + " * "
-						+ this.members.get(i).getMemPhone() + " * " + this.members.get(i).getMemCreditcard() + " * "
-						+ this.members.get(i).getMemPaypalId() + " * " + this.members.get(i).getMemRole());
+				System.out.println("\n" + AccountClient.members1.get(i).getnMemberID() + " " + AccountClient.members1.get(i).getMemFname()
+						+ " * " + AccountClient.members1.get(i).getMemLname() + " * " + AccountClient.members1.get(i).getMemEmail() + " * "
+						+ AccountClient.members1.get(i).getMemPhone() + " * " + AccountClient.members1.get(i).getMemCreditcard() + " * "
+						+ AccountClient.members1.get(i).getMemPaypalId() + " * " +AccountClient.members1.get(i).getMemRole());
 
-				return this.members.get(i);
+				return AccountClient.members1.get(i);
 
-				//
+				
 			}
 			//
 			//
@@ -152,14 +177,14 @@ public class AccountManager {
 		// TODO implement me
 		System.out.println("Printing after Searching..");
 		boolean foundflag = false;
-		System.out.println("Array size = " + this.members.size());
-		for (int i = 0; i < this.members.size() && !foundflag; i++) {
+		System.out.println("Array size = " + AccountClient.members1.size());
+		for (int i = 0; i < AccountClient.members1.size() && !foundflag; i++) {
 
-			if (this.members.get(i).getnMemberID().equalsIgnoreCase(CustId)) {
+			if (AccountClient.members1.get(i).getnMemberID().equalsIgnoreCase(CustId)) {
 				System.out.println("Member found\n" + CustId);
 				foundflag = true;
-				System.out.println("Member details Searched " + this.members.get(i).memFname + " "
-						+ this.members.get(i).getMemEmail());
+				System.out.println("Member details Searched " + AccountClient.members1.get(i).memFname + " "
+						+ AccountClient.members1.get(i).getMemEmail());
 				// this.members.get(i).memFname= CustFName;
 			}
 
@@ -178,14 +203,14 @@ public class AccountManager {
 
 			boolean updtflag = false;
 
-			for (int i = 0; i < this.members.size() && !updtflag; i++) {
+			for (int i = 0; i < AccountClient.members1.size() && !updtflag; i++) {
 
-				if (this.members.get(i).getMemFname().equalsIgnoreCase(CustFName)) {
+				if (AccountClient.members1.get(i).getMemFname().equalsIgnoreCase(CustFName)) {
 
-					this.members.get(i).memEmail = CEmail;
+					AccountClient.members1.get(i).memEmail = CEmail;
 					updtflag = true;
-					System.out.println("Member Email Updated for " + this.members.get(i).memFname + " "
-							+ this.members.get(i).memEmail);
+					System.out.println("Member Email Updated for " + AccountClient.members1.get(i).memFname + " "
+							+ AccountClient.members1.get(i).memEmail);
 					System.out.println("Member has been updated successfully!");
 				}
 
@@ -208,10 +233,10 @@ public class AccountManager {
 	{
 		boolean retflag = false;
 
-		Collections.sort(this.members, new SortComparator());
-
+		//Collections.sort(this.members, new SortComparator());
+		Collections.sort(AccountClient.members1, new SortComparator());
 		System.out.println("Sorted list ");
-		for (Member e : this.members) {
+		for (Member e : AccountClient.members1) {
 			System.out.println("Member ID " + e.getnMemberID());
 			System.out.println("Member First Name " + e.getMemFname());
 			System.out.println("Member Email " + e.getMemEmail());
@@ -226,12 +251,12 @@ public class AccountManager {
 		boolean selectflag = false;
 		System.out.println("Printing after selecting ..");
 
-		for (int i = 0; i < this.members.size() && !selectflag; i++) {
+		for (int i = 0; i < AccountClient.members1.size() && !selectflag; i++) {
 
-			if (this.members.get(i).getMemFname().equalsIgnoreCase(CustFName)) {
+			if (AccountClient.members1.get(i).getMemFname().equalsIgnoreCase(CustFName)) {
 				selectflag = true;
 				System.out.println(
-						"Selected Member * " + CustFName + " * Email address is *  " + this.members.get(i).memEmail);
+						"Selected Member * " + CustFName + " * Email address is *  " + AccountClient.members1.get(i).memEmail);
 				// this.members.get(i).memFname= CustFName;
 			}
 
@@ -245,7 +270,7 @@ public class AccountManager {
 
 	public Member retrieveMember(String memberId) {
 
-		for (Member m : this.members) {
+		for (Member m : AccountClient.members1) {
 
 			if (m.getnMemberID() == memberId) {
 				return m;
