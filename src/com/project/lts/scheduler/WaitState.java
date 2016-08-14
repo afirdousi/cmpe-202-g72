@@ -2,7 +2,7 @@ package com.project.lts.scheduler;
 
 import java.util.List;
 
-import com.project.lts.routing.Route;
+import com.project.lts.routing.*;
 import com.project.lts.routing.Vertex;
 
 public class WaitState implements State{

@@ -1,6 +1,6 @@
 package com.project.lts.routing;
 
-public class Route {
+public class RouteTest {
 	
 	public static void main(String[] args)
 	{
