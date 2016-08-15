@@ -41,24 +41,26 @@ public class PaymentManager {
 			
 		}
 		
-		//Code for holding payment
-		public void holdPayment(int amount,List<Member> members){
-	
-			for (int i = 0; i < members.size(); i++)
-			{
-				notificationManager.reset();
-				notificationManager.setListener(members.get(i));
-				notificationManager.setMessage("Hello"+members.get(i).getMemFname()+" Payment"+ amount + "is hold for ride ");
-			    notificationManager.send();
-				//System.out.println("Hello"+members.get(i).getMemFname()+" Payment"+ amount + "is hold for ride ");
-		     
-			}
-		}
 		
 		
 		
 		
 		
 	}
+	
+	//Code for holding payment
+			public void holdPayment(int amount, List<Member> members){
+		
+				for (int i = 0; i < members.size(); i++)
+				{
+					notificationManager.reset();
+					notificationManager.setListener(members.get(i));
+					notificationManager.setMessage("Hello"+members.get(i).getMemFname()+" Payment"+ amount + "is hold for ride ");
+				    notificationManager.send();
+					//System.out.println("Hello"+members.get(i).getMemFname()+" Payment"+ amount + "is hold for ride ");
+			     
+				}
+			}
+			
 
 }
