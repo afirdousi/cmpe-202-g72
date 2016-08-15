@@ -36,54 +36,52 @@ public class AccountManager {
 				"1 Address2", "SJC", "CA", "95050", "Email", "CreditCard", "1234567890120002", "Y", "PREMIER", "C",
 				"10/17", "555", "james_crcardid");
 		
-		//members.add(member);
-		AccountClient.members1.add(member);
+		members.add(member);
+		
 		member = new Customer("Cust002", "Andy", "LastAndy", "andy01@yahoo.com", "4085550002", "1 Address1",
 				"1 Address2", "SJC", "CA", "95050", "Email", "PayPal", "2234567890120002", "Y", "PREMIER", "C", "10/17",
 				"555", "andy_paypalid");
-		//members.add(member);
-		AccountClient.members1.add(member);
+		members.add(member);
+		
 		member = new Customer("Cust003", "Albert", "LastAlbert", "albert01@yahoo.com", "4085550003", "1 Address1",
 				"1 Address2", "SJC", "CA", "95050", "Email", "CreditCard", "3234567890120002", "Y", "PREMIER", "C",
 				"10/17", "555", "albert_crcardid");
-		//members.add(member);
-		AccountClient.members1.add(member);
+		members.add(member);
+		
 		member = new Customer("Cust004", "Allen", "LastAllen", "allen01@yahoo.com", "4085550004", "1 Address1",
 				"1 Address2", "SJC", "CA", "95050", "Email", "PayPal", "4234567890120002", "Y", "PREMIER", "C", "10/17",
 				"555", "allen_paypalid");
-		//members.add(member);
-		AccountClient.members1.add(member);
+		members.add(member);
+		
 		member = new Customer("Cust005", "Bob", "LastBob", "bob01@yahoo.com", "4085550005", "1 Address1", "1 Address2",
 				"SFO", "CA", "95050", "Email", "CreditCard", "5234567890120002", "Y", "PREMIER", "C", "10/17", "555",
 				"bob_crcardid");
-		//members.add(member);
-		AccountClient.members1.add(member);
+		members.add(member);
+		
 		member = new Customer("Cust006", "Bill", "LastBill", "bill01@yahoo.com", "4085550006", "1 Address1",
 				"1 Address2", "SFO", "CA", "94002", "Email", "PayPal", "6234567890120002", "Y", "PREMIER", "C", "10/17",
 				"555", "bill_paypalid");
-		//members.add(member);
-		AccountClient.members1.add(member);
+		members.add(member);
+		
 		member = new Customer("Cust007", "Charley", "LastCharley", "charley01@yahoo.com", "4085550007", "1 Address1",
 				"1 Address2", "MTV", "CA", "90002", "Email", "PayPal", "7234567890120002", "Y", "PREMIER", "C", "10/17",
 				"555", "charley_paypalid");
-		//members.add(member);
-		AccountClient.members1.add(member);
+		members.add(member);
+		
 		member = new Customer("Cust008", "David", "LastDavid", "david01@yahoo.com", "4085550008", "1 Address1",
 				"1 Address2", "MTV", "CA", "90002", "Email", "CreditCard", "8234567890120002", "Y", "PREMIER", "C",
 				"10/17", "555", "david_crcardid");
-		//members.add(member);
-		AccountClient.members1.add(member);
+		members.add(member);
+		
 		member = new Customer("Cust009", "Donald", "LastDonald", "donlad01@yahoo.com", "4085550009", "1 Address1",
 				"1 Address2", "RWC", "CA", "90002", "Email", "PayPal", "9234567890120002", "Y", "PREMIER", "C", "10/17",
 				"555", "donald_paypalid");
-		//members.add(member);
-		AccountClient.members1.add(member);
+		members.add(member);
+		
 		member = new Customer("Cust0010", "Patricia", "LastPatricia", "patricia01@yahoo.com", "4085550010",
 				"1 Address1", "1 Address2", "RWC", "CA", "90002", "Email", "CreditCard", "1034567890120002", "Y",
 				"PREMIER", "C", "10/17", "555", "patricia_paypalid");
-		//members.add(member);
-		//Aug 13 2016 Added 
-		AccountClient.members1.add(member);
+		members.add(member);
 		
 
 	}

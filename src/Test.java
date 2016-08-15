@@ -160,6 +160,7 @@ public class Test {
 		AccountManager accManager = new AccountManager();
 		accManager.setMockMembers();
 		
+		
 		for (Member m : accManager.members) {
 			//System.out.println("ID :" + m.getnMemberID() + " | First Name " + m.getMemFname() + "| Email "  + m.getMemEmail());
 		}
@@ -186,8 +187,10 @@ public class Test {
 		Scheduler schManager = new Scheduler(); 
 		schManager.setupMockRide(accManager.members);
 		
+		System.out.println(schManager.currentRides);
+		
 		for (Ride v : schManager.currentRides) {
-			//System.out.println("ID : " + v.getID() + " | Customer : " + v.getMemberName() + " | From :" + v.getSource() + " | To :" + v.getDestination());
+			System.out.println("ID : " + v.getID() + " | Customer : " + v.getMemberName() + " | From :" + v.getSource() + " | To :" + v.getDestination());
 		}
 		
 		System.out.println("\nSTATUS: 10 Mock Rides ready to be scheduled.\n");
@@ -206,6 +209,10 @@ public class Test {
 			
 			scheduleRideManager.receiveRequest(source,destination);
 			suggestedRoutes  = scheduleRideManager.calculateRide(source, destination);
+			
+			List<Vertex> selectedRoute = suggestedRoutes.get(0);
+			System.out.println(selectedRoute);
+			
 			scheduleRideManager.dispatchRide(suggestedRoutes,0);
 		}	
 		
@@ -214,7 +221,7 @@ public class Test {
 		//Menu Setup
 		//////////////////////////////////////////////////////////////
 		
-		render(STATE.MAIN_MENU);
+		//render(STATE.MAIN_MENU);
 		
 		
 		

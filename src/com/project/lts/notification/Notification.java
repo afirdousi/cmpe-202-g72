@@ -1,4 +1,7 @@
 package com.project.lts.notification;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.project.lts.accounts.Member;
 
 public class Notification {
@@ -17,6 +20,10 @@ public class Notification {
 	
 	public void setListener(Member m){
 		this.obs.add(m);
+	}
+	
+	public void setListener(List<Member> members){
+		this.obs.add(members);
 	}	
 	
 	public void removeListener(Member m){

@@ -44,6 +44,7 @@ public class Payment {
 				notificationManager.setListener(members.get(i));
 				notificationManager.setMessage("Hello"+members.get(i).getMemFname()+" Payment"+ amount + "is hold for ride ");
 			   //System.out.println("Hello"+members.get(i).getMemFname()+" Payment"+ amount + "is hold for ride ");
+				notificationManager.send();
 		     }
 		}
 		

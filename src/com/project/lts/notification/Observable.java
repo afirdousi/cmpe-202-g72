@@ -12,6 +12,10 @@ public class Observable {
 		this.observers.add(m);
 	}
 	
+	public void add(List<Member> members){
+		this.observers.addAll(members);
+	}
+	
 	public void remove(Member m){
 		this.observers.remove(m);
 	}
