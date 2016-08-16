@@ -145,12 +145,13 @@ public class AccountManager {
 	public void removeCustomer(String memberID) {
 		{
 
+			boolean memberFound = false;
 			//System.out.println("Printing after deletion..");
 
 			for (Member m:members) {
 				if (m.getnMemberID().equalsIgnoreCase(memberID)) {
 					
-					
+					memberFound = true;
 					notificationManager.reset();
 					notificationManager.setListener(m);
 					notificationManager.setMessage("Member with ID " + memberID + " deleted successfully");
@@ -162,6 +163,10 @@ public class AccountManager {
 			}
 //			System.out.println("Member has been deleted successfully!");
 //			System.out.println("Size of the list after delete operation is " + members.size());
+			if(!memberFound){
+				System.out.println("Member with ID : " + memberID + " not found.");
+			}
+			
 		}
 
 	}

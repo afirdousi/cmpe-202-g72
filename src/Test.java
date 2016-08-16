@@ -24,7 +24,6 @@ public class Test {
 	
 	static boolean loggedIn=false; 
 	static AccountManager accManager;
-	static VehicleManager vManager;
 	static VehicleManager vehManager;
 	//static PaymentManager paymentManager;
 	static Scanner inputManager;
@@ -122,14 +121,15 @@ public class Test {
 
 		switch (choice) {
 		case 1:
-			System.out.println("Create an Account");
+			System.out.println("CRUD Account");
 			renderMemberOptions();
 
 		case 2:
-			System.out.println("Request Ride");
+			System.out.println("CRUD Vehicle");
 			
 			//TODO: Pull in Ride Request here
 			// this.reqClient.createRequest();
+			renderVehicleOptions();
 
 			break;
 
@@ -284,9 +284,11 @@ public class Test {
 			System.out.println("2. Retrieve Vehicle");
 			System.out.println("3. Update Vehicle");
 			System.out.println("4. Remove Vehicle");
-			System.out.println("5. Return to Main Menu");
-			System.out.println("6. Back");
-			System.out.println("7. Exit");
+			System.out.println("5. Select Members");
+			System.out.println("6. Search Members");
+			System.out.println("7. Sort Members");
+			System.out.println("8. Back");
+			System.out.println("9. Exit");
 			System.out.println("Enter your option(1,2,3,4,5,6,7)");
 
 			inputManager = new Scanner(System.in);
@@ -295,32 +297,26 @@ public class Test {
 
 			if (choice == 1)
 			{
-				addMember(); //addVehicle();
+				addVehicle();
 			}
 			else if (choice == 2) {
 				System.out.println("Retrieving Vehicle ");
 				System.out.println("Enter Vehicle ID to be retrieved");
 				inputManager = new Scanner(System.in);
 				String ID = inputManager.nextLine();
-				
-				//accManager.retrieveMember(ID); vehManager;
-
+				vehManager.retrieveVehicle(ID);
 			}
-
 			else if (choice == 3) {
 				System.out.println("Updating Vehicle ");
 				
 				System.out.println("Enter Vehicle ID to update");
 				inputManager = new Scanner(System.in);
 				String ID = (inputManager.nextLine());
-				System.out.println("Enter Vehicle First Name");
+				System.out.println("Enter New Driver Name");
 				inputManager = new Scanner(System.in);
-				String firstName = (inputManager.nextLine());
-				System.out.println("Enter new email address");
-				inputManager = new Scanner(System.in);
-				String email = (inputManager.nextLine());
+				String driverName = inputManager.nextLine();
 				
-				accManager.updateCustomer(ID, firstName, email);
+				vehManager.updateVehicle(ID, driverName);
 
 			}
 
@@ -329,7 +325,7 @@ public class Test {
 				System.out.println("Enter Vehicle ID to remove :");
 				inputManager = new Scanner(System.in);
 				String ID  = (inputManager.nextLine());
-				accManager.removeCustomer(ID);
+				vehManager.deleteVehicle(ID);
 
 			}
 
@@ -387,7 +383,7 @@ public class Test {
 		System.out.println("Mocking Up Vehicle...");
 		System.out.println("*********************************");
 		
-		VehicleManager vehManager = new VehicleManager();
+		vehManager = new VehicleManager();
 		vehManager.setMockVehicles();
 		
 		for (Vehicle v : vehManager.vehicles) {

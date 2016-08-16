@@ -26,23 +26,12 @@ public class VehicleManager
 	public VehicleManager(){
 		veh = new Car();
 		this.vehicles = new ArrayList<Vehicle>();
-		//super();
 	}
 
-	public ArrayList<Vehicle> setMockVehicles() {
+	public void setMockVehicles() {
 		
-		initVehicleData();
-		return vehicles;
-	}
-
-	public void setvehicles(ArrayList<Vehicle> vehicles) {
-		this.vehicles = vehicles;
-	}
-
-	public void initVehicleData() {
-
 		Vehicle v1 = new Car();
-		v1.setvId("V0001");
+		v1.setvId("1");
 		v1.setvModel("Toyota");
 		v1.setvYear("2011");
 		v1.setvIn("1234567890");
@@ -54,7 +43,7 @@ public class VehicleManager
         this.vehicles.add(v1);
 
 		Vehicle v2 = new Car();
-		v2.setvId("V0002");
+		v2.setvId("2");
 		v2.setvModel("HONDA");
 		v2.setvYear("2012");
 		v2.setvIn("2234567890");
@@ -66,7 +55,7 @@ public class VehicleManager
          this.vehicles.add(v2);
                 
 		Vehicle v3 = new Car();
-		v3.setvId("V0003");
+		v3.setvId("3");
 		v3.setvModel("BMW");
 		v3.setvYear("2013");
 		v3.setvIn("3234567890");
@@ -78,7 +67,7 @@ public class VehicleManager
                 this.vehicles.add(v3);
 
 		Vehicle v4 = new Car();
-		v4.setvId("V0004");
+		v4.setvId("4");
 		v4.setvModel("Volkswagen");
 		v4.setvYear("2014");
 		v4.setvIn("4234567890");
@@ -90,7 +79,7 @@ public class VehicleManager
         this.vehicles.add(v4);
 
 		Vehicle v5 = new Car();
-		v5.setvId("V0005");
+		v5.setvId("5");
 		v5.setvModel("ACURA");
 		v5.setvYear("2014");
 		v5.setvIn("5234567890");
@@ -102,7 +91,7 @@ public class VehicleManager
         this.vehicles.add(v5);
 
 		Vehicle v6 = new Car();
-		v6.setvId("V0006");
+		v6.setvId("6");
 		v6.setvModel("LEXUS");
 		v6.setvYear("2014");
 		v6.setvIn("6234567890");
@@ -114,7 +103,7 @@ public class VehicleManager
                 this.vehicles.add(v6);
 
 		Vehicle v7 = new Car();
-		v7.setvId("V0007");
+		v7.setvId("7");
 		v7.setvModel("Mercedes Benz");
 		v7.setvYear("2014");
 		v7.setvIn("7234567890");
@@ -126,7 +115,7 @@ public class VehicleManager
                 this.vehicles.add(v7);
 
 		Vehicle v8 = new Car();
-		v8.setvId("V0008");
+		v8.setvId("8");
 		v8.setvModel("Porsche");
 		v8.setvYear("2014");
 		v8.setvIn("8234567890");
@@ -138,7 +127,7 @@ public class VehicleManager
                 this.vehicles.add(v8);
 
 		Vehicle v9 = new Car();
-		v9.setvId("V0009");
+		v9.setvId("9");
 		v9.setvModel("FORD");
 		v9.setvYear("2014");
 		v9.setvIn("9234567890");
@@ -150,7 +139,7 @@ public class VehicleManager
                 this.vehicles.add(v9);
 
 		Vehicle v10 = new Car();
-		v10.setvId("V0010");
+		v10.setvId("10");
 		v10.setvModel("Chevrolet");
 		v10.setvYear("2014");
 		v10.setvIn("A234567890");
@@ -162,7 +151,7 @@ public class VehicleManager
                 this.vehicles.add(v10);
  
 		Vehicle v11 = new Car();
-		v11.setvId("V0011");
+		v11.setvId("11");
 		v11.setvModel("Buick");
 		v11.setvYear("2014");
 		v11.setvIn("B234567890");
@@ -174,7 +163,7 @@ public class VehicleManager
                 this.vehicles.add(v11);
 
 		Vehicle v12 = new Car();
-		v12.setvId("V0012");
+		v12.setvId("12");
 		v12.setvModel("GMC");
 		v12.setvYear("2014");
 		v12.setvIn("C234567890");
@@ -186,7 +175,7 @@ public class VehicleManager
                 this.vehicles.add(v12);
 
 		Vehicle v13 = new Car();
-		v13.setvId("V0013");
+		v13.setvId("13");
 		v13.setvModel("Cadillac");
 		v13.setvYear("2014");
 		v13.setvIn("D234567890");
@@ -198,7 +187,7 @@ public class VehicleManager
                 this.vehicles.add(v13);
 
 		Vehicle v14 = new Car();
-		v14.setvId("V0014");
+		v14.setvId("14");
 		v14.setvModel("DODGE");
 		v14.setvYear("2014");
 		v14.setvIn("E234567890");
@@ -210,7 +199,7 @@ public class VehicleManager
                 this.vehicles.add(v14);
 
 		Vehicle v15 = new Car();
-		v15.setvId("V0015");
+		v15.setvId("15");
 		v15.setvModel("Chrysler");
 		v15.setvYear("2014");
 		v15.setvIn("F234567890");
@@ -219,11 +208,14 @@ public class VehicleManager
 		v15.setvDriver("D0012");
 		v15.setLocation("RWC");
 		v15.setVehicleState(new VActive());
-                this.vehicles.add(v15);
-		
-	
-
+        this.vehicles.add(v15);
 	}
+
+	public void setvehicles(ArrayList<Vehicle> vehicles) {
+		this.vehicles = vehicles;
+	}
+
+	
 
 	public Vehicle addVehicle(String vModel,String vYear,String vIn,int vType,int vHealth,String vDriver,String location,int voption) {
 		
@@ -294,7 +286,7 @@ public class VehicleManager
 		
 		boolean vehicleFound = false;
 		for (Vehicle v : vehicles) {
-			
+		
 			if (v.getvId().equalsIgnoreCase(vId)) {
 				displayVehicle(v);
 				vehicleFound =true;
@@ -308,9 +300,9 @@ public class VehicleManager
 		}
 	}
 	
-public void displayVehicle(Vehicle v){
+	public void displayVehicle(Vehicle v){
 		
-		System.out.println("\n" + v.getvId() + " " + v.getVehicleType()
+		System.out.println("\n" +v.getvDriver()  + v.getvId() + " " + v.getVehicleType()
 				+ " * " + v.getvHealth() + " * " + v.getvModel() + " * "
 				+ v.getvIn() + " * " + v.getvYear());
 		
@@ -318,13 +310,12 @@ public void displayVehicle(Vehicle v){
 	
 	public void deleteVehicle(String vId) {
 		// TODO implement me	
-	 
-		
+		boolean memberFound = false;
 		
 		for (Vehicle v:vehicles) {
 			if (v.getvId().equalsIgnoreCase(vId)) {
 				
-				
+				memberFound = true;
 				notificationManager.reset();
 				//notificationManager.setListener(v);
 				notificationManager.setMessage("Vehicle with ID " + vId + " deleted successfully");
@@ -334,22 +325,31 @@ public void displayVehicle(Vehicle v){
 				break;
 			}
 		}
-}
+		
+		if(!memberFound){
+			System.out.println("Vehicle with ID: " + vId + " not found");
+		}
+		
+	}
 		
 	public void updateVehicle(String vId, String vDriver) {
 		
-		for (Vehicle v : this.vehicles) {
+		boolean	updated = false;
+		for (Vehicle v : vehicles) {
 
 			if (v.getvId().equals(vId)){
 				v.setvDriver(vDriver);
-				
-				
+				updated = true;
 				notificationManager.reset();
-				//notificationManager.setListener(v);
+				notificationManager.setListener(v.getMember());
 				notificationManager.setMessage("Vehicle with ID = "+ vId +  " updated successfully");
 				notificationManager.send();
 			}
 			
+		}
+		
+		if(!updated){
+			System.out.println("Vehicle with ID " + vId + " not found");
 		}
 		
 	}
