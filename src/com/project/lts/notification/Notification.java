@@ -42,8 +42,8 @@ public class Notification {
 	
 	public void send(){
 		for(Member m : this.obs.observers){
-			System.out.println("EMAIL Received : "  + this.message.text +  " : Receiver = " + m.getMemFname() + "(" + m.getMemEmail() +  ")" );
-			System.out.println("Text Message Received : " + this.message.text +  " : Receiver = " + m.getMemFname()  + "(" + m.getMemPhone() +  ")" );
+			System.out.println("NOTIFICATION  : EMAIL Received : "  + this.message.text +  " : Receiver = " + m.getMemFname() + "(" + m.getMemEmail() +  ")" );
+			System.out.println("NOTIFICATION  : Text Message Received : " + this.message.text +  " : Receiver = " + m.getMemFname()  + "(" + m.getMemPhone() +  ")" );
 		}
 		
 	}
@@ -51,8 +51,8 @@ public class Notification {
 	//For sending immediate message to all current observers without saving/setting/archieving the message
 	public void sendImmidiate(String message){
 		for(Member m : this.obs.observers){
-			System.out.println("EMAIL Received : " + message +  " : Receiver =" + m.getMemFname()  + "(" + m.getMemEmail() +  ")" );
-			System.out.println("Text Message Received : " + message +  " : Receiver =" + m.getMemFname()  + "(" + m.getMemPhone() +  ")" );
+			System.out.println("NOTIFICATION  : EMAIL Received : " + message +  " : Receiver =" + m.getMemFname()  + "(" + m.getMemEmail() +  ")" );
+			System.out.println("NOTIFICATION  : Text Message Received : " + message +  " : Receiver =" + m.getMemFname()  + "(" + m.getMemPhone() +  ")" );
 		}
 		
 	}

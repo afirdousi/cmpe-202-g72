@@ -66,13 +66,10 @@ public class Test {
 				loggedIn=true;
 			}
 			
-			while(loggedIn){
+			while(loggedIn){ // RUN UNTILL THE USER LOGS OUT
+				
 				
 				renderMemberMenu();
-				
-				
-				
-				
 			}
 			
 		case 2:
@@ -90,30 +87,23 @@ public class Test {
 	public static int renderLogin(){
 		//renderHeader();
 		
-		Scanner scan = new Scanner(System.in);
-		String userName;
-		int password;// = Integer.parseInt(scan.nextLine());
-		
-		while(true){
-			System.out.println("\n");
-			System.out.println("\n[1] Enter Username:");
-			userName =  scan.nextLine();
-			System.out.println("\n[1] Enter Password:");
-			password = Integer.parseInt(scan.nextLine());
-			
-			if(password!=123){
-				System.out.println("Wrong credentials");
-			}else{
-				break;
-			}
-			
-		}
-		//TODO:Fix this
-//		if(userName.toString().trim()=="test" && password.toString().trim() =="123"){
-//			return 1;
-//		}else{
-//			System.out.println("Wrong credentials");
-//			return -1;
+//		Scanner scan = new Scanner(System.in);
+//		String userName;
+//		int password;// = Integer.parseInt(scan.nextLine());
+//		
+//		while(true){
+//			System.out.println("\n");
+//			System.out.println("\n[1] Enter Username:");
+//			userName =  scan.nextLine();
+//			System.out.println("\n[1] Enter Password:");
+//			password = Integer.parseInt(scan.nextLine());
+//			
+//			if(password!=123){
+//				System.out.println("Wrong credentials");
+//			}else{
+//				break;
+//			}
+//			
 //		}
 		
 		return 1;
@@ -123,7 +113,7 @@ public class Test {
 
 		//renderHeader();
 		System.out.println("\n");
-		System.out.println("\nWelcome to Lyft! \n***********************\n[1] CRUD Account \n[2] Request a Ride \n[3] My Rides  \n[4] Return to Main Menu \n ");
+		System.out.println("\nWelcome to Lyft! \n***********************\n[1] CRUD Account \n[2] CRUD Vehicle  \n[2] Request a Ride \n[3] My Rides  \n[4] Return to Main Menu \n ");
 		
 		Scanner scan = new Scanner(System.in);
 		int choice = Integer.parseInt(scan.nextLine());
@@ -131,7 +121,7 @@ public class Test {
 		switch (choice) {
 		case 1:
 			System.out.println("Create an Account");
-			processRequest();
+			renderMemberOptions();
 
 		case 2:
 			System.out.println("Request Ride");
@@ -195,9 +185,8 @@ public class Test {
 	    }
 	}
 	
-	public static void processRequest() {
+	public static void renderMemberOptions() {
 	
-		
 		do {
 
 			System.out.println("=============================================================");
@@ -217,77 +206,151 @@ public class Test {
 			inputManager.nextLine();
 
 			if (choice == 1)
-
 			{
-//				collectInput();
-//				addanyMember();
+				addMember();
 			}
-
-
-
-			if (choice == 2) {
+			else if (choice == 2) {
 				System.out.println("Retrieving Member ");
-				System.out.println("Enter Member Id to be retrieved");
+				System.out.println("Enter Member ID to be retrieved");
 				inputManager = new Scanner(System.in);
-//				strmFName = (inputManager.nextLine());
-//				mops.retrieveCustomer(strmFName);
-			
+				String ID = inputManager.nextLine();
+				
+				accManager.retrieveMember(ID);
 
 			}
 
-			if (choice == 3) {
+			else if (choice == 3) {
 				System.out.println("Updating Member ");
+				
+				System.out.println("Enter Member ID to update");
+				inputManager = new Scanner(System.in);
+				String ID = (inputManager.nextLine());
 				System.out.println("Enter Member First Name");
 				inputManager = new Scanner(System.in);
-				//strmFName = (inputManager.nextLine());
+				String firstName = (inputManager.nextLine());
 				System.out.println("Enter new email address");
 				inputManager = new Scanner(System.in);
-//				strmEmail = (inputManager.nextLine());
-//				mops.updateCustomer(strmFName, strmEmail);
+				String email = (inputManager.nextLine());
+				
+				accManager.updateCustomer(ID, firstName, email);
 
 			}
 
-			if (choice == 4) {
+			else if (choice == 4) {
 				System.out.println("Removing Member ");
-				System.out.println("Enter Member First Name");
+				System.out.println("Enter Member ID to remove :");
 				inputManager = new Scanner(System.in);
-//				strmFName = (inputManager.nextLine());
-//				mops.removeCustomer(strmFName);
-				// print after deletion
-				System.out.println("Members list after removing a member ");
-//				for (int j = 0; j < members1.size(); j++) {
-//					System.out.println("First Name = " + members1.get(j).memFname + " Member Id = "
-//							+ members1.get(j).nMemberID + " Member role= " + members1.get(j).memRole);
-//				}
+				String ID  = (inputManager.nextLine());
+				accManager.removeCustomer(ID);
+
 			}
 
-			if (choice == 5) {
+			else if (choice == 5) {
 				System.out.println("Select Member - Enter Member First Name ");
 				inputManager = new Scanner(System.in);
-//				strmFName = (inputManager.nextLine());
+
 				System.out.println("Displaying Selected Member email information ");
-//				mops.selectCustomer(strmFName);
+
 
 			}
 
-			if (choice == 6) {
+			else if (choice == 6) {
 				System.out.println("Search Member based on MemberId ");
 				inputManager = new Scanner(System.in);
-//				custID = (inputManager.nextLine());
-//				mops.SearchCustomer(custID);
 
 			}
 
-			if (choice == 7) {
+			else if (choice == 7) {
 				System.out.println("Sorting Members ");
 
-				// Sort members based on their name
+			}
+			else if (choice == 8)
+				break;
 
-				// Collections.sort(members1, new SortComparator());
-				//mops.sortCustomers();
+		} while (choice != 9 && choice !=8);
+
+
+	}
+	
+	public static void renderVehicleOptions() {
+		
+		do {
+
+			System.out.println("=============================================================");
+					
+			System.out.println("1. Add Vehicle");
+			System.out.println("2. Retrieve Vehicle");
+			System.out.println("3. Update Vehicle");
+			System.out.println("4. Remove Vehicle");
+			System.out.println("5. Return to Main Menu");
+			System.out.println("6. Back");
+			System.out.println("7. Exit");
+			System.out.println("Enter your option(1,2,3,4,5,6,7)");
+
+			inputManager = new Scanner(System.in);
+			choice = inputManager.nextInt();
+			inputManager.nextLine();
+
+			if (choice == 1)
+			{
+				addMember(); //addVehicle();
+			}
+			else if (choice == 2) {
+				System.out.println("Retrieving Vehicle ");
+				System.out.println("Enter Vehicle ID to be retrieved");
+				inputManager = new Scanner(System.in);
+				String ID = inputManager.nextLine();
+				
+				//accManager.retrieveMember(ID); vehManager;
 
 			}
-			if (choice == 8)
+
+			else if (choice == 3) {
+				System.out.println("Updating Vehicle ");
+				
+				System.out.println("Enter Vehicle ID to update");
+				inputManager = new Scanner(System.in);
+				String ID = (inputManager.nextLine());
+				System.out.println("Enter Vehicle First Name");
+				inputManager = new Scanner(System.in);
+				String firstName = (inputManager.nextLine());
+				System.out.println("Enter new email address");
+				inputManager = new Scanner(System.in);
+				String email = (inputManager.nextLine());
+				
+				accManager.updateCustomer(ID, firstName, email);
+
+			}
+
+			else if (choice == 4) {
+				System.out.println("Removing Vehicle ");
+				System.out.println("Enter Vehicle ID to remove :");
+				inputManager = new Scanner(System.in);
+				String ID  = (inputManager.nextLine());
+				accManager.removeCustomer(ID);
+
+			}
+
+			else if (choice == 5) {
+				System.out.println("Select Vehicle - Enter Vehicle First Name ");
+				inputManager = new Scanner(System.in);
+
+				System.out.println("Displaying Selected Vehicle email information ");
+
+
+			}
+
+			else if (choice == 6) {
+				System.out.println("Search Vehicle based on VehicleId ");
+				inputManager = new Scanner(System.in);
+
+			}
+
+			else if (choice == 7) {
+				System.out.println("Sorting Vehicles ");
+
+			}
+			else if (choice == 8)
 				break;
 
 		} while (choice != 9 && choice !=8);
@@ -344,7 +407,7 @@ public class Test {
 			//System.out.println("ID : " + v.getID() + " | Customer : " + v.getMemberName() + " | From :" + v.getSource() + " | To :" + v.getDestination());
 		}
 		
-//		System.out.println("\nSTATUS: 10 Mock Rides ready to be scheduled.\n");
+		System.out.println("\nSTATUS: 10 Mock Rides ready to be scheduled.\n");
 //		
 		
 		//////////////////////////////////////////////////////////////
@@ -402,5 +465,67 @@ public class Test {
 		
 		
 	}
+	
+	public static void addMember() {
+		// Scanner inputManager;
+		Member newMember = new Customer();
+		
+		System.out.println("Adding members");
+		System.out.println("Adding Member Information");
+		System.out.println("Enter Member First Name");
+		inputManager = new Scanner(System.in);
+		newMember.setMemFname(inputManager.nextLine());
+		System.out.println("Enter Member Last Name");
+		inputManager = new Scanner(System.in);
+		newMember.setMemLname(inputManager.nextLine());
+		System.out.println("Enter Member Email");
+		inputManager = new Scanner(System.in);
+		newMember.setMemEmail(inputManager.nextLine());
+		System.out.println("Enter Member Phone Number ");
+		inputManager = new Scanner(System.in);
+		newMember.setMemPhone(inputManager.nextLine());
+		System.out.println("Enter Member Address 1 ");
+		inputManager = new Scanner(System.in);
+		newMember.setMemAddress1(inputManager.nextLine());
+		System.out.println("Enter Member Address 2 ");
+		inputManager = new Scanner(System.in);
+		newMember.setMemAddress2(inputManager.nextLine());
+		System.out.println("Enter City ");
+		inputManager = new Scanner(System.in);
+		newMember.setMemCity(inputManager.nextLine());
+		System.out.println("Enter State ");
+		inputManager = new Scanner(System.in);
+		newMember.setMemState(inputManager.nextLine());
+		System.out.println("Enter Zip ");
+		inputManager = new Scanner(System.in);
+		newMember.setMemZipcode(inputManager.nextLine());
+	   System.out.println("Enter Customer Credit Card Number ");
+	   inputManager = new Scanner(System.in);
+	   newMember.setMemCreditcard(inputManager.nextLine());
+	   System.out.println("Enter CreditCard expiry date - month and 2 digit year MM/YY ");
+	   inputManager = new Scanner(System.in);
+	   newMember.setMemCreditexpdate(inputManager.nextLine());
+	   System.out.println("Enter 3 digit CVV - Creditcard Security code ");
+	   inputManager = new Scanner(System.in);
+	   newMember.setMemCreditCVV(inputManager.nextLine());
+	   System.out.println("Enter Paypal Id: ");
+	   inputManager = new Scanner(System.in);
+	   newMember.setMemPaypalId(inputManager.nextLine());
+		
+	  System.out.println("Enter Prime Member Flag ");
+	  inputManager = new Scanner(System.in);
+	  newMember.setMemRole(inputManager.nextLine()); 
+	  System.out.println("Enter Member type: Customer/Driver(C/D)");
+	  inputManager = new Scanner(System.in);
+	  newMember.setMemType(inputManager.nextLine());
 
+	  accManager.addMembers(newMember);
+	  
+	  currentUser = newMember;
+
+	}
+	
+	public static void addVehicle() {
+		
+	}
 }
