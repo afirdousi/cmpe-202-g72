@@ -24,9 +24,11 @@ public class Test {
 	
 	static boolean loggedIn=false; 
 	static AccountManager accManager;
+	static VehicleManager vManager;
 	static VehicleManager vehManager;
 	//static PaymentManager paymentManager;
 	static Scanner inputManager;
+	static Scanner inputVehicle;
 	static int choice; 
 	static Member currentUser;
 	
@@ -526,6 +528,28 @@ public class Test {
 	}
 	
 	public static void addVehicle() {
+		
+//		//Vehicle newVehicle = new Vehicle();
+//		
+//		System.out.println("Adding vehicles");
+//		System.out.println("Adding Vehicle Information");
+//		System.out.println("Enter Driver");
+//		inputVehicle = new Scanner(System.in);
+//		newVehicle.setvDriver(inputVehicle.nextLine());
+//		//System.out.println("Enter Vehicle State");
+//		//inputVehicle = new Scanner(System.in);
+//		//newVehicle.setVehicleState(inputVehicle.nextLine());
+//		System.out.println("Enter Vehicle type");
+//		inputVehicle = new Scanner(System.in);
+////		newVehicle.setVehicleType(inputVehicle.nextLine());
+////		System.out.println("Set vehicle health ");
+//		inputVehicle = new Scanner(System.in);
+//		newVehicle.setvHealth(inputVehicle.nextLine());
+//		System.out.println("Enter Vehicle Model ");
+//		inputVehicle = new Scanner(System.in);
+//		newVehicle.setvModel(inputVehicle.nextLine());
+//		vManager.addVehicle(newVehicle);
+//		currentUser = newVehicle;
 		
 	}
 }

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.project.lts.accounts.Member;
+import com.project.lts.notification.Notification;
 import com.project.lts.vehicle.InfantCarSeat;
 import com.project.lts.vehicle.WheelChair;
 
@@ -17,6 +19,9 @@ public class VehicleManager
 {
 	public Vehicle veh;
 	public ArrayList<Vehicle> vehicles;
+	
+	 public Notification notificationManager = new Notification();
+	    
 	
 	public VehicleManager(){
 		veh = new Car();
@@ -285,41 +290,50 @@ public class VehicleManager
 		
 	}
 	
-	public void retrieveVehicle() {
-		// Retrieves all the vehicles added
-		System.out.println("Retrieved Vehicles");
-		System.out.println("Model      Vechile ID    Location     Feature    Driver");
-		for (Vehicle v : this.vehicles) {
-			System.out.println(v.vModel+" * "+v.vId+" * "+v.location+" * "+v.getFeatureDescription()+" * "+v.getvDriver());
+	public void retrieveVehicle(String vId) {
+		
+		boolean vehicleFound = false;
+		for (Vehicle v : vehicles) {
 			
+			if (v.getvId().equalsIgnoreCase(vId)) {
+				displayVehicle(v);
+				vehicleFound =true;
+				break;
+			}
+
 		}
+
+		if(!vehicleFound){
+			System.out.println("No member found for ID = " + vId);
+		}
+	}
+	
+public void displayVehicle(Vehicle v){
+		
+		System.out.println("\n" + v.getvId() + " " + v.getVehicleType()
+				+ " * " + v.getvHealth() + " * " + v.getvModel() + " * "
+				+ v.getvIn() + " * " + v.getvYear());
+		
 	}
 	
 	public void deleteVehicle(String vId) {
 		// TODO implement me	
-	  /* 
-		for (Vehicle v : this.vehicles) {
-
-			System.out.println("Vehicle " +v);
-			if (v.getvId().equals(vId)){
-				this.vehicles.remove(v);
-				System.out.println("Vehicle of ID "+vId+" has been removed");
-			}
-	*/
-       for(Iterator<Vehicle> iter = vehicles.iterator(); iter.hasNext(); ) {
-            Vehicle v1 = iter.next();
-            if(v1.getvId().equals(vId)) {
-               iter.remove();
-               System.out.println("Vehicle of ID "+vId+" has been removed");
-             }
-        }// for*/
+	 
 		
-        //Print the content after deletion
-        System.out.println("List of available vehicles after deletion");
-        for(Iterator<Vehicle> iter = vehicles.iterator(); iter.hasNext(); ) {
-            Vehicle v1 = iter.next();
-            System.out.println(v1.vModel+v1.vId+v1.location+v1.getFeatureDescription()+v1.getvDriver());
-        }
+		
+		for (Vehicle v:vehicles) {
+			if (v.getvId().equalsIgnoreCase(vId)) {
+				
+				
+				notificationManager.reset();
+				//notificationManager.setListener(v);
+				notificationManager.setMessage("Vehicle with ID " + vId + " deleted successfully");
+				notificationManager.send();
+				
+				vehicles.remove(v);
+				break;
+			}
+		}
 }
 		
 	public void updateVehicle(String vId, String vDriver) {
@@ -328,7 +342,12 @@ public class VehicleManager
 
 			if (v.getvId().equals(vId)){
 				v.setvDriver(vDriver);
-				System.out.println("Vehicle of ID "+vId+" has been updated");
+				
+				
+				notificationManager.reset();
+				//notificationManager.setListener(v);
+				notificationManager.setMessage("Vehicle with ID = "+ vId +  " updated successfully");
+				notificationManager.send();
 			}
 			
 		}
