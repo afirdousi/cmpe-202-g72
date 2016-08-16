@@ -25,6 +25,7 @@ public class Test {
 	static boolean loggedIn=false; 
 	static AccountManager accManager;
 	static VehicleManager vehManager;
+	static Scheduler schManager;
 	//static PaymentManager paymentManager;
 	static Scanner inputManager;
 	static Scanner inputVehicle;
@@ -114,7 +115,7 @@ public class Test {
 
 		//renderHeader();
 		System.out.println("\n");
-		System.out.println("\nWelcome to Lyft! \n***********************\n[1] CRUD Account \n[2] CRUD Vehicle  \n[2] Request a Ride \n[3] My Rides  \n[4] Return to Main Menu \n ");
+		System.out.println("\nWelcome to Lyft! \n***********************\n[1] CRUD Account \n[2] CRUD Vehicle  \n[3] Request a Ride \n[4] My Rides  \n[5] Return to Main Menu \n ");
 		
 		Scanner scan = new Scanner(System.in);
 		int choice = Integer.parseInt(scan.nextLine());
@@ -134,10 +135,15 @@ public class Test {
 			break;
 
 		case 3:
-			System.out.println("Return to Main Menu");
+			System.out.println("Request a Ride");
+			addRideRequest();
 			break;
 
 		case 4:
+			System.out.println("Return to Main Menu");
+			break;
+			
+		case 5:
 			System.out.println("Exit");
 			break;
 
@@ -396,7 +402,7 @@ public class Test {
 		System.out.println("Mocking Up Ride Request...");
 		System.out.println("*********************************");
 		
-		Scheduler schManager = new Scheduler(); 
+		schManager = new Scheduler(); 
 		schManager.setupMockRide(accManager.members);
 		
 		//System.out.println(schManager.currentRides);
@@ -520,6 +526,7 @@ public class Test {
 	  accManager.addMembers(newMember);
 	  
 	  currentUser = newMember;
+	  
 
 	}
 	
@@ -548,4 +555,26 @@ public class Test {
 //		currentUser = newVehicle;
 		
 	}
+	
+	public static void addRideRequest()
+	{
+		
+		Ride newRide=new Ride("","","","",null,"","","","");
+		System.out.println("Enter Source");
+		inputManager = new Scanner(System.in);
+		newRide.setSource(inputManager.nextLine());
+		System.out.println("Enter Destination");
+		inputManager = new Scanner(System.in);
+		newRide.setDestination(inputManager.nextLine());
+		System.out.println("Enter Date");
+		inputManager = new Scanner(System.in);
+		newRide.setrideDate(inputManager.nextLine());
+		
+		schManager.currentRides.add(newRide);
+		schManager.addRide(newRide, currentUser);
+		
+		
+		
+
+			}
 }
