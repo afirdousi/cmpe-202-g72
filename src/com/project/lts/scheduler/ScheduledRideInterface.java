@@ -2,6 +2,7 @@ package com.project.lts.scheduler;
 
 import java.util.List;
 
+import com.project.lts.accounts.Member;
 import com.project.lts.routing.Vertex;
 
 public interface ScheduledRideInterface {
@@ -15,6 +16,8 @@ public interface ScheduledRideInterface {
 	public List<List<Vertex>> calculateRide(String source, String destination);
 	
 	public void dispatchRide(List<List<Vertex>> suggestedRoutes,int algoType);
+	
+	public void completeRide(int rideAmount ,List<Member> members);
 	
 }
 

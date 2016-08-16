@@ -1,6 +1,8 @@
 package com.project.lts.scheduler;
 
 import java.util.*;
+
+import com.project.lts.accounts.Member;
 import com.project.lts.routing.*;
 
 
@@ -58,5 +60,9 @@ public class CalculateState implements State{
 	}
 	public void dispatchRide(List<List<Vertex>> suggestedRoutes,int algoType){
 		//return "Request is being processed";
+	}
+
+	public void completeRide(int rideAmount ,List<Member> members){
+		
 	}
 }

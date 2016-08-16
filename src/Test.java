@@ -1,6 +1,7 @@
 import java.util.*;
 
 import com.project.lts.accounts.*;
+import com.project.lts.payment.Payment;
 import com.project.lts.routing.Vertex;
 import com.project.lts.scheduler.Ride;
 import com.project.lts.scheduler.ScheduledRide;
@@ -21,11 +22,18 @@ public class Test {
 		USER
 	}
 	
+	static boolean loggedIn=false; 
+	static AccountManager accManager;
+	static VehicleManager vehManager;
+	//static PaymentManager paymentManager;
+	static Scanner inputManager;
+	static int choice; 
+	static Member currentUser;
+	
 	public static void render(STATE state){
 		
 		switch(state){
 			case MAIN_MENU:renderMainMenu(); break;
-			case SIGN_UP:renderSignUpMenu();break;
 			case LOGIN:renderLogin();break;
 			case MEMBER_MENU:renderMemberMenu();break;
 			case VEHICLE_MENU:renderVehicleMenu();break;
@@ -44,65 +52,108 @@ public class Test {
 	}
 
 	public static void renderMainMenu(){
-		renderHeader();
+		//renderHeader();
 		System.out.println("\n");
-		System.out.println("[1] Sign Up \n [2] Login \n [3] Exit \n");
+		System.out.println("\n[1] Login \n[2] Exit \n");
 		
 		Scanner scan = new Scanner(System.in);
 		int choice = Integer.parseInt(scan.nextLine());
 
 		switch (choice) {
 		case 1:
-			render(STATE.SIGN_UP);
-			break;
+			int result = renderLogin();
+			if(result==1){
+				loggedIn=true;
+			}
+			
+			while(loggedIn){
+				
+				renderMemberMenu();
+				
+				
+				
+				
+			}
+			
 		case 2:
-			render(STATE.LOGIN);
-			break;
-		case 3:
-			System.out.println("Return to Main Menu");
+			System.exit(0);
 			break;
 		default:
-			System.out.println("Invalid Option .... Please Try Again");
+			System.out.println("Invalid Option .... Please enter [1] or [2]");
 			render(STATE.MAIN_MENU);
 			break;
 		}
 		
 		
 	}
-
-	public static void renderSignUpMenu(){
-		//renderHeader();
-		System.out.println("Sign Up\n \n");
-		System.out.println("\n[1] Home \n [2] Profile \n [3] Update Profile \n [4] Schedule Ride \n [5] My Rides \n [6]Reports");
-		//System.out.println("\t[1] Home \t\t \n\n Enter Pickup Location: \n\n Enter Dropoff Location: \n\n Enter Type of Car: \n\n Enter No. of Seats: \n\n Do you need infant seat?[Y/N]: \n\n Enter \n\n Enter ");
-		//System.out.println("\t[1] Home  \n\n \t 001 \t 8/10/2016\t SJC\t SFO\t $10.00 \n\t 002 \t 8/9/2016\t SJC\t RDC\t $27.00 \n\t 003 \t 8/9/2016\t SJC\t RCT\t $42.00 ");
-	}
 	
 	public static int renderLogin(){
 		//renderHeader();
 		
 		Scanner scan = new Scanner(System.in);
-		String userName,password;// = Integer.parseInt(scan.nextLine());
+		String userName;
+		int password;// = Integer.parseInt(scan.nextLine());
 		
-		System.out.println("\n");
-		System.out.println("\n[1] Enter Username:");
-		userName = scan.nextLine();
-		System.out.println("\n[1] Enter Password:");
-		password = scan.nextLine();
-		
-		if(userName=="test" && password =="123"){
-			return 1;
-		}else{
-			System.out.println("Wrong credentials");
-			return -1;
+		while(true){
+			System.out.println("\n");
+			System.out.println("\n[1] Enter Username:");
+			userName =  scan.nextLine();
+			System.out.println("\n[1] Enter Password:");
+			password = Integer.parseInt(scan.nextLine());
+			
+			if(password!=123){
+				System.out.println("Wrong credentials");
+			}else{
+				break;
+			}
+			
 		}
+		//TODO:Fix this
+//		if(userName.toString().trim()=="test" && password.toString().trim() =="123"){
+//			return 1;
+//		}else{
+//			System.out.println("Wrong credentials");
+//			return -1;
+//		}
+		
+		return 1;
 	}
 	
 	public static void renderMemberMenu(){
 
 		//renderHeader();
 		System.out.println("\n");
-		System.out.println("\n[1] Home \n [2] Profile \n [3] Update Profile \n  [4] Schedule Ride \n [5] My Rides \n [6]Reports");
+		System.out.println("\nWelcome to Lyft! \n***********************\n[1] CRUD Account \n[2] Request a Ride \n[3] My Rides  \n[4] Return to Main Menu \n ");
+		
+		Scanner scan = new Scanner(System.in);
+		int choice = Integer.parseInt(scan.nextLine());
+
+		switch (choice) {
+		case 1:
+			System.out.println("Create an Account");
+			processRequest();
+
+		case 2:
+			System.out.println("Request Ride");
+			
+			//TODO: Pull in Ride Request here
+			// this.reqClient.createRequest();
+
+			break;
+
+		case 3:
+			System.out.println("Return to Main Menu");
+			break;
+
+		case 4:
+			System.out.println("Exit");
+			break;
+
+		default:
+			System.out.println("Invalid Option .... Please Try Again");
+			renderMemberMenu();
+			break;
+		}
 	}
 	
 	public static void renderVehicleMenu(){
@@ -144,20 +195,120 @@ public class Test {
 	    }
 	}
 	
-	public static void main(String[] args){
+	public static void processRequest() {
+	
 		
+		do {
+
+			System.out.println("=============================================================");
+			System.out.println("1. Add Member");
+			System.out.println("2. Retrieve Member");
+			System.out.println("3. Update Member");
+			System.out.println("4. Delete Members");
+			System.out.println("5. Select Members");
+			System.out.println("6. Search Members");
+			System.out.println("7. Sort Members");
+			System.out.println("8. Back");
+			System.out.println("9. Exit");
+			System.out.println("Enter your option(1,2,3,4,5,6,7,8,9)");
+
+			inputManager = new Scanner(System.in);
+			choice = inputManager.nextInt();
+			inputManager.nextLine();
+
+			if (choice == 1)
+
+			{
+//				collectInput();
+//				addanyMember();
+			}
+
+
+
+			if (choice == 2) {
+				System.out.println("Retrieving Member ");
+				System.out.println("Enter Member Id to be retrieved");
+				inputManager = new Scanner(System.in);
+//				strmFName = (inputManager.nextLine());
+//				mops.retrieveCustomer(strmFName);
+			
+
+			}
+
+			if (choice == 3) {
+				System.out.println("Updating Member ");
+				System.out.println("Enter Member First Name");
+				inputManager = new Scanner(System.in);
+				//strmFName = (inputManager.nextLine());
+				System.out.println("Enter new email address");
+				inputManager = new Scanner(System.in);
+//				strmEmail = (inputManager.nextLine());
+//				mops.updateCustomer(strmFName, strmEmail);
+
+			}
+
+			if (choice == 4) {
+				System.out.println("Removing Member ");
+				System.out.println("Enter Member First Name");
+				inputManager = new Scanner(System.in);
+//				strmFName = (inputManager.nextLine());
+//				mops.removeCustomer(strmFName);
+				// print after deletion
+				System.out.println("Members list after removing a member ");
+//				for (int j = 0; j < members1.size(); j++) {
+//					System.out.println("First Name = " + members1.get(j).memFname + " Member Id = "
+//							+ members1.get(j).nMemberID + " Member role= " + members1.get(j).memRole);
+//				}
+			}
+
+			if (choice == 5) {
+				System.out.println("Select Member - Enter Member First Name ");
+				inputManager = new Scanner(System.in);
+//				strmFName = (inputManager.nextLine());
+				System.out.println("Displaying Selected Member email information ");
+//				mops.selectCustomer(strmFName);
+
+			}
+
+			if (choice == 6) {
+				System.out.println("Search Member based on MemberId ");
+				inputManager = new Scanner(System.in);
+//				custID = (inputManager.nextLine());
+//				mops.SearchCustomer(custID);
+
+			}
+
+			if (choice == 7) {
+				System.out.println("Sorting Members ");
+
+				// Sort members based on their name
+
+				// Collections.sort(members1, new SortComparator());
+				//mops.sortCustomers();
+
+			}
+			if (choice == 8)
+				break;
+
+		} while (choice != 9 && choice !=8);
+
+
+	}
+	
+	public static void main(String[] args){
+		renderHeader();
 		//////////////////////////////////////////////////////////////
 		//Environment Setup
 		//////////////////////////////////////////////////////////////
+		Payment payment = new Payment();
 		
-		
-		System.out.println("Setting up environment...");
+		System.out.println("\n\n////////////////////////////////////////////////////////////// \nSetting up environment...\n////////////////////////////////////////////////////////////// \n");
 		
 		System.out.println("*********************************");
 		System.out.println("Mocking Up Members...");
 		System.out.println("*********************************");
 		
-		AccountManager accManager = new AccountManager();
+		accManager = new AccountManager();
 		accManager.setMockMembers();
 		
 		
@@ -187,41 +338,63 @@ public class Test {
 		Scheduler schManager = new Scheduler(); 
 		schManager.setupMockRide(accManager.members);
 		
-		System.out.println(schManager.currentRides);
+		//System.out.println(schManager.currentRides);
 		
 		for (Ride v : schManager.currentRides) {
-			System.out.println("ID : " + v.getID() + " | Customer : " + v.getMemberName() + " | From :" + v.getSource() + " | To :" + v.getDestination());
+			//System.out.println("ID : " + v.getID() + " | Customer : " + v.getMemberName() + " | From :" + v.getSource() + " | To :" + v.getDestination());
 		}
 		
-		System.out.println("\nSTATUS: 10 Mock Rides ready to be scheduled.\n");
+//		System.out.println("\nSTATUS: 10 Mock Rides ready to be scheduled.\n");
+//		
 		
-		System.out.println("*********************************");
-		System.out.println("Scheduling Ride...");
-		System.out.println("*********************************");
+		//////////////////////////////////////////////////////////////
+		//Scheduling all mocked ride requests
+		//////////////////////////////////////////////////////////////
+			
 		
-		List<List<Vertex>> suggestedRoutes;
-		ScheduledRide scheduleRideManager;
+//		System.out.println("*********************************");
+//		System.out.println("Scheduling Ride...");
+//		System.out.println("*********************************");
+//		
+//		List<List<Vertex>> suggestedRoutes;
+//		
+//		ScheduledRide scheduleRideManager;
+//		
+//		for (Ride ride : schManager.currentRides) {
+//			
+//			scheduleRideManager = ride.getScheduledRide();
+//			String source = ride.getSource();
+//			String destination = ride.getDestination();
+//			
+//			//Step:1
+//			scheduleRideManager.receiveRequest(source,destination);
+//			
+//			//Step:2
+//			suggestedRoutes  = scheduleRideManager.calculateRide(source, destination);
+//			
+//			//Step:3
+//			payment.holdPayment(10, accManager.members);
+//			
+//			//Step:4
+//			scheduleRideManager.dispatchRide(suggestedRoutes,0);
+//			
+//			//Step:5
+//			scheduleRideManager.completeRide(10, ride.getMembers());
+//		}	
 		
-		for (Ride v : schManager.currentRides) {
-			scheduleRideManager = v.getRoute();
-			String source = v.getSource();
-			String destination = v.getDestination();
-			
-			scheduleRideManager.receiveRequest(source,destination);
-			suggestedRoutes  = scheduleRideManager.calculateRide(source, destination);
-			
-			List<Vertex> selectedRoute = suggestedRoutes.get(0);
-			System.out.println(selectedRoute);
-			
-			scheduleRideManager.dispatchRide(suggestedRoutes,0);
-		}	
+		//////////////////////////////////////////////////////////////
+		//Current User of System 
+		//////////////////////////////////////////////////////////////
+		
+		currentUser = accManager.members.get(0);
 		
 		
 		//////////////////////////////////////////////////////////////
 		//Menu Setup
 		//////////////////////////////////////////////////////////////
 		
-		//render(STATE.MAIN_MENU);
+		
+		render(STATE.MAIN_MENU);
 		
 		
 		

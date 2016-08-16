@@ -1,4 +1,6 @@
 package com.project.lts.scheduler;
+import java.util.List;
+
 import com.project.lts.accounts.*;
 import com.project.lts.vehicle.*;
 
@@ -8,9 +10,9 @@ public class Ride {
 	//String type; //Remove it from the doc as well
 	String source;
 	String destination;
-	ScheduledRide route; //Change route type to ScheduleRide
+	ScheduledRide scheduledRide; //Change route type to ScheduleRide
 	Vehicle vehicle; //Change it to doc from int type to Vehicle type
-	Member customer;
+	List<Member> customers;
 	
 	String  riderFeedback;
 	String  riderRating;
@@ -19,7 +21,7 @@ public class Ride {
 	String  currentLocation;
 	int rideAmount;
 
-	public Ride(String ID, String source, String destination, /*ScheduledRide route, Vehicle vehicle,*/ Member customer,
+	public Ride(String ID, String source, String destination, /*ScheduledRide route, Vehicle vehicle,*/ List<Member> customers,
 			String riderFeedback,String riderRating, String driveFeedback, String currentLocation) {
 		
 		this.ID = ID;
@@ -27,15 +29,20 @@ public class Ride {
 		this.destination = destination;
 //		this.route = route;  //Define getters/setters
 //		this.vehicle = vehicle; //Define getters/setters
-		this.customer = customer;
+		this.customers = customers;
 		this.riderFeedback = riderFeedback;
 		this.riderRating = riderRating;
 		this.driverFeedback = driveFeedback;
 		this.currentLocation = currentLocation;
 		
-		route = new ScheduledRide();
+		scheduledRide = new ScheduledRide();
 		
 		
+	}
+
+	
+	public void setRideAmount(int amount){
+		this.rideAmount = amount;
 	}
 	
 	public String getID(){
@@ -50,16 +57,16 @@ public class Ride {
 		return this.destination;
 	}
 	
-	public String getMemberName(){
-		return this.customer.getMemFname();
+	public List<Member> getMembers(){
+		return this.customers;
 	}
 	
-	public ScheduledRide getRoute(){
-		return this.route;
+	public ScheduledRide getScheduledRide(){
+		return this.scheduledRide;
 	}
 
-	public void setRoute(ScheduledRide route){
-		this.route = route;
+	public void setScheduledRide(ScheduledRide route){
+		this.scheduledRide = route;
 	}
 	
 	public Vehicle getVehicle(){

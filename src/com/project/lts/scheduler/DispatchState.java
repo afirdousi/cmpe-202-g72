@@ -3,12 +3,15 @@ import java.util.*;
 
 import java.util.List;
 
+import com.project.lts.accounts.Member;
+import com.project.lts.payment.PaymentManager;
 import com.project.lts.routing.*;
 import com.project.lts.routing.Vertex;
 
 public class DispatchState implements State{
 
 	private ScheduledRideInterface sc;
+	
 	
 	public DispatchState(ScheduledRideInterface s){
 		sc=s;
@@ -58,4 +61,10 @@ public class DispatchState implements State{
 		System.out.println("Ride dispatched");
 		
 	}
+
+	public void completeRide(int rideAmount ,List<Member> members){
+		
+	}
+	
+	
 }

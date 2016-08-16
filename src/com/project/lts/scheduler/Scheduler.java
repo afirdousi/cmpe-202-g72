@@ -9,6 +9,7 @@ public class Scheduler {
 
 	public List<Ride> currentRides;
 	Ride ride;
+	ArrayList<Member> customers;
 	
 	public Scheduler(){
 		currentRides = new ArrayList<Ride>();
@@ -17,8 +18,10 @@ public class Scheduler {
 	public void setupMockRide(List<Member> members){
 		
 		for (Member m : members) {
-			if(m.getMemType()=="C"){
-				ride  =  new Ride("R1","SJC","SFO",m,"","","","");
+			if(m.getMemType()=="C" && m.getnMemberID()!="Cust001"){
+				customers = new ArrayList<Member>();
+				customers.add(m);
+				ride  =  new Ride("R1","SJC","SFO",customers,"","","","");
 				currentRides.add(ride);
 			}
 		

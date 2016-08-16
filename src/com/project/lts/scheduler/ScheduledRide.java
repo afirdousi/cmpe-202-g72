@@ -2,6 +2,7 @@ package com.project.lts.scheduler;
 
 import java.util.List;
 
+import com.project.lts.accounts.Member;
 import com.project.lts.routing.Vertex;
 
 public class ScheduledRide implements ScheduledRideInterface {
@@ -29,6 +30,10 @@ public class ScheduledRide implements ScheduledRideInterface {
 	public void dispatchRide(List<List<Vertex>> suggestedRoutes,int algoType){
 		state.dispatchRide(suggestedRoutes,algoType);
 	}
+	public void completeRide(int rideAmount ,List<Member> members){
+		state.completeRide(rideAmount,members);
+	}
+	
 	
 	public void setState(State s){
 		state=s;
@@ -39,11 +44,7 @@ public class ScheduledRide implements ScheduledRideInterface {
 	}
 	
 	public void sendNotification(/*rider_id,driver_id,system,message*/){}
-	
-	public void completeRide(){}		//Notify System about ride completion
-
-	
-	
+		
 	
 
 }

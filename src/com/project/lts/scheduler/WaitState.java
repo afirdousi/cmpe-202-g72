@@ -2,6 +2,7 @@ package com.project.lts.scheduler;
 
 import java.util.List;
 
+import com.project.lts.accounts.Member;
 import com.project.lts.routing.*;
 import com.project.lts.routing.Vertex;
 
@@ -27,6 +28,10 @@ public class WaitState implements State{
 		return null;
 	}
 	public void dispatchRide(List<List<Vertex>> suggestedRoutes,int algoType){
+		
+	}
+
+	public void completeRide(int rideAmount ,List<Member> members){
 		
 	}
 }
