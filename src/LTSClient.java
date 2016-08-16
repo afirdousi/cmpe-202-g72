@@ -10,13 +10,16 @@ public class LTSClient {
 
 	ArrayList<Vehicle> vArr;	
 	VehicleClient vehClient;
-	AccountClient acctClient;
+	//Aug 14 2016 removed AccountClient and updated
+	//AccountClient acctClient;
+	AccountManager accManager;
 	
 //Aug 7 2016
 	LTSClient() {
 
 		this.vehClient = new VehicleClient();
-		this.acctClient = new AccountClient();
+		//this.acctClient = new AccountClient();
+		 accManager = new AccountManager();
 
 
 	}
@@ -120,40 +123,35 @@ public class LTSClient {
 
 	private void showAdminMenu() {
         int choice=0;
-        while (choice !=5) {
+        while (choice !=4) {
 		System.out.println("Choose a valid option");
-		System.out.println("1 CRUD Account");
-		System.out.println("2 CRUD Rule");
-		System.out.println("3 CRUD Vehicle");
-		System.out.println("4 Return to Main Menu");
-		System.out.println("5 Exit");
+		//System.out.println("1 CRUD Account");
+		System.out.println("1 CRUD Rule");
+		System.out.println("2 CRUD Vehicle");
+		System.out.println("3 Return to Main Menu");
+		System.out.println("4 Exit");
        
         	Scanner scan = new Scanner(System.in);
     		choice = Integer.parseInt(scan.nextLine());
        
 		switch (choice) {
+		
 		case 1:
-			System.out.println("CRUD Account");
-			acctClient.processRequest();
-			// invoke account client
-
-			break;
-		case 2:
-			// System.out.println("CRUD Rule");
+			System.out.println("CRUD Rule");
 			// scClient.processRuleRequest();
 			// invoke rule manager
 
 			break;
-		case 3:
+		case 2:
 			System.out.println("CRUD Vehicle");
 			vehClient.manageVehicle();
 			break;
 		
-		case 4:
+		case 3:
 			System.out.println("Return to Main Menu");
 			showMainMenu();
 			break;
-		case 5:
+		case 4:
 			System.out.println("Exit");
 			break;
 		default:
@@ -180,12 +178,15 @@ public class LTSClient {
 
 		Scanner scan = new Scanner(System.in);
 		int choice = Integer.parseInt(scan.nextLine());
-
+		//Aug 14 2016
+		accManager.setMockMembers();
 		switch (choice) {
 		case 1:
 			System.out.println("Create an Account");
-
-			 acctClient.processRequest();
+             //Aug 14 2016 
+			
+			 //acctClient.processRequest();
+			 accManager.showAccountmenu();
 
 		case 2:
 			System.out.println("Request Ride");
