@@ -2,6 +2,9 @@ import java.util.*;
 
 import com.project.lts.accounts.*;
 import com.project.lts.payment.Payment;
+import com.project.lts.payment.PaymentManager;
+import com.project.lts.report.Report;
+import com.project.lts.report.Report.REPORTTYPE;
 import com.project.lts.routing.Vertex;
 import com.project.lts.scheduler.Ride;
 import com.project.lts.scheduler.ScheduledRide;
@@ -26,7 +29,8 @@ public class Test {
 	static AccountManager accManager;
 	static VehicleManager vehManager;
 	static Scheduler schManager;
-	//static PaymentManager paymentManager;
+	static PaymentManager paymentManager;
+	static Report reportManager;
 	static Scanner inputManager;
 	static Scanner inputVehicle;
 	static int choice; 
@@ -115,7 +119,7 @@ public class Test {
 
 		//renderHeader();
 		System.out.println("\n");
-		System.out.println("\nWelcome to Lyft! \n***********************\n[1] CRUD Account \n[2] CRUD Vehicle  \n[3] Request a Ride \n[4] My Rides  \n[5] Return to Main Menu \n ");
+		System.out.println("\nWelcome to Lyft! \n***********************\n[1] CRUD Account \n[2] CRUD Vehicle  \n[3] Request a Ride \n[4] Reports  \n[5] Return to Main Menu \n ");
 		
 		Scanner scan = new Scanner(System.in);
 		int choice = Integer.parseInt(scan.nextLine());
@@ -140,7 +144,8 @@ public class Test {
 			break;
 
 		case 4:
-			System.out.println("Return to Main Menu");
+			System.out.println("Reports");
+			renderReportOptions();
 			break;
 			
 		case 5:
@@ -279,6 +284,88 @@ public class Test {
 
 
 	}
+
+	public static void renderReportOptions() {
+		
+		do {
+
+			System.out.println("=============================================================");
+			System.out.println("1. All Member Report");
+			System.out.println("2. All Rides Report");
+			System.out.println("3. My Rides Report");
+			System.out.println("4. Payment Report"); 
+			System.out.println("5. Location Report");  
+			System.out.println("6. Back");
+			System.out.println("7. Exit");
+			System.out.println("Enter your option(1,2,3,4,5,6,7,8,9)");
+
+			inputManager = new Scanner(System.in);
+			choice = inputManager.nextInt();
+			inputManager.nextLine();
+
+			if (choice == 1)
+			{
+				System.out.println("Choose Report Format [1] Excel [2]PDF");
+				inputManager = new Scanner(System.in);
+				choice = inputManager.nextInt();
+				inputManager.nextLine();
+				
+				reportManager.generateReport(REPORTTYPE.MEMBER,choice , accManager.members.toArray(new Object[accManager.members.size()]));
+			}
+			else if (choice == 2) {
+				
+				//schManager.currentRides
+
+			}
+
+			else if (choice == 3) {
+				
+				ArrayList<Ride> myRides = new ArrayList<Ride>();
+				
+				//take ID from "currentUser" ... and loop over schManager.currentRides and print all rides for current user
+				
+			
+					//loop over schManager.currentRides (LOOPING ON RIDES)
+						// loop over customers array of this ride 
+							// add mathcing ride myRides.add(r); (LOOPING ON CUSTOMERS)  
+
+			}
+
+			else if (choice == 4) {
+				
+				
+
+			}
+			
+			else if (choice == 5) {
+				//	Use any of these algos : http://stackoverflow.com/questions/8098601/java-count-occurrence-of-each-item-in-an-array
+				
+				//Count occurance of each sources
+				//Count occurance of each destination
+				
+				//Result
+				
+				//Pickup Location: 
+				
+				//SJC : 10
+				//SFO : 0
+				
+				//Drop Location: 
+				
+				//SJC : 0
+				//SFO : 10
+				
+			}
+
+			else if (choice == 6) {
+				break;
+			}
+
+		} while (choice != 6 && choice !=7);
+
+
+	}
+	
 	
 	public static void renderVehicleOptions() {
 		
@@ -367,7 +454,8 @@ public class Test {
 		//////////////////////////////////////////////////////////////
 		//Environment Setup
 		//////////////////////////////////////////////////////////////
-		Payment payment = new Payment();
+		paymentManager = new PaymentManager();
+		reportManager = new Report();
 		
 		System.out.println("\n\n////////////////////////////////////////////////////////////// \nSetting up environment...\n////////////////////////////////////////////////////////////// \n");
 		

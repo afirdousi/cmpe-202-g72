@@ -5,10 +5,12 @@ import java.util.Scanner;
 
 public class Report {
 	
-	private enum REPORTTYPE {
+	public enum REPORTTYPE {
+		MEMBER,
 		RIDE,
+		MY_RIDE,
 		PAYMENT_HISTORY,
-		MEMBER
+		LOCATION
 	}
 	
 	private ReportExport exporter;
@@ -19,46 +21,57 @@ public class Report {
 		
 	}
 	
-	public void generateReport(REPORTTYPE type,ArrayList<Object> reportData){
+	public void generateReport(REPORTTYPE type, int reportFormat, Object[] reportData){
+		
+		String format = reportFormat==1?"Excel Format":"PDF Format";
 		
 		switch(type){
-			case RIDE:generateRideReport(reportData);break;
-			case PAYMENT_HISTORY:generatePaymentHistoryReport(reportData);break;
-			case MEMBER:generateMemberReport(reportData);break;
+			case RIDE:generateRideReport(format,reportData);break;
+			case PAYMENT_HISTORY:generatePaymentHistoryReport(format,reportData);break;
+			case MEMBER:generateMemberReport(format,reportData);break;
+			case MY_RIDE:generateMyRideReport(format,reportData);break;
+			case LOCATION:generateLocationReport(format,reportData);break;
 		default:
 			break;
 		
 		}
 	}
 	
-	public void generateRideReport(ArrayList<Object> reportData){
-		//TODO: Print report here
+	public void generateMemberReport(String reportFormat,Object[] reportData){
+		System.out.println("Generating Member Report : " + reportFormat);
+		System.out.println("*************************");
 		
-		//TODO: Export (Prompt user)
-		exportChoice = Integer.parseInt(scan.nextLine());
+		if(reportFormat.contains("Excel")){
+			exportToExcel(reportData);
+		}else{
+			exportToPDF(reportData);
+		}
+	}
+
+	public void generateRideReport(String reportFormat,Object[] reportData){
+	
 		
 	}
 	
-	public void generatePaymentHistoryReport(ArrayList<Object> reportData){
-		//TODO: Print report here
+	public void generateMyRideReport(String reportFormat,Object[] reportData){
+	
 		
-		//TODO: Export (Prompt user)
-		exportChoice = Integer.parseInt(scan.nextLine());
 	}
 	
-	public void generateMemberReport(ArrayList<Object> reportData){
-		//TODO: Print report here
-		
-		//TODO: Export (Prompt user)
-		exportChoice = Integer.parseInt(scan.nextLine());
+	public void generatePaymentHistoryReport(String reportFormat,Object[] reportData){
+	
 	}
 	
-	public void exportToExcel(ArrayList<Object> reportData){
+	public void generateLocationReport(String reportFormat,Object[] reportData){
+		
+	}
+	
+	public void exportToExcel(Object[] reportData){
 		this.exporter = new ExcelExport();
 		this.exporter.exportFormatedData(reportData);
 	}
 	
-	public void exportToPDF(ArrayList<Object> reportData){
+	public void exportToPDF(Object[] reportData){
 		this.exporter = new PDFExport();
 		this.exporter.exportFormatedData(reportData);
 	}

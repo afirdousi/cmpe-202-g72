@@ -14,10 +14,10 @@ public abstract class ReportExport
     	System.out.println("Formating the data as per requriements.");
     }
 
-    public abstract void exportData(ArrayList<Object> reportData);        
+    public abstract void exportData(Object[] reportData);        
 
     //Report Template
-    public void exportFormatedData(ArrayList<Object> reportData)
+    public void exportFormatedData(Object[]reportData)
     {
         this.readReportData();
         this.formatReportData();
