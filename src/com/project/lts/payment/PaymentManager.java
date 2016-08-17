@@ -1,6 +1,10 @@
 package com.project.lts.payment;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import com.project.lts.accounts.Member;
 import com.project.lts.notification.Notification;
@@ -9,6 +13,9 @@ public class PaymentManager {
 	
 	Notification notificationManager=new Notification();
 	
+	
+	HashMap<String, ArrayList<Integer>> objMap= new HashMap<String,ArrayList<Integer>>();
+	
 	public void proceesPayment(int rideAmount,List<Member> members){
 		Payment objP=new Payment();	
 		
@@ -16,8 +23,9 @@ public class PaymentManager {
 		for (int i = 0; i < members.size(); i++)
 		{
 			int finalAmount=objP.computePayment(rideAmount, members.get(i).getMemRole());
-			objP.setRideAmount(finalAmount);
-			
+			objP.setRideAmount(finalAmount);	
+			String memId=members.get(i).getMemPaypalId();
+			savePaymentHistory(memId,finalAmount);
 			
 			String paymentMode=members.get(i).getMemPrefpmt();			
 			
@@ -61,6 +69,60 @@ public class PaymentManager {
 			     
 				}
 			}
+			 
+		//save payment history 
+	public void savePaymentHistory(String memId ,int finalAmount){
+		System.out.println(memId);
+		if (objMap.containsKey(memId)) { 
+			objMap.get(memId).add(finalAmount);
+	    }else {
+	        ArrayList<Integer> list = new ArrayList<Integer>();
+	        list.add(finalAmount);
+	        objMap.put(memId, list);
+	    }
+				
+				
+	}
+	
+	//Show payment history for member individual member
+	public void showIndPaymentHistory(String memId){	
+		
+		
+		if(objMap.containsKey(memId)){
+			
+			List<Integer> list = objMap.get(memId);
+			
+			for(int i=0; i< list.size();i++){
+				System.out.println("MemberID: "+ memId +" for ride "+ i+1 + " amount :"+ list.get(i));
+			}
+		}else{
+			System.out.println("No History for this "+memId);
+		}
+		
+		
+				
+	}
+	
+	
+	//Show payment history for member individual member
+		public void showAllPaymentHistory(){
+			if(objMap.isEmpty()){
+			
+			System.out.println("No history for now");
+			
+			}
+			else
+			{
+				System.out.println("Payment HIstory for all Rides");
+				for (String key : objMap.keySet()) {
+				
+					System.out.println("For Member Id  " + key);
+					showIndPaymentHistory(key);
+				}
+			}
+			
+											
+		}
 			
 
 }

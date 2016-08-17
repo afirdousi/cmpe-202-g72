@@ -11,12 +11,13 @@ public class TestPayment {
 	public static void main(String []args) throws IOException{
 	System.out.println("Welcome to carpool system");
 	int rideAmount=90;
-//	AccountClient cc=new AccountClient();
-//	List<Member> members=cc.processRequest();
+     // AccountClient cc=new AccountClient();
+	//List<Member> members=cc.processRequest();
 	
-//	PaymentManager p=new PaymentManager();
-//	p.proceesPayment(rideAmount, members);
-	
+	// PaymentManager p=new PaymentManager();
+	 //p.holdPayment(rideAmount, members);
+    //p.proceesPayment(rideAmount, members);
+	// p.showAllPaymentHistory();
 	
 	
 	}

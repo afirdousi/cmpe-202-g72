@@ -36,30 +36,6 @@ public class Payment {
 		
 	   }
 		
-		public void holdPayment(int amount,List<Member> members){
-			setRideAmount(amount);
-			for (int i = 0; i < members.size(); i++)
-			{
-				notificationManager.reset();
-				notificationManager.setListener(members.get(i));
-				notificationManager.setMessage("Hello"+members.get(i).getMemFname()+" Payment"+ amount + "is hold for ride ");
-			   //System.out.println("Hello"+members.get(i).getMemFname()+" Payment"+ amount + "is hold for ride ");
-				notificationManager.send();
-		     }
-		}
-		
-		
-		
-		
-		
-		public void showPaymentHistory(/*memberId,paymentConfirmationNumber*/){
-			
-		}
-
-
-
-
-
 		public int getRideAmount() {
 			return rideAmount;
 		}
