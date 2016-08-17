@@ -44,8 +44,8 @@ public class Test {
 			case MAIN_MENU:renderMainMenu(); break;
 			case LOGIN:renderLogin();break;
 			case MEMBER_MENU:renderMemberMenu();break;
-			case VEHICLE_MENU:renderVehicleMenu();break;
-			case SCHEDULE_MENU:renderScheduleMenu();break;
+//			case VEHICLE_MENU:renderVehicleMenu();break;
+//			case SCHEDULE_MENU:renderScheduleMenu();break;
 			default: break;
 		
 		}
@@ -95,24 +95,24 @@ public class Test {
 	public static int renderLogin(){
 		//renderHeader();
 		
-//		Scanner scan = new Scanner(System.in);
-//		String userName;
-//		int password;// = Integer.parseInt(scan.nextLine());
-//		
-//		while(true){
-//			System.out.println("\n");
-//			System.out.println("\n[1] Enter Username:");
-//			userName =  scan.nextLine();
-//			System.out.println("\n[1] Enter Password:");
-//			password = Integer.parseInt(scan.nextLine());
-//			
-//			if(password!=123){
-//				System.out.println("Wrong credentials");
-//			}else{
-//				break;
-//			}
-//			
-//		}
+		Scanner scan = new Scanner(System.in);
+		String userName;
+		int password;// = Integer.parseInt(scan.nextLine());
+
+		while(true){
+			System.out.println("\n");
+			System.out.println("\n[1] Enter Username:");
+			userName =  scan.nextLine();
+			System.out.println("\n[1] Enter Password:");
+			password = Integer.parseInt(scan.nextLine());
+
+			if(password!=123){
+				System.out.println("Wrong credentials");
+			}else{
+				break;
+			}
+
+		}
 		
 		return 1;
 	}
@@ -121,7 +121,7 @@ public class Test {
 
 		//renderHeader();
 		System.out.println("\n");
-		System.out.println("\nWelcome to Lyft! \n***********************\n[1] CRUD Account \n[2] CRUD Vehicle  \n[3] Request a Ride \n[4] Reports  \n[5] Return to Main Menu \n ");
+		System.out.println("\nWelcome to Lyft! \n***********************\n[1] CRUD Account \n[2] CRUD Vehicle  \n[3] Ride Options \n[4] Reports  \n[5] Return to Main Menu \n ");
 		
 		Scanner scan = new Scanner(System.in);
 		int choice = Integer.parseInt(scan.nextLine());
@@ -141,8 +141,7 @@ public class Test {
 			break;
 
 		case 3:
-			System.out.println("Request a Ride");
-			addRideRequest();
+			renderRideOptions();
 			break;
 
 		case 4:
@@ -160,21 +159,7 @@ public class Test {
 			break;
 		}
 	}
-	
-	public static void renderVehicleMenu(){
 
-		//renderHeader();
-		System.out.println("\n");
-		System.out.println("\n[1] Home \n [2] Profile \n [3] Update Profile \n  [4] Schedule Ride \n [5] My Rides \n [6]Reports");
-	}
-	
-	public static void renderScheduleMenu(){
-
-		//renderHeader();
-		System.out.println("\n");
-		System.out.println("\n[1] Home \n [2] Profile \n [3] Update Profile \n  [4] Schedule Ride \n [5] My Rides \n [6]Reports");
-	}
-		
 	public final static void clearConsole()
 	{
 		//System.out.println("Clear console...");
@@ -299,7 +284,7 @@ public class Test {
 			System.out.println("5. Location Report");  
 			System.out.println("6. Back");
 			System.out.println("7. Exit");
-			System.out.println("Enter your option(1,2,3,4,5,6,7,8,9)");
+			System.out.println("Enter your option(1,2,3,4,5,6,7)");
 
 			inputManager = new Scanner(System.in);
 			choice = inputManager.nextInt();
@@ -376,9 +361,9 @@ public class Test {
 			System.out.println("2. Retrieve Vehicle");
 			System.out.println("3. Update Vehicle");
 			System.out.println("4. Remove Vehicle");
-			System.out.println("5. Select Members");
-			System.out.println("6. Search Members");
-			System.out.println("7. Sort Members");
+//			System.out.println("5. Select Members");
+//			System.out.println("6. Search Members");
+//			System.out.println("7. Sort Members");
 			System.out.println("8. Back");
 			System.out.println("9. Exit");
 			System.out.println("Enter your option(1,2,3,4,5,6,7)");
@@ -447,6 +432,50 @@ public class Test {
 
 
 	}
+	
+	public static void renderRideOptions() {
+
+		do {
+
+			System.out.println("=============================================================");
+			System.out.println("1. Request a Ride");
+			System.out.println("2. Cancel a Ride");  
+			System.out.println("3. Schedule All Rides");  
+			System.out.println("4. Back");
+			System.out.println("Enter your option(1,2,3,4,5)");
+
+			inputManager = new Scanner(System.in);
+			choice = inputManager.nextInt();
+			inputManager.nextLine();
+
+			if (choice == 1)
+			{
+				System.out.println("Request a Ride");
+				addRideRequest();
+			}
+			else if (choice == 2) {
+				System.out.println("Canceling Ride ");
+				System.out.println("Enter Ride ID to remove :");
+				inputManager = new Scanner(System.in);
+				String rideID  = (inputManager.nextLine());
+				schManager.removeRide(rideID,currentUser);
+
+			}
+
+			else if (choice == 3) {
+
+				
+			}
+
+			else if (choice == 4) {
+				break;
+			}
+
+		} while (choice != 4);
+
+
+	}
+	
 	
 	public static void main(String[] args){
 		renderHeader();
@@ -620,7 +649,7 @@ public class Test {
 	
 	public static void addVehicle() {
 		
-//		//Vehicle newVehicle = new Vehicle();
+		Vehicle newVehicle = new Car();
 //		
 //		System.out.println("Adding vehicles");
 //		System.out.println("Adding Vehicle Information");
@@ -642,6 +671,8 @@ public class Test {
 //		vManager.addVehicle(newVehicle);
 //		currentUser = newVehicle;
 		
+		newVehicle.setVehicleState(new VPending());
+		
 	}
 	
 	public static void addRideRequest()
@@ -660,7 +691,7 @@ public class Test {
 		
 		for(int i=0;i<noOfRidesToSchedule;i++){
 			
-			System.out.println("Enter Information for New Ride No." + (i+1));
+			System.out.println("Enter Information for New Ride No." + (i+1) + " of " + noOfRidesToSchedule );
 			newRide =new Ride("","","","",null,"","","","");
 			System.out.println("Enter Source");
 			inputManager = new Scanner(System.in);
@@ -679,40 +710,39 @@ public class Test {
 		}
 		
 		if(schManager.isEligibileForCoupon(currentUser)){
+			
+			//notify user
 			currentUser.addCoupon("CP");
 			notificationManager.setMessage("Hurray! You have earned one coupon.");
 		    notificationManager.send();
-		}
-		
-		inputManager = new Scanner(System.in);
-		System.out.println("Do you want to share your coupon? [1]Yes [2]No");
-		int shareCoupon = inputManager.nextInt();
-		
-		if(shareCoupon==1){
-			inputManager = new Scanner(System.in);
-			System.out.println("Enter Member ID to share coupon with");
-			String memberIDForCouponShare = inputManager.nextLine();
-			boolean memberFound = false;
-			//TODO : Check if notifications are received properly!!!
-			for(Member m:accManager.members){
-				if(m.getnMemberID().equalsIgnoreCase(memberIDForCouponShare)){
-					m.receiveCoupon("CP",currentUser);
-					memberFound = true;
-					break;
+		    
+		    //ask for sharing coupon
+		    inputManager = new Scanner(System.in);
+			System.out.println("Do you want to share your coupon? [1]Yes [2]No");
+			int shareCoupon = inputManager.nextInt();
+			
+			if(shareCoupon==1){
+				inputManager = new Scanner(System.in);
+				System.out.println("Enter Member ID to share coupon with");
+				String memberIDForCouponShare = inputManager.nextLine();
+				boolean memberFound = false;
+				//TODO : Check if notifications are received properly!!!
+				for(Member m:accManager.members){
+					if(m.getnMemberID().equalsIgnoreCase(memberIDForCouponShare)){
+						m.receiveCoupon("CP",currentUser);
+						memberFound = true;
+						break;
+					}
+				}
+				
+				if(!memberFound){
+					System.out.println("Member with ID " + memberIDForCouponShare + " not found.");
+				}else{
+					currentUser.removeCoupon();
 				}
 			}
-			
-			if(!memberFound){
-				System.out.println("Member with ID " + memberIDForCouponShare + " not found.");
-			}else{
-				currentUser.removeCoupon();
-			}
-			
-			
 		}
 		
-		
-	    
 		
 		
 		System.out.println("All rides to be scheduled...");
@@ -724,35 +754,39 @@ public class Test {
 		//		System.out.println("*********************************");
 		//		System.out.println("Scheduling Ride...");
 		//		System.out.println("*********************************");
+		inputManager = new Scanner(System.in);
+		System.out.println("Do you want to schedule all rides now? [1]Yes [2]No");
+		String scheduleAllNow = inputManager.nextLine();
 		
-				schManager.scheduleAll();
-		
-		//		List<List<Vertex>> suggestedRoutes;
-		//		
-		//		ScheduledRide scheduleRideManager;
-		//		
-		//		for (Ride ride : schManager.currentRides) {
-		//			
-		//			scheduleRideManager = ride.getScheduledRide();
-		//			String source = ride.getSource();
-		//			String destination = ride.getDestination();
-		//			
-		//			//Step:1
-		//			scheduleRideManager.receiveRequest(source,destination);
-		//			
-		//			//Step:2
-		//			suggestedRoutes  = scheduleRideManager.calculateRide(source, destination);
-		//			
-		//			//Step:3
-		//			payment.holdPayment(10, accManager.members);
-		//			
-		//			//Step:4
-		//			scheduleRideManager.dispatchRide(suggestedRoutes,0);
-		//			
-		//			//Step:5
-		//			scheduleRideManager.completeRide(10, ride.getMembers());
-		//		}	
-		
-
+		if(scheduleAllNow.equalsIgnoreCase("1")){
+			schManager.scheduleAll();
+			
+			//		List<List<Vertex>> suggestedRoutes;
+			//		
+			//		ScheduledRide scheduleRideManager;
+			//		
+			//		for (Ride ride : schManager.currentRides) {
+			//			
+			//			scheduleRideManager = ride.getScheduledRide();
+			//			String source = ride.getSource();
+			//			String destination = ride.getDestination();
+			//			
+			//			//Step:1
+			//			scheduleRideManager.receiveRequest(source,destination);
+			//			
+			//			//Step:2
+			//			suggestedRoutes  = scheduleRideManager.calculateRide(source, destination);
+			//			
+			//			//Step:3
+			//			payment.holdPayment(10, accManager.members);
+			//			
+			//			//Step:4
+			//			scheduleRideManager.dispatchRide(suggestedRoutes,0);
+			//			
+			//			//Step:5
+			//			scheduleRideManager.completeRide(10, ride.getMembers());
+			//		}	
+		}
+			
 	}
 }

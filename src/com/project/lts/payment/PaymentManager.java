@@ -57,7 +57,7 @@ public class PaymentManager {
 	}
 	
 	//Code for holding payment
-			public void holdPayment(int amount, List<Member> members){
+	public void holdPayment(int amount, List<Member> members){
 		
 				for (int i = 0; i < members.size(); i++)
 				{
@@ -105,7 +105,7 @@ public class PaymentManager {
 	
 	
 	//Show payment history for member individual member
-		public void showAllPaymentHistory(){
+	public void showAllPaymentHistory(){
 			if(objMap.isEmpty()){
 			
 			System.out.println("No history for now");
@@ -120,9 +120,8 @@ public class PaymentManager {
 					showIndPaymentHistory(key);
 				}
 			}
-			
 											
-		}
+	}
 			
 
 }

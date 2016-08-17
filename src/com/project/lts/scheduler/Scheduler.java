@@ -52,6 +52,44 @@ public class Scheduler {
 
 	}
 	
+	public void removeRide(String rideID,Member cancellingUser){
+		
+		boolean rideFound = false;
+//		System.out.println("In Remove Ride........");
+//		System.out.println("Rides before removal");
+//
+//		for(Ride r:this.currentRides){
+//			displayRideInfo(r);
+//		}
+		
+		
+		for(Ride r:this.currentRides){
+			if(r.getID().equalsIgnoreCase(rideID)){
+				rideFound = true;
+				String rideIDToBeDeleted = r.getID();
+				this.currentRides.remove(r);
+				
+				notificationManager.reset();
+				notificationManager.setListener(cancellingUser);
+				notificationManager.setMessage("Dear user, your ride with ID : " + rideIDToBeDeleted + " has been deleted.");
+			    notificationManager.send();
+			}
+		}
+		
+		if(!rideFound){
+//			System.out.println("Rides after removal........");
+//	
+//			for(Ride r:this.currentRides){
+//				displayRideInfo(r);
+//			}
+			
+		}else{
+			System.out.println("Ride with ID:" + rideID + " not found.");
+		}
+		
+		
+	}
+	
 	public void displayRideInfo(Ride r){
 		//TODO: Fix this
 //		System.out.println("No of customer = " + r.customers.size());
