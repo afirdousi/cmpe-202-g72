@@ -1,7 +1,9 @@
 package com.project.lts.scheduler;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import com.project.lts.accounts.AccountClient;
+import com.project.lts.accounts.Customer;
 import com.project.lts.accounts.Member;
 import com.project.lts.notification.Notification;
 import com.project.lts.vehicle.Vehicle;
@@ -21,17 +23,43 @@ public class Scheduler {
 	public void setupMockRide(List<Member> members){
 		
 		List<Member> customersOfCurrentRide;
-		
+		Member dummy = new Customer() ;
 		for (Member m : members) {
-			if(m.getMemType()=="C" && m.getnMemberID()!="Cust001"){
+			if(m.getMemType()=="C"){
 //				customersOfCurrentRide = new ArrayList<Member>();
 //				customersOfCurrentRide.add(m);
 				ride  =  new Ride(Long.toString(this.rideCount),"SJC","SFO","8/20/2016",m,"","","","");
 				this.currentRides.add(ride);
 				this.rideCount++;
 			}
+			
+			dummy = m;
 		
 		}
+		
+		ride  =  new Ride(Long.toString(this.rideCount),"SFO","MTV","8/20/2016",dummy,"","","","");
+		this.currentRides.add(ride);
+		this.rideCount++;
+		
+		ride  =  new Ride(Long.toString(this.rideCount),"SFO","RWC","8/20/2016",dummy,"","","","");
+		this.currentRides.add(ride);
+		this.rideCount++;
+		
+		ride  =  new Ride(Long.toString(this.rideCount),"MTV","SNB","8/20/2016",dummy,"","","","");
+		this.currentRides.add(ride);
+		this.rideCount++;
+		
+		ride  =  new Ride(Long.toString(this.rideCount),"MTV","SFO","8/20/2016",dummy,"","","","");
+		this.currentRides.add(ride);
+		this.rideCount++;
+		
+		ride  =  new Ride(Long.toString(this.rideCount),"KHI","SJC","8/20/2016",dummy,"","","","");
+		this.currentRides.add(ride);
+		this.rideCount++;
+		
+		ride  =  new Ride(Long.toString(this.rideCount),"BLR","SJC","8/20/2016",dummy,"","","","");
+		this.currentRides.add(ride);
+		this.rideCount++;
 	}
 	
 	public long getTotalRideCount(){
@@ -98,10 +126,6 @@ public class Scheduler {
 		
 	}
 	
-	public void scheduleAll(){
-		
-	}
-	
 	public boolean isEligibileForCoupon(Member memberToCheck){
 		
 		boolean result = false;
@@ -124,4 +148,99 @@ public class Scheduler {
 		
 		return result;
 	}
+
+	public void carpoolRides(List<Vehicle> vehicles){
+		
+		//Carpooling Algo which reduces number of currentRides
+		
+		//ALGO: 
+		//Match vehicle location to source of requested ride location && Match source among requested rides && Number of seats per vehicles should not exceed 4
+		
+		//Step.0 : Rides which cannot be scheduled
+		boolean canBeScheduled;
+		for(Ride ride:currentRides){
+			
+			 canBeScheduled =false;
+			 
+			for(Vehicle vehicle:vehicles){
+				if(ride.getSource().equalsIgnoreCase(vehicle.getLocation())){
+					 canBeScheduled =true;
+					break;
+				}
+			}
+			
+			if(!canBeScheduled){
+				ride.canBeScheduled = false;
+				System.out.println("Ride wit ID:" + ride.getID() + " cannot be scheduled at this time. No vehicle to pickup at location: " + ride.getSource() );
+			}
+			
+		}
+		
+		
+		
+		//Step.1 : Group Rides By Source Location
+		Map<String, List<Ride>> requestedRideByLocation =
+			    this.currentRides.stream().collect(Collectors.groupingBy(r -> r.getSource()));
+		
+		
+		//Step.2 : Attaching 1 Vehicle to 4 Rides
+		int totalRidesAttachedToVehicle = 0;
+		
+		for(Vehicle vehicle:vehicles){ //vehicle.location : SJC
+			
+			totalRidesAttachedToVehicle = 0; 
+			
+			String location = vehicle.getLocation(); //SJC
+			
+			for (Map.Entry<String, List<Ride>> entry : requestedRideByLocation.entrySet()) //SJC
+			{
+			    //System.out.println(entry.getKey() + "/" + entry.getValue());
+				for(Ride ride:entry.getValue()){
+					
+					if(ride.vehicle==null && ride.canBeScheduled==true){
+						if(location.equalsIgnoreCase(ride.getSource())){  //SJC
+							
+							System.out.println("ATTACHING VEHICLE TO RIDE....");
+							totalRidesAttachedToVehicle++;
+							
+							//1st time
+							if(!vehicle.isAttachedToRide){
+								ride.setVehicle(vehicle);
+								vehicle.isAttachedToRide = true;
+							}
+							
+							if(totalRidesAttachedToVehicle<5){
+								ride.setVehicle(vehicle);
+							}else{
+								break;
+							}
+							
+							
+						}else{
+							break;
+						}
+					}
+				}
+				
+			}
+			
+			
+			
+			
+		}
+		
+		//Results of Step.2
+//		System.out.println("Carpooling  ALGO RESULT");
+//		for(Ride r:this.currentRides){
+//			if(r.vehicle!=null){
+//				System.out.println("Ride ID : " + r.getID() + " Vehicle ID : " + r.vehicle.getvId()) ;
+//			}else{
+//					ride.canBeScheduled = false;
+//					System.out.println("Ride wit ID:" + r.getID() + " cannot be scheduled at this time. Vehicles not available at :" + r.getSource() );
+//			}
+//		}
+			
+		
+	}
+	
 }

@@ -16,7 +16,7 @@ public abstract class Vehicle
 	public String vId;
 	public String vModel;
 	public String vYear;
-	public String vIn;
+	public String vIn; 
 	public int vehicleType;
 	public VehicleState vehicleState;
 	public int vHealth;
@@ -24,10 +24,21 @@ public abstract class Vehicle
 	public String location;
 	public String vehicleCost;
 	public Member owner;
+	public boolean isAttachedToRide;
 	
 	public Vehicle(){
 		vehicleState = new VPending();
+		isAttachedToRide = false;
 	}
+	
+	public boolean getIsAttachedToRide() {
+		return isAttachedToRide;
+	}
+
+	public void setIsAttachedToRide(boolean isAttached) {
+		this.isAttachedToRide = isAttached;
+	}
+	
 	
 	public Member getMember(){
 		return this.owner;

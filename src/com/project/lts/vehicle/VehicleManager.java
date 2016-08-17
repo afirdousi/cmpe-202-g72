@@ -64,7 +64,7 @@ public class VehicleManager
 		v3.setvDriver("D0003");
 		v3.setLocation("SJC");
 		v3.setVehicleState(new VActive());
-                this.vehicles.add(v3);
+        this.vehicles.add(v3);
 
 		Vehicle v4 = new Car();
 		v4.setvId("4");

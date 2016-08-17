@@ -57,7 +57,7 @@ public class DispatchState implements State{
 		
 		//selectedRoute.close();
 		
-		sc.setState(new WaitState(sc));
+		sc.setState(new CompleteState(sc));
 		System.out.println("Ride dispatched");
 		
 	}

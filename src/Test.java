@@ -438,7 +438,7 @@ public class Test {
 		do {
 
 			System.out.println("=============================================================");
-			System.out.println("1. Request a Ride");
+			System.out.println("1. Request Ride(s)");
 			System.out.println("2. Cancel a Ride");  
 			System.out.println("3. Schedule All Rides");  
 			System.out.println("4. Back");
@@ -463,8 +463,7 @@ public class Test {
 			}
 
 			else if (choice == 3) {
-
-				
+				scheduleAllRides();
 			}
 
 			else if (choice == 4) {
@@ -759,12 +758,18 @@ public class Test {
 		String scheduleAllNow = inputManager.nextLine();
 		
 		if(scheduleAllNow.equalsIgnoreCase("1")){
-			schManager.scheduleAll();
+			scheduleAllRides();
+		}
 			
+	}
+	
+	public static void scheduleAllRides(){
+		
+		schManager.carpoolRides(vehManager.vehicles);
+		
+		
 			//		List<List<Vertex>> suggestedRoutes;
-			//		
 			//		ScheduledRide scheduleRideManager;
-			//		
 			//		for (Ride ride : schManager.currentRides) {
 			//			
 			//			scheduleRideManager = ride.getScheduledRide();
@@ -773,12 +778,12 @@ public class Test {
 			//			
 			//			//Step:1
 			//			scheduleRideManager.receiveRequest(source,destination);
-			//			
+			//		
 			//			//Step:2
 			//			suggestedRoutes  = scheduleRideManager.calculateRide(source, destination);
-			//			
+			//		
 			//			//Step:3
-			//			payment.holdPayment(10, accManager.members);
+			//			paymentManager.holdPayment(10, accManager.members);
 			//			
 			//			//Step:4
 			//			scheduleRideManager.dispatchRide(suggestedRoutes,0);
@@ -786,7 +791,5 @@ public class Test {
 			//			//Step:5
 			//			scheduleRideManager.completeRide(10, ride.getMembers());
 			//		}	
-		}
-			
 	}
 }

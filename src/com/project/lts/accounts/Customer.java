@@ -25,7 +25,9 @@ public class Customer extends Member
 	 * @generated
 	 */
 	
-	public Customer(){}
+	public Customer(){
+		
+	}
 	
 	
 	public Customer( String memId , String strmFName, String strmLName, String strmEmail, String strmPhone,

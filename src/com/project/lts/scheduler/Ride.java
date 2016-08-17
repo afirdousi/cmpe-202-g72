@@ -21,6 +21,7 @@ public class Ride {
 	String  driverFeedback;
 	String  currentLocation;
 	int rideAmount;
+	boolean canBeScheduled;  // if vehicle exist on ride source(pickup) location
 	
 	public Ride(){
 		
@@ -43,7 +44,7 @@ public class Ride {
 		
 		this.scheduledRide = new ScheduledRide();
 		//this.customers 
-		
+		this.canBeScheduled = true;
 	}
 	
 	public void setMember(Member m){
