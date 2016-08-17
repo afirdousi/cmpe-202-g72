@@ -230,6 +230,7 @@ public class Scheduler {
 		}
 		
 		//Results of Step.2
+		
 //		System.out.println("Carpooling  ALGO RESULT");
 //		for(Ride r:this.currentRides){
 //			if(r.vehicle!=null){
@@ -240,6 +241,11 @@ public class Scheduler {
 //			}
 //		}
 			
+		//Step.3 : Group Rides By Source Location
+		Map<String, List<Ride>> vehicleGroupedByRides =
+			    this.currentRides.stream().collect(Collectors.groupingBy(r -> r.vehicle.getvId()));
+		
+		//Step.4 : Delete rides with same vehicle and create new ride
 		
 	}
 	
