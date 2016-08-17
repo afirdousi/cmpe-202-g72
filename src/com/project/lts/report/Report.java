@@ -49,21 +49,49 @@ public class Report {
 	}
 
 	public void generateRideReport(String reportFormat,Object[] reportData){
-	
+		System.out.println("Generating Ride Report : " + reportFormat);
+		System.out.println("*************************");
+		
+		if(reportFormat.contains("Excel")){
+			exportToExcel(reportData);
+		}else{
+			exportToPDF(reportData);
+		}
 		
 	}
 	
 	public void generateMyRideReport(String reportFormat,Object[] reportData){
-	
+		System.out.println("Generating My Ride Report : " + reportFormat);
+		System.out.println("*************************");
+		
+		if(reportFormat.contains("Excel")){
+			exportToExcel(reportData);
+		}else{
+			exportToPDF(reportData);
+		}
 		
 	}
 	
 	public void generatePaymentHistoryReport(String reportFormat,Object[] reportData){
-	
+		System.out.println("Generating Payment History Report : " + reportFormat);
+		System.out.println("*************************");
+		
+		if(reportFormat.contains("Excel")){
+			exportToExcel(reportData);
+		}else{
+			exportToPDF(reportData);
+		}
 	}
 	
 	public void generateLocationReport(String reportFormat,Object[] reportData){
+		System.out.println("Generating Location Report : " + reportFormat);
+		System.out.println("*************************");
 		
+		if(reportFormat.contains("Excel")){
+			exportToExcel(reportData);
+		}else{
+			exportToPDF(reportData);
+		}
 	}
 	
 	public void exportToExcel(Object[] reportData){

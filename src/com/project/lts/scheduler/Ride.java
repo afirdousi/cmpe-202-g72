@@ -1,4 +1,5 @@
 package com.project.lts.scheduler;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.project.lts.accounts.*;
@@ -12,7 +13,7 @@ public class Ride {
 	String destination;
 	ScheduledRide scheduledRide; //Change route type to ScheduleRide
 	Vehicle vehicle; //Change it to doc from int type to Vehicle type
-	List<Member> customers;
+	ArrayList<Member> customers = new ArrayList<Member>();
 	String rideDate;
 	String  riderFeedback;
 	String  riderRating;
@@ -25,7 +26,7 @@ public class Ride {
 		
 	}
 
-	public Ride(String ID, String source, String destination, String rideDate,/*ScheduledRide route, Vehicle vehicle,*/ List<Member> customers,
+	public Ride(String ID, String source, String destination, String rideDate,/*ScheduledRide route, Vehicle vehicle,*/ Member firstMember,
 			String riderFeedback,String riderRating, String driveFeedback, String currentLocation) {
 		
 		this.ID = ID;
@@ -34,18 +35,22 @@ public class Ride {
 		this.rideDate=rideDate;
 //		this.route = route;  //Define getters/setters
 //		this.vehicle = vehicle; //Define getters/setters
-		this.customers = customers;
+		this.customers.add(firstMember);
 		this.riderFeedback = riderFeedback;
 		this.riderRating = riderRating;
 		this.driverFeedback = driveFeedback;
 		this.currentLocation = currentLocation;
 		
-		scheduledRide = new ScheduledRide();
-		
+		this.scheduledRide = new ScheduledRide();
+		//this.customers 
 		
 	}
 	
-	public void setMembers(List<Member> customers){
+	public void setMember(Member m){
+		this.customers.add(m);
+	}
+	
+	public void setMembers(ArrayList<Member> customers){
 		this.customers = customers;
 	}
 	
@@ -65,7 +70,7 @@ public class Ride {
 		return this.destination;
 	}
 	
-	public List<Member> getMembers(){
+	public ArrayList<Member> getMembers(){
 		return this.customers;
 	}
 	

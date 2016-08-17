@@ -9,6 +9,7 @@ import com.project.lts.routing.Vertex;
 import com.project.lts.scheduler.Ride;
 import com.project.lts.scheduler.ScheduledRide;
 import com.project.lts.scheduler.Scheduler;
+import com.project.lts.notification.*;
 
 import com.project.lts.vehicle.*;
 
@@ -30,6 +31,7 @@ public class Test {
 	static VehicleManager vehManager;
 	static Scheduler schManager;
 	static PaymentManager paymentManager;
+	static Notification notificationManager;
 	static Report reportManager;
 	static Scanner inputManager;
 	static Scanner inputVehicle;
@@ -286,7 +288,7 @@ public class Test {
 	}
 
 	public static void renderReportOptions() {
-		
+
 		do {
 
 			System.out.println("=============================================================");
@@ -309,63 +311,60 @@ public class Test {
 				inputManager = new Scanner(System.in);
 				choice = inputManager.nextInt();
 				inputManager.nextLine();
-				
+		
 				reportManager.generateReport(REPORTTYPE.MEMBER,choice , accManager.members.toArray(new Object[accManager.members.size()]));
 			}
 			else if (choice == 2) {
-				
-				//schManager.currentRides
-
+		
+				System.out.println("Choose Report Format [1] Excel [2]PDF");
+				inputManager = new Scanner(System.in);
+				choice = inputManager.nextInt();
+				inputManager.nextLine();
+		
+				reportManager.generateReport(REPORTTYPE.RIDE,choice , schManager.currentRides.toArray(new Object[schManager.currentRides.size()]));
+	
 			}
 
 			else if (choice == 3) {
+
+				System.out.println("Choose Report Format [1] Excel [2]PDF");
+				inputManager = new Scanner(System.in);
+				choice = inputManager.nextInt();
+				inputManager.nextLine();
 				
 				ArrayList<Ride> myRides = new ArrayList<Ride>();
-				
-				//take ID from "currentUser" ... and loop over schManager.currentRides and print all rides for current user
-				
-			
-					//loop over schManager.currentRides (LOOPING ON RIDES)
-						// loop over customers array of this ride 
-							// add mathcing ride myRides.add(r); (LOOPING ON CUSTOMERS)  
-
+	
+				for (Ride ride : schManager.currentRides) {
+						//members = ride.getMembers();
+						for (Member member : ride.getMembers()) {
+							if(member!=null){
+								if(member.getnMemberID()==currentUser.getnMemberID()){
+									myRides.add(ride);
+								}
+							}
+						}
+				}
+				reportManager.generateReport(REPORTTYPE.MY_RIDE,choice , myRides.toArray(new Object[myRides.size()]));
 			}
 
 			else if (choice == 4) {
-				
-				
-
+				//PAYMENT HISTORY REPORT 
+				//NEED FIX FROM SNEHAL
 			}
-			
+
 			else if (choice == 5) {
-				//	Use any of these algos : http://stackoverflow.com/questions/8098601/java-count-occurrence-of-each-item-in-an-array
-				
-				//Count occurance of each sources
-				//Count occurance of each destination
-				
-				//Result
-				
-				//Pickup Location: 
-				
-				//SJC : 10
-				//SFO : 0
-				
-				//Drop Location: 
-				
-				//SJC : 0
-				//SFO : 10
-				
+	
+				//LOCATION REPORT
 			}
-
+	
 			else if (choice == 6) {
 				break;
 			}
 
-		} while (choice != 6 && choice !=7);
+	} while (choice != 6 && choice !=7);
 
 
-	}
-	
+}
 	
 	public static void renderVehicleOptions() {
 		
@@ -456,6 +455,7 @@ public class Test {
 		//////////////////////////////////////////////////////////////
 		paymentManager = new PaymentManager();
 		reportManager = new Report();
+		notificationManager = new Notification();
 		
 		System.out.println("\n\n////////////////////////////////////////////////////////////// \nSetting up environment...\n////////////////////////////////////////////////////////////// \n");
 		
@@ -646,23 +646,113 @@ public class Test {
 	
 	public static void addRideRequest()
 	{
+		int noOfRidesToSchedule = 0;
 		
-		Ride newRide=new Ride("","","","",null,"","","","");
-		System.out.println("Enter Source");
+		System.out.println("How many rides you want to schedule?");
 		inputManager = new Scanner(System.in);
-		newRide.setSource(inputManager.nextLine());
-		System.out.println("Enter Destination");
+		noOfRidesToSchedule = inputManager.nextInt(); 
+		
+		System.out.println("---------------------------------------");
+		Ride newRide;
+		
+		notificationManager.reset();
+		notificationManager.setListener(currentUser);
+		
+		for(int i=0;i<noOfRidesToSchedule;i++){
+			
+			System.out.println("Enter Information for New Ride No." + (i+1));
+			newRide =new Ride("","","","",null,"","","","");
+			System.out.println("Enter Source");
+			inputManager = new Scanner(System.in);
+			newRide.setSource(inputManager.nextLine());
+			System.out.println("Enter Destination");
+			inputManager = new Scanner(System.in);
+			newRide.setDestination(inputManager.nextLine());
+			System.out.println("Enter Date");
+			inputManager = new Scanner(System.in);
+			newRide.setrideDate(inputManager.nextLine());
+			
+			newRide.setMember(currentUser);
+			//schManager.currentRides.add(newRide);
+			schManager.addRide(newRide, currentUser);
+			
+		}
+		
+		if(schManager.isEligibileForCoupon(currentUser)){
+			currentUser.addCoupon("CP");
+			notificationManager.setMessage("Hurray! You have earned one coupon.");
+		    notificationManager.send();
+		}
+		
 		inputManager = new Scanner(System.in);
-		newRide.setDestination(inputManager.nextLine());
-		System.out.println("Enter Date");
-		inputManager = new Scanner(System.in);
-		newRide.setrideDate(inputManager.nextLine());
+		System.out.println("Do you want to share your coupon? [1]Yes [2]No");
+		int shareCoupon = inputManager.nextInt();
 		
-		schManager.currentRides.add(newRide);
-		schManager.addRide(newRide, currentUser);
+		if(shareCoupon==1){
+			inputManager = new Scanner(System.in);
+			System.out.println("Enter Member ID to share coupon with");
+			String memberIDForCouponShare = inputManager.nextLine();
+			boolean memberFound = false;
+			//TODO : Check if notifications are received properly!!!
+			for(Member m:accManager.members){
+				if(m.getnMemberID().equalsIgnoreCase(memberIDForCouponShare)){
+					m.receiveCoupon("CP",currentUser);
+					memberFound = true;
+					break;
+				}
+			}
+			
+			if(!memberFound){
+				System.out.println("Member with ID " + memberIDForCouponShare + " not found.");
+			}else{
+				currentUser.removeCoupon();
+			}
+			
+			
+		}
 		
 		
+	    
+		
+		
+		System.out.println("All rides to be scheduled...");
+		
+		for(Ride r:schManager.currentRides){
+			schManager.displayRideInfo(r);
+		}
+		
+		//		System.out.println("*********************************");
+		//		System.out.println("Scheduling Ride...");
+		//		System.out.println("*********************************");
+		
+				schManager.scheduleAll();
+		
+		//		List<List<Vertex>> suggestedRoutes;
+		//		
+		//		ScheduledRide scheduleRideManager;
+		//		
+		//		for (Ride ride : schManager.currentRides) {
+		//			
+		//			scheduleRideManager = ride.getScheduledRide();
+		//			String source = ride.getSource();
+		//			String destination = ride.getDestination();
+		//			
+		//			//Step:1
+		//			scheduleRideManager.receiveRequest(source,destination);
+		//			
+		//			//Step:2
+		//			suggestedRoutes  = scheduleRideManager.calculateRide(source, destination);
+		//			
+		//			//Step:3
+		//			payment.holdPayment(10, accManager.members);
+		//			
+		//			//Step:4
+		//			scheduleRideManager.dispatchRide(suggestedRoutes,0);
+		//			
+		//			//Step:5
+		//			scheduleRideManager.completeRide(10, ride.getMembers());
+		//		}	
 		
 
-			}
+	}
 }

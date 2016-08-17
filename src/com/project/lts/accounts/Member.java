@@ -7,6 +7,8 @@
 package com.project.lts.accounts;
 import java.util.*;
 
+import com.project.lts.notification.Notification;
+
 
 public abstract class Member
 {
@@ -29,6 +31,47 @@ public abstract class Member
 	String memPrimeflag;
 	String memType; //C: Regular Rider //D:Driver
 	
+	ArrayList<String> coupons = new ArrayList<String>();
+	Notification notificationManager = new Notification();
+	
+	//get all current coupons for this member
+	ArrayList<String> getCoupons(){
+		return this.coupons;
+	}
+	
+	//This will be called in 2 condtions
+	//Either one member send coupon to another member
+	public void receiveCoupon(String coupon,Member sharingMember){
+		
+		notificationManager.reset();
+		notificationManager.setListener(this);
+		notificationManager.setListener(sharingMember);
+		
+		this.coupons.add(coupon);
+		
+		notificationManager.setMessage("Coupon shared by Member:" + sharingMember.getMemFname() + " received by Member:" + this.getnMemberID());
+	    notificationManager.send();
+		
+	}
+	
+	//If you schedule more than 2 rides
+	public void addCoupon(String coupon){
+		
+		notificationManager.reset();
+		notificationManager.setListener(this);
+		
+		this.coupons.add(coupon);
+		
+		notificationManager.setMessage("NOTIFICATION : Coupon added to account for Member:" + this.getnMemberID());
+	    notificationManager.send();
+		
+	}
+	
+	//Called when coupon is shared with someone else
+	//Called when ride is cancelled and ride count for member goes below 2
+	public void removeCoupon(){
+		this.coupons.remove(0);
+	}
 	
 	public String getMemCreditexpdate() {
 		return memCreditexpdate;
