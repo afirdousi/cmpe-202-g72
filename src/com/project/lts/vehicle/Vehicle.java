@@ -6,7 +6,6 @@
 
 package com.project.lts.vehicle;
 
-import com.project.lts.accounts.Member;
 import com.project.lts.vehicle.VPending;
 import com.project.lts.vehicle.VehicleState;
 
@@ -16,33 +15,21 @@ public abstract class Vehicle
 	public String vId;
 	public String vModel;
 	public String vYear;
-	public String vIn; 
+	public String vIn;
 	public int vehicleType;
 	public VehicleState vehicleState;
 	public int vHealth;
 	public String vDriver;
 	public String location;
 	public String vehicleCost;
-	public Member owner;
 	public boolean isAttachedToRide;
+	
 	
 	public Vehicle(){
 		vehicleState = new VPending();
-		isAttachedToRide = false;
-	}
-	
-	public boolean getIsAttachedToRide() {
-		return isAttachedToRide;
-	}
-
-	public void setIsAttachedToRide(boolean isAttached) {
-		this.isAttachedToRide = isAttached;
 	}
 	
 	
-	public Member getMember(){
-		return this.owner;
-	}
 	
 	public String getLocation() {
 		return location;

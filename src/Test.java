@@ -10,6 +10,8 @@ import com.project.lts.scheduler.Ride;
 import com.project.lts.scheduler.ScheduledRide;
 import com.project.lts.scheduler.Scheduler;
 import com.project.lts.notification.*;
+//Aug 17 Thiagarajan Natarajan
+import com.project.lts.rules.RuleManager;
 
 import com.project.lts.vehicle.*;
 
@@ -28,6 +30,8 @@ public class Test {
 	
 	static boolean loggedIn=false; 
 	static AccountManager accManager;
+	//Aug 17 Thiagarajan Natarajan rule manager related chnges
+	static RuleManager ruleManager;
 	static VehicleManager vehManager;
 	static Scheduler schManager;
 	static PaymentManager paymentManager;
@@ -121,7 +125,7 @@ public class Test {
 
 		//renderHeader();
 		System.out.println("\n");
-		System.out.println("\nWelcome to Lyft! \n***********************\n[1] CRUD Account \n[2] CRUD Vehicle  \n[3] Ride Options \n[4] Reports  \n[5] Return to Main Menu \n ");
+		System.out.println("\nWelcome to Lyft! \n***********************\n[1] CRUD Account \n[2] CRUD Vehicle  \n[3] Ride Options \n[4] Reports \n[5] CRUD Rule \n[6] Return to Main Menu \n ");
 		
 		Scanner scan = new Scanner(System.in);
 		int choice = Integer.parseInt(scan.nextLine());
@@ -129,13 +133,19 @@ public class Test {
 		switch (choice) {
 		case 1:
 			System.out.println("CRUD Account");
+			//Aug 17 Thiagarajan N
+			ruleManager.retrieveRule("All");
 			renderMemberOptions();
+			//Aug 17 Thiagarajan N added missing break
+			break;
 
 		case 2:
 			System.out.println("CRUD Vehicle");
 			
 			//TODO: Pull in Ride Request here
 			// this.reqClient.createRequest();
+			//Aug 17 Thiagarajan N
+			ruleManager.retrieveRule("All");
 			renderVehicleOptions();
 
 			break;
@@ -149,7 +159,14 @@ public class Test {
 			renderReportOptions();
 			break;
 			
+		//Aug 17 Thiagarajan Natarajan
 		case 5:
+			System.out.println("CRUD Rule");
+			//ruleManager.setMockRules();
+			ruleManager.showRulesmenu();
+			break;
+			
+		case 6:
 			System.out.println("Exit");
 			break;
 
@@ -350,88 +367,87 @@ public class Test {
 
 
 }
-	
 	public static void renderVehicleOptions() {
-		
-		do {
+	    
+	    do {
 
-			System.out.println("=============================================================");
-					
-			System.out.println("1. Add Vehicle");
-			System.out.println("2. Retrieve Vehicle");
-			System.out.println("3. Update Vehicle");
-			System.out.println("4. Remove Vehicle");
-//			System.out.println("5. Select Members");
-//			System.out.println("6. Search Members");
-//			System.out.println("7. Sort Members");
-			System.out.println("8. Back");
-			System.out.println("9. Exit");
-			System.out.println("Enter your option(1,2,3,4,5,6,7)");
+	      System.out.println("=============================================================");
+	          
+	      System.out.println("1. Add Vehicle");
+	      System.out.println("2. Retrieve Vehicle");
+	      System.out.println("3. Update Vehicle");
+	      System.out.println("4. Remove Vehicle");
+//	      System.out.println("5. Select Members");
+//	      System.out.println("6. Search Members");
+//	      System.out.println("7. Sort Members");
+	      System.out.println("8. Back");
+	      System.out.println("9. Exit");
+	      System.out.println("Enter your option(1,2,3,4,5,6,7,8,9)");
 
-			inputManager = new Scanner(System.in);
-			choice = inputManager.nextInt();
-			inputManager.nextLine();
+	      inputManager = new Scanner(System.in);
+	      choice = inputManager.nextInt();
+	      inputManager.nextLine();
 
-			if (choice == 1)
-			{
-				addVehicle();
-			}
-			else if (choice == 2) {
-				System.out.println("Retrieving Vehicle ");
-				System.out.println("Enter Vehicle ID to be retrieved");
-				inputManager = new Scanner(System.in);
-				String ID = inputManager.nextLine();
-				vehManager.retrieveVehicle(ID);
-			}
-			else if (choice == 3) {
-				System.out.println("Updating Vehicle ");
-				
-				System.out.println("Enter Vehicle ID to update");
-				inputManager = new Scanner(System.in);
-				String ID = (inputManager.nextLine());
-				System.out.println("Enter New Driver Name");
-				inputManager = new Scanner(System.in);
-				String driverName = inputManager.nextLine();
-				
-				vehManager.updateVehicle(ID, driverName);
+	      if (choice == 1)
+	      {
+	        addVehicle();
+	      }
+	      else if (choice == 2) {
+	        System.out.println("Retrieving Vehicle ");
+	        System.out.println("Enter Vehicle ID to be retrieved");
+	        inputManager = new Scanner(System.in);
+	        String ID = inputManager.nextLine();
+	        vehManager.retrieveVehicle(ID);
+	      }
+	      else if (choice == 3) {
+	        System.out.println("Updating Vehicle ");
+	        
+	        System.out.println("Enter Vehicle ID to update");
+	        inputManager = new Scanner(System.in);
+	        String ID = (inputManager.nextLine());
+	        System.out.println("Enter New Driver Name");
+	        inputManager = new Scanner(System.in);
+	        String driverName = inputManager.nextLine();
+	        
+	        vehManager.updateVehicle(ID, driverName);
 
-			}
+	      }
 
-			else if (choice == 4) {
-				System.out.println("Removing Vehicle ");
-				System.out.println("Enter Vehicle ID to remove :");
-				inputManager = new Scanner(System.in);
-				String ID  = (inputManager.nextLine());
-				vehManager.deleteVehicle(ID);
+	      else if (choice == 4) {
+	        System.out.println("Removing Vehicle ");
+	        System.out.println("Enter Vehicle ID to remove :");
+	        inputManager = new Scanner(System.in);
+	        String ID  = (inputManager.nextLine());
+	        vehManager.deleteVehicle(ID);
 
-			}
+	      }
 
-			else if (choice == 5) {
-				System.out.println("Select Vehicle - Enter Vehicle First Name ");
-				inputManager = new Scanner(System.in);
+	      else if (choice == 5) {
+	        System.out.println("Select Vehicle - Enter Vehicle First Name ");
+	        inputManager = new Scanner(System.in);
 
-				System.out.println("Displaying Selected Vehicle email information ");
-
-
-			}
-
-			else if (choice == 6) {
-				System.out.println("Search Vehicle based on VehicleId ");
-				inputManager = new Scanner(System.in);
-
-			}
-
-			else if (choice == 7) {
-				System.out.println("Sorting Vehicles ");
-
-			}
-			else if (choice == 8)
-				break;
-
-		} while (choice != 9 && choice !=8);
+	        System.out.println("Displaying Selected Vehicle email information ");
 
 
-	}
+	      }
+
+	      else if (choice == 6) {
+	        System.out.println("Search Vehicle based on VehicleId ");
+	        inputManager = new Scanner(System.in);
+
+	      }
+
+	      else if (choice == 7) {
+	        System.out.println("Sorting Vehicles ");
+
+	      }
+	      else if (choice == 8)
+	        break;
+
+	    } while (choice != 9 && choice !=8);
+
+
+	  }
 	
 	public static void renderRideOptions() {
 
@@ -492,6 +508,10 @@ public class Test {
 		System.out.println("*********************************");
 		
 		accManager = new AccountManager();
+		//Aug 17 Thiagarajan Natarajan
+		ruleManager = new RuleManager();
+		ruleManager.setMockRules();
+		//
 		accManager.setMockMembers();
 		
 		
@@ -646,33 +666,39 @@ public class Test {
 
 	}
 	
-	public static void addVehicle() {
-		
-		Vehicle newVehicle = new Car();
-//		
-//		System.out.println("Adding vehicles");
-//		System.out.println("Adding Vehicle Information");
-//		System.out.println("Enter Driver");
-//		inputVehicle = new Scanner(System.in);
-//		newVehicle.setvDriver(inputVehicle.nextLine());
-//		//System.out.println("Enter Vehicle State");
-//		//inputVehicle = new Scanner(System.in);
-//		//newVehicle.setVehicleState(inputVehicle.nextLine());
-//		System.out.println("Enter Vehicle type");
-//		inputVehicle = new Scanner(System.in);
-////		newVehicle.setVehicleType(inputVehicle.nextLine());
-////		System.out.println("Set vehicle health ");
-//		inputVehicle = new Scanner(System.in);
-//		newVehicle.setvHealth(inputVehicle.nextLine());
-//		System.out.println("Enter Vehicle Model ");
-//		inputVehicle = new Scanner(System.in);
-//		newVehicle.setvModel(inputVehicle.nextLine());
-//		vManager.addVehicle(newVehicle);
-//		currentUser = newVehicle;
-		
-		newVehicle.setVehicleState(new VPending());
-		
-	}
+	  public static void addVehicle() {
+		    
+		    Vehicle newVehicle = new Car();
+		    
+		    System.out.println("Adding vehicles");
+		    System.out.println("Adding Vehicle Information");
+		    System.out.println("Enter Driver");
+		    inputVehicle = new Scanner(System.in);
+		    newVehicle.setvDriver(inputVehicle.nextLine());
+		    
+		    
+		    newVehicle.setVehicleState(new VPending());
+		    
+		    System.out.println("Enter Vehicle Model ");
+		    inputVehicle = new Scanner(System.in);
+		    newVehicle.setvModel(inputVehicle.nextLine());
+		    
+		    System.out.println("Enter Vehicle Cost");
+		    inputVehicle = new Scanner(System.in);
+		    newVehicle.setvIn(inputVehicle.nextLine());
+		    
+		    System.out.println("Enter Vehicle Location");
+		    inputVehicle = new Scanner(System.in);
+		    newVehicle.setLocation(inputVehicle.nextLine());
+		    
+		    System.out.println("Enter Vehicle Special features");
+		    
+		    vehManager.addVehicle(newVehicle);
+		    //currentVehicle = newVehicle;
+		    
+		    
+		    
+		  }
 	
 	public static void addRideRequest()
 	{
