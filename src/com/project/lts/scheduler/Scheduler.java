@@ -92,7 +92,7 @@ public class Scheduler {
 		//TODO: Fix this
 //		System.out.println("No of customer = " + r.customers.size());
 //		System.out.println("Name of customer = " + r.customers.get(0).getMemFname());
-		System.out.println("ID: " + r.ID + " | Source: " + r.source + " | Destination: " + r.destination + " | Date: " + r.rideDate );//+ " | Requester: " + r.customers.get(0).getMemFname());
+		System.out.println("ID: " + r.ID +  " | Source: " + r.source + " | Destination: " + r.destination + " | Date: " + r.rideDate );//+ " | Requester: " + r.customers.get(0).getMemFname());
 		
 	}
 	

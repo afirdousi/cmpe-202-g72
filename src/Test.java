@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 import com.project.lts.accounts.*;
 import com.project.lts.payment.Payment;
@@ -322,7 +323,11 @@ public class Test {
 				inputManager = new Scanner(System.in);
 				choice = inputManager.nextInt();
 				inputManager.nextLine();
-		
+				
+				for(Ride ride:schManager.currentRides){
+					schManager.displayRideInfo(ride);
+				}
+				
 				reportManager.generateReport(REPORTTYPE.RIDE,choice , schManager.currentRides.toArray(new Object[schManager.currentRides.size()]));
 	
 			}
@@ -346,6 +351,13 @@ public class Test {
 							}
 						}
 				}
+				if(myRides.size()==0){
+					System.out.println("No rides found.");
+				}
+				for(Ride ride:myRides){
+					schManager.displayRideInfo(ride);
+				}
+				
 				reportManager.generateReport(REPORTTYPE.MY_RIDE,choice , myRides.toArray(new Object[myRides.size()]));
 			}
 
@@ -356,6 +368,20 @@ public class Test {
 			else if (choice == 5) {
 	
 				//LOCATION REPORT
+				Map<String, List<Ride>> ridesByLocation =
+						schManager.currentRides.stream()
+					    				 .collect(Collectors.groupingBy(r -> r.getSource()));
+				
+				for (Map.Entry<String, List<Ride>> entry : ridesByLocation.entrySet()) 
+				{
+					System.out.println(entry.getValue().get(0).getSource());
+					for(Ride ride:entry.getValue()){
+						System.out.println("Ride ID : " + ride.getID());
+					}
+				
+				}
+				
+				
 			}
 	
 			else if (choice == 6) {
