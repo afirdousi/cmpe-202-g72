@@ -9,15 +9,15 @@ import com.project.lts.routing.Vertex;
 
 public class CompleteState implements State{
 
-	private ScheduledRideInterface sc;
-	PaymentManager paymentManager ;
+	private ScheduledRideInterface scheduledRide;
+	//PaymentManager paymentManager ;
 	Scanner inputManager;
 	Notification notificationManager = new Notification();
 	
 	
 	public CompleteState(ScheduledRideInterface s){
-		sc=s;
-		paymentManager = new PaymentManager();
+		scheduledRide=s;
+		
 	}
 
 	public void receiveRequest(String source, String destination){
@@ -32,8 +32,6 @@ public class CompleteState implements State{
 	}
 	
 	public void completeRide(int rideAmount ,Ride completedRide){
-		
-		paymentManager.proceesPayment(rideAmount, completedRide.getMembers());
 		
 		String rating,feedback,wantToGiveFeedback;
 		

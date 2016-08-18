@@ -66,7 +66,7 @@ public class AccountManager {
 		members.add(member);
 		
 		member = new Customer("2", "Andy", "LastAndy", "andy01@yahoo.com", "4085550002", "1 Address1",
-				"1 Address2", "SJC", "CA", "95050", "Email", "PayPal", "2234567890120002", "Y", "PREMIER", "C", "10/17",
+				"1 Address2", "SJC", "CA", "95050", "Email", "PayPal", "2234567890120002", "Y", "", "C", "10/17",
 				"555", "andy_paypalid");
 		members.add(member);
 		
@@ -107,7 +107,7 @@ public class AccountManager {
 		
 		member = new Customer("10", "Patricia", "LastPatricia", "patricia01@yahoo.com", "4085550010",
 				"1 Address1", "1 Address2", "RWC", "CA", "90002", "Email", "CreditCard", "1034567890120002", "Y",
-				"PREMIER", "C", "10/17", "555", "patricia_paypalid");
+				"", "C", "10/17", "555", "patricia_paypalid");
 		members.add(member);
 		
 

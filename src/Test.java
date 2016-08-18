@@ -350,8 +350,7 @@ public class Test {
 			}
 
 			else if (choice == 4) {
-				//PAYMENT HISTORY REPORT 
-				//NEED FIX FROM SNEHAL
+				paymentManager.showAllPaymentHistory();
 			}
 
 			else if (choice == 5) {
@@ -815,6 +814,7 @@ public class Test {
 			scheduleRideManager.dispatchRide(suggestedRoutes,0);
 			
 			//Step:5
+			paymentManager.proceesPayment(50, ride.getMembers());
 			scheduleRideManager.completeRide(10, ride);
 		}	
 	}
