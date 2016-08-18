@@ -30,8 +30,8 @@ public class ScheduledRide implements ScheduledRideInterface {
 	public void dispatchRide(List<List<Vertex>> suggestedRoutes,int algoType){
 		state.dispatchRide(suggestedRoutes,algoType);
 	}
-	public void completeRide(int rideAmount ,List<Member> members){
-		state.completeRide(rideAmount,members);
+	public void completeRide(int rideAmount ,Ride completedRide){
+		state.completeRide(rideAmount,completedRide);
 	}
 	
 	

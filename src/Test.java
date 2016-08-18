@@ -768,28 +768,28 @@ public class Test {
 		schManager.carpoolRides(vehManager.vehicles);
 		
 		
-			//		List<List<Vertex>> suggestedRoutes;
-			//		ScheduledRide scheduleRideManager;
-			//		for (Ride ride : schManager.currentRides) {
-			//			
-			//			scheduleRideManager = ride.getScheduledRide();
-			//			String source = ride.getSource();
-			//			String destination = ride.getDestination();
-			//			
-			//			//Step:1
-			//			scheduleRideManager.receiveRequest(source,destination);
-			//		
-			//			//Step:2
-			//			suggestedRoutes  = scheduleRideManager.calculateRide(source, destination);
-			//		
-			//			//Step:3
-			//			paymentManager.holdPayment(10, accManager.members);
-			//			
-			//			//Step:4
-			//			scheduleRideManager.dispatchRide(suggestedRoutes,0);
-			//			
-			//			//Step:5
-			//			scheduleRideManager.completeRide(10, ride.getMembers());
-			//		}	
+		List<List<Vertex>> suggestedRoutes;
+		ScheduledRide scheduleRideManager;
+		for (Ride ride : schManager.currentRides) {
+			
+			scheduleRideManager = ride.getScheduledRide();
+			String source = ride.getSource();
+			String destination = ride.getDestination();
+			
+			//Step:1
+			scheduleRideManager.receiveRequest(source,destination);
+		
+			//Step:2
+			suggestedRoutes  = scheduleRideManager.calculateRide(source, destination);
+		
+			//Step:3
+			paymentManager.holdPayment(10, accManager.members);
+			
+			//Step:4
+			scheduleRideManager.dispatchRide(suggestedRoutes,0);
+			
+			//Step:5
+			scheduleRideManager.completeRide(10, ride);
+		}	
 	}
 }

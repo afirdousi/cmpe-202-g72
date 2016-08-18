@@ -62,7 +62,7 @@ public class DispatchState implements State{
 		
 	}
 
-	public void completeRide(int rideAmount ,List<Member> members){
+	public void completeRide(int rideAmount ,Ride completedRide){
 		
 	}
 	

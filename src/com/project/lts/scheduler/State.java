@@ -13,5 +13,5 @@ public interface State {
 	
 	public void dispatchRide(List<List<Vertex>> suggestedRoutes,int algoType);
 	
-	public void completeRide(int rideAmount ,List<Member> members);
+	public void completeRide(int rideAmount ,Ride completedRide);
 }

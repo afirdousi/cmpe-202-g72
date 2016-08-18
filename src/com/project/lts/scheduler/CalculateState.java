@@ -62,7 +62,7 @@ public class CalculateState implements State{
 		//return "Request is being processed";
 	}
 
-	public void completeRide(int rideAmount ,List<Member> members){
+	public void completeRide(int rideAmount ,Ride completedRide){
 		
 	}
 }

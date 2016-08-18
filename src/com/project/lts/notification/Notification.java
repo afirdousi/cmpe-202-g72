@@ -57,6 +57,12 @@ public class Notification {
 		
 	}
 	
+	//For sending immediate message to all current observers without saving/setting/archieving the message
+		public void sendToOne(String message,String receiver){
+				System.out.println("NOTIFICATION  : EMAIL Received : " + message +  " : Receiver =" +receiver );
+				System.out.println("NOTIFICATION  : Text Message Received : " + message +  " : Receiver =" + receiver);	
+		}
+	
 	//TODO: 
 	//Add send() types for sending email only OR text message only notifications
 	

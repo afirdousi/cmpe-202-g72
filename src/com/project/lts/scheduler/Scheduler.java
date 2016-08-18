@@ -22,44 +22,14 @@ public class Scheduler {
 	
 	public void setupMockRide(List<Member> members){
 		
-		List<Member> customersOfCurrentRide;
-		Member dummy = new Customer() ;
 		for (Member m : members) {
 			if(m.getMemType()=="C"){
-//				customersOfCurrentRide = new ArrayList<Member>();
-//				customersOfCurrentRide.add(m);
 				ride  =  new Ride(Long.toString(this.rideCount),"SJC","SFO","8/20/2016",m,"","","","");
 				this.currentRides.add(ride);
 				this.rideCount++;
 			}
-			
-			dummy = m;
-		
 		}
 		
-		ride  =  new Ride(Long.toString(this.rideCount),"SFO","MTV","8/20/2016",dummy,"","","","");
-		this.currentRides.add(ride);
-		this.rideCount++;
-		
-		ride  =  new Ride(Long.toString(this.rideCount),"SFO","RWC","8/20/2016",dummy,"","","","");
-		this.currentRides.add(ride);
-		this.rideCount++;
-		
-		ride  =  new Ride(Long.toString(this.rideCount),"MTV","SNB","8/20/2016",dummy,"","","","");
-		this.currentRides.add(ride);
-		this.rideCount++;
-		
-		ride  =  new Ride(Long.toString(this.rideCount),"MTV","SFO","8/20/2016",dummy,"","","","");
-		this.currentRides.add(ride);
-		this.rideCount++;
-		
-		ride  =  new Ride(Long.toString(this.rideCount),"KHI","SJC","8/20/2016",dummy,"","","","");
-		this.currentRides.add(ride);
-		this.rideCount++;
-		
-		ride  =  new Ride(Long.toString(this.rideCount),"BLR","SJC","8/20/2016",dummy,"","","","");
-		this.currentRides.add(ride);
-		this.rideCount++;
 	}
 	
 	public long getTotalRideCount(){
@@ -157,6 +127,7 @@ public class Scheduler {
 		//Match vehicle location to source of requested ride location && Match source among requested rides && Number of seats per vehicles should not exceed 4
 		
 		//Step.0 : Rides which cannot be scheduled
+		ArrayList<Ride> ridesToBeDeleted = new ArrayList<Ride>();
 		boolean canBeScheduled;
 		for(Ride ride:currentRides){
 			
@@ -172,10 +143,17 @@ public class Scheduler {
 			if(!canBeScheduled){
 				ride.canBeScheduled = false;
 				System.out.println("Ride wit ID:" + ride.getID() + " cannot be scheduled at this time. No vehicle to pickup at location: " + ride.getSource() );
+				ridesToBeDeleted.add(ride);
 			}
 			
 		}
 		
+		//Deleting rides which cannot be shcheduld.
+		for(int i=0;i<ridesToBeDeleted.size();i++)
+		{
+			System.out.println("Deleting ....Ride ID : " + ride.getID());
+			this.currentRides.remove(ridesToBeDeleted.get(i));
+		}
 		
 		
 		//Step.1 : Group Rides By Source Location
@@ -229,8 +207,7 @@ public class Scheduler {
 			
 		}
 		
-		//Results of Step.2
-		
+		//Results of Step.2		
 //		System.out.println("Carpooling  ALGO RESULT");
 //		for(Ride r:this.currentRides){
 //			if(r.vehicle!=null){
@@ -240,12 +217,68 @@ public class Scheduler {
 //					System.out.println("Ride wit ID:" + r.getID() + " cannot be scheduled at this time. Vehicles not available at :" + r.getSource() );
 //			}
 //		}
-			
-		//Step.3 : Group Rides By Source Location
-		Map<String, List<Ride>> vehicleGroupedByRides =
-			    this.currentRides.stream().collect(Collectors.groupingBy(r -> r.vehicle.getvId()));
 		
-		//Step.4 : Delete rides with same vehicle and create new ride
+		//Step.3 : Group Rides By Source Location
+		
+		
+		Map<String, List<Ride>> vehicleGroupedByRides =
+			    this.currentRides.stream()
+			    				 .collect(Collectors.groupingBy(r -> r.vehicle.getvId()));
+			    				 
+			    					
+//		
+//		
+//		//Step.4 : Delete rides with same vehicle and create new final carpooled ride
+		
+		System.out.println("\n*Before :Carpooling  ALGO RESULT");
+		for(Ride r:this.currentRides){
+			if(r.vehicle!=null){
+				System.out.println("Ride ID : " + r.getID() + " Vehicle ID : " + r.vehicle.getvId() + " Member : " + r.getMembers().get(0).getMemFname()) ;
+			}
+		}
+		
+		
+		
+		Ride carpooledRide;
+		ScheduledRide carpooledRideSchedule;
+		for (Map.Entry<String, List<Ride>> entry : vehicleGroupedByRides.entrySet()) 
+		{
+			carpooledRide = new Ride();
+			carpooledRideSchedule = new ScheduledRide();
+			
+			carpooledRide.setID(String.valueOf(this.rideCount));
+			this.rideCount++;
+			carpooledRide.vehicle = entry.getValue().get(0).vehicle;
+			carpooledRide.source = entry.getValue().get(0).source;
+			carpooledRide.destination = entry.getValue().get(0).destination;
+			carpooledRide.canBeScheduled = true;
+			carpooledRide.scheduledRide = carpooledRideSchedule;
+			
+			for(Ride ride:entry.getValue()){
+				
+				for(Member m:ride.getMembers()){
+					if(m!=null){
+						carpooledRide.setMember(m);
+					}
+				}
+				
+				this.currentRides.remove(ride);
+			}
+			
+			this.currentRides.add(carpooledRide);
+		}
+		
+		System.out.println("\n*After :Carpooling  ALGO RESULT");
+		for(Ride r:this.currentRides){
+			if(r.vehicle!=null){
+				System.out.println("Ride ID : " + r.getID() + " using Vehicle ID : " + r.vehicle.getvId()  + " starting at:" + r.getSource() ) ;
+				System.out.println("-Members going on this carpooled ride------------------------");
+				for(Member m:r.getMembers()){
+					System.out.println(m.getMemFname());
+				}
+				
+			}
+		}
 		
 	}
 	

@@ -1,9 +1,8 @@
 package com.project.lts.scheduler;
 import java.util.*;
 
-import java.util.List;
-
 import com.project.lts.accounts.Member;
+import com.project.lts.notification.Notification;
 import com.project.lts.payment.PaymentManager;
 import com.project.lts.routing.*;
 import com.project.lts.routing.Vertex;
@@ -12,6 +11,8 @@ public class CompleteState implements State{
 
 	private ScheduledRideInterface sc;
 	PaymentManager paymentManager ;
+	Scanner inputManager;
+	Notification notificationManager = new Notification();
 	
 	
 	public CompleteState(ScheduledRideInterface s){
@@ -30,9 +31,39 @@ public class CompleteState implements State{
 		//return null;
 	}
 	
-	public void completeRide(int rideAmount ,List<Member> members){
+	public void completeRide(int rideAmount ,Ride completedRide){
 		
-		paymentManager.proceesPayment(rideAmount, members);
+		paymentManager.proceesPayment(rideAmount, completedRide.getMembers());
+		
+		String rating,feedback,wantToGiveFeedback;
+		
+		inputManager = new Scanner(System.in);
+		System.out.println("Ride ID:" + completedRide.getID()  + " completed. Payment has been processed. Do you want to give feedback? [1]Yes  [2]No");
+		wantToGiveFeedback = inputManager.nextLine();
+		
+		if(wantToGiveFeedback.equalsIgnoreCase("1")){
+			
+			for(Member m:completedRide.getMembers()){
+				
+				inputManager = new Scanner(System.in);
+				System.out.println("Congratulations " + m.getMemFname() + " on completing the Ride ID: " + completedRide.getID());
+				System.out.println("Enter rating (out of 5)");
+				rating = inputManager.nextLine();
+				System.out.println("How was your ride? Enter feedback:");
+				feedback = inputManager.nextLine();
+				
+				//Update ride with user feedback and rate
+				completedRide.riderRating = rating;
+				completedRide.riderFeedback = feedback;
+				
+				//Send notification to driver
+				notificationManager.sendToOne(" Feedback received from rider for driver ", completedRide.vehicle.getvDriver() );
+				notificationManager.sendToOne(" Rating : " + rating + " out of 5 for driver ", completedRide.vehicle.getvDriver() );
+				
+			}
+		}
+		
+			
 		
 	}
 	
