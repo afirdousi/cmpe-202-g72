@@ -668,8 +668,67 @@ public class Test {
 	  public static void addVehicle() {
 		    
 		    Vehicle newVehicle = new Car();
+		    String vDriver;
+		    Scanner sc = new Scanner(System.in);
+			System.out.println("\nPlease enter Vehicle Model");
+			String vModel = sc.nextLine();
+			System.out.println("\nPlease enter Vehicle Year");
+			String vYear = sc.nextLine();
+			System.out.println("\nPlease enter Vehicle Identification Number(VIN)");
+			String vIn = sc.nextLine();
+			System.out.println("\nPlease choose a Vehicle Type");
+			System.out.println("1. Contractor Owned");
+			System.out.println("2. Company Owned");
+			int vType = sc.nextInt();
+			if (vType == 1){
+				System.out.println("\nPlease enter Driver ID");
+				//vDriver = sc.nextLine();
+				Scanner sc1 = new Scanner(System.in);
+				vDriver = (sc1.nextLine());
+			}else {vDriver = null;}				
+			System.out.println("\nIs Vehicle Health good or bad");
+			System.out.println("1. Good");
+			System.out.println("2. Bad");
+			int vHealth = sc.nextInt();
+			System.out.println("\nPlease enter Vehicle Location");
+			Scanner sc2 = new Scanner(System.in);
+			String location = (sc2.nextLine());
+			
+			System.out.println("Please enter DECORATOR Options : \n");
+			System.out.println("1. WheelChair");
+			System.out.println("2. Infant Car Seat");
+			System.out.println("3. No special option");
+		
+			Scanner sc9 = new Scanner(System.in);
+			int voption = sc9.nextInt();
+			if (voption == 1){
+				newVehicle.setLocation(location);
+				newVehicle.setvModel(vModel);
+				newVehicle.setvYear(vYear);
+				newVehicle.setvIn(vIn);
+				newVehicle.setvDriver(vDriver);
+				newVehicle.setvHealth(vHealth);
+				newVehicle.setVehicleType(vType);
+				vehManager.addVehicle(newVehicle);
+			}
+				
+			else{
+				newVehicle.setLocation(location);
+				newVehicle.setvModel(vModel);
+				newVehicle.setvYear(vYear);
+				newVehicle.setvIn(vIn);
+				newVehicle.setvDriver(vDriver);
+				newVehicle.setvHealth(vHealth);
+				newVehicle.setVehicleType(vType);
+				vehManager.addVehicle(newVehicle);
+			}
+				
+
+			newVehicle.setVehicleState(new VPending());
+			VPending vp = new VPending();
+			vp.doAction(newVehicle);
 		    
-		    System.out.println("Adding vehicles");
+		    /*System.out.println("Adding vehicles");
 		    System.out.println("Adding Vehicle Information");
 		    System.out.println("Enter Driver");
 		    inputVehicle = new Scanner(System.in);
@@ -690,9 +749,9 @@ public class Test {
 		    inputVehicle = new Scanner(System.in);
 		    newVehicle.setLocation(inputVehicle.nextLine());
 		    
-		    System.out.println("Enter Vehicle Special features");
+		    System.out.println("Enter Vehicle Special features");*/
 		    
-		    vehManager.addVehicle(newVehicle);
+		    
 		    //currentVehicle = newVehicle;
 		    
 		    
