@@ -264,23 +264,21 @@ public class Test {
 			}
 
 			else if (choice == 5) {
-				System.out.println("Select Member - Enter Member First Name ");
+				System.out.println("Select Member - Enter Member ID");
 				inputManager = new Scanner(System.in);
-
-				System.out.println("Displaying Selected Member email information ");
-
+				accManager.selectCustomer(inputManager.nextLine());
 
 			}
 
 			else if (choice == 6) {
 				System.out.println("Search Member based on MemberId ");
 				inputManager = new Scanner(System.in);
-
+				accManager.searchCustomer(inputManager.nextLine());
 			}
 
 			else if (choice == 7) {
 				System.out.println("Sorting Members ");
-
+				accManager.sortCustomers();
 			}
 			else if (choice == 8)
 				break;
@@ -314,6 +312,10 @@ public class Test {
 				inputManager = new Scanner(System.in);
 				choice = inputManager.nextInt();
 				inputManager.nextLine();
+				
+				for(Member member:accManager.members){
+					accManager.displayMember(member);
+				}
 		
 				reportManager.generateReport(REPORTTYPE.MEMBER,choice , accManager.members.toArray(new Object[accManager.members.size()]));
 			}
@@ -816,6 +818,11 @@ public class Test {
 			//schManager.currentRides.add(newRide);
 			schManager.addRide(newRide, currentUser);
 			
+//			for (Ride r : schManager.currentRides) {
+//				System.out.println("TESTING: ID= " + r.getRideID() + " Date= " + r.getDate() + " Source=" + r.getSource());
+//			
+//			}
+			
 		}
 		
 		if(schManager.isEligibileForCoupon(currentUser)){
@@ -874,6 +881,12 @@ public class Test {
 	}
 	
 	public static void scheduleAllRides(){
+		
+//		System.out.println("TESTINT RIDES****");
+//		for(Ride r:schManager.currentRides){
+//			schManager.displayRideInfo(r);
+//		}
+//		System.out.println("TESTINT RIDES****");
 		
 		schManager.carpoolRides(vehManager.vehicles);
 		

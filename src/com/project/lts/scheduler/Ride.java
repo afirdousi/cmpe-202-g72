@@ -47,6 +47,16 @@ public class Ride {
 		this.canBeScheduled = true;
 	}
 	
+	
+	
+	public String getRideID(){
+		return this.ID;
+	}
+	
+	public String getDate(){
+		return this.rideDate;
+	}
+	
 	public void setMember(Member m){
 		this.customers.add(m);
 	}

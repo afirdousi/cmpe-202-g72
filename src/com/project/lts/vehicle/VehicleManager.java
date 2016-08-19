@@ -315,8 +315,8 @@ public class VehicleManager
 	
 	public void displayVehicle(Vehicle v){
 		
-		System.out.println("\n" +v.getvDriver()  + v.getvId() + " " + v.getVehicleType()
-				+ " * " + v.getvHealth() + " * " + v.getvModel() + " * "
+		System.out.println("\n ID:"+ v.getvId() + " Driver: "+ v.getvDriver()  + " Type: " + v.getVehicleType()
+				+ " Location: " + v.getLocation() + "* " + v.getvHealth() + " * " + v.getvModel() + " * "
 				+ v.getvIn() + " * " + v.getvYear());
 		
 	}

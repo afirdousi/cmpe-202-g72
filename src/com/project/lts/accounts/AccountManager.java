@@ -197,7 +197,7 @@ public class AccountManager {
 //
 //	}
 
-	public void SearchCustomer(String CustId) {
+	public void searchCustomer(String CustId) {
 		// TODO implement me
 		System.out.println("Printing after Searching..");
 		boolean foundflag = false;
@@ -293,18 +293,17 @@ public class AccountManager {
 
 	}
 
-	public void selectCustomer(String CustFName)
+	public void selectCustomer(String CustID)
 
 	{
 		boolean selectflag = false;
-		System.out.println("Printing after selecting ..");
-
 		for (int i = 0; i < members.size() && !selectflag; i++) {
 
-			if (members.get(i).getMemFname().equalsIgnoreCase(CustFName)) {
+			if (members.get(i).getnMemberID().equalsIgnoreCase(CustID)) {
+				System.out.println("Displaying Selected Member email information ");
 				selectflag = true;
 				System.out.println(
-						"Selected Member * " + CustFName + " * Email address is *  " + members.get(i).memEmail);
+						"Selected Member * " + members.get(i).getMemFname() + " * Email address is *  " + members.get(i).memEmail);
 				// this.members.get(i).memFname= CustFName;
 			}
 

@@ -30,6 +30,20 @@ public class Scheduler {
 			}
 		}
 		
+		this.currentRides.get(1).setSource("MTV");
+		this.currentRides.get(7).setSource("RWC");
+		
+		this.currentRides.get(0).setDestination("MTV");
+		this.currentRides.get(2).setDestination("RWC");
+		this.currentRides.get(5).setDestination("MTV");
+		this.currentRides.get(6).setDestination("RWC");
+		this.currentRides.get(9).setDestination("SNB");
+		
+//		for (Ride r : this.currentRides) {
+//			System.out.println("TESTING: ID= " + r.ID + " Date= " + r.rideDate + " Source=" + r.getSource());
+//		
+//		}
+		
 	}
 	
 	public long getTotalRideCount(){
@@ -135,7 +149,8 @@ public class Scheduler {
 			 
 			for(Vehicle vehicle:vehicles){
 				if(ride.getSource().equalsIgnoreCase(vehicle.getLocation())){
-					 canBeScheduled =true;
+					ride.canBeScheduled = true;
+					canBeScheduled =true;
 					break;
 				}
 			}
@@ -170,15 +185,15 @@ public class Scheduler {
 			
 			String location = vehicle.getLocation(); //SJC
 			
-			for (Map.Entry<String, List<Ride>> entry : requestedRideByLocation.entrySet()) //SJC
+			for (Map.Entry<String, List<Ride>> entry : requestedRideByLocation.entrySet()) //SJC,MTV,RWC
 			{
-			    //System.out.println(entry.getKey() + "/" + entry.getValue());
-				for(Ride ride:entry.getValue()){
+			    //System.out.println("KEY VALUE:"+ entry.getKey() + "/" + entry.getValue());
+				for(Ride ride:entry.getValue()){ //SJC
 					
 					if(ride.vehicle==null && ride.canBeScheduled==true){
 						if(location.equalsIgnoreCase(ride.getSource())){  //SJC
 							
-							System.out.println("ATTACHING VEHICLE TO RIDE....");
+							
 							totalRidesAttachedToVehicle++;
 							
 							//1st time
@@ -188,6 +203,7 @@ public class Scheduler {
 							}
 							
 							if(totalRidesAttachedToVehicle<5){
+								System.out.println("ATTACHING VEHICLE TO RIDE....");
 								ride.setVehicle(vehicle);
 							}else{
 								break;
@@ -230,12 +246,12 @@ public class Scheduler {
 //		
 //		//Step.4 : Delete rides with same vehicle and create new final carpooled ride
 		
-		System.out.println("\n*Before :Carpooling  ALGO RESULT");
-		for(Ride r:this.currentRides){
-			if(r.vehicle!=null){
-				System.out.println("Ride ID : " + r.getID() + " Vehicle ID : " + r.vehicle.getvId() + " Member : " + r.getMembers().get(0).getMemFname()) ;
-			}
-		}
+//		System.out.println("\n*Before :Carpooling  ALGO RESULT");
+//		for(Ride r:this.currentRides){
+//			if(r.vehicle!=null){
+//				System.out.println("Ride ID : " + r.getID() + " Vehicle ID : " + r.vehicle.getvId() + " Member : " + r.getMembers()!=null?r.getMembers().get(0).getMemFname():"") ;
+//			}
+//		}
 		
 		
 		
@@ -253,6 +269,7 @@ public class Scheduler {
 			carpooledRide.destination = entry.getValue().get(0).destination;
 			carpooledRide.canBeScheduled = true;
 			carpooledRide.scheduledRide = carpooledRideSchedule;
+			carpooledRide.setrideDate(entry.getValue().get(0).rideDate);
 			
 			for(Ride ride:entry.getValue()){
 				
