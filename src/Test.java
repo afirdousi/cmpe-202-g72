@@ -690,7 +690,13 @@ public class Test {
 	  
 	  currentUser = newMember;
 	  
-
+	  notificationManager.reset();
+	  notificationManager.setMessage("New Member Now Logged In." );
+	  notificationManager.setListener(currentUser);
+	  notificationManager.send();
+	  
+	  System.out.println("\n ***Welcome " + newMember.getMemFname() + ", \n***");
+	  
 	}
 	
 	  public static void addVehicle() {
