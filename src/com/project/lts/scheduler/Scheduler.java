@@ -74,27 +74,29 @@ public class Scheduler {
 //			displayRideInfo(r);
 //		}
 		
+		Ride rideToBeDeleted = new Ride();
+		
 		
 		for(Ride r:this.currentRides){
 			if(r.getID().equalsIgnoreCase(rideID)){
 				rideFound = true;
-				String rideIDToBeDeleted = r.getID();
-				this.currentRides.remove(r);
-				
-				notificationManager.reset();
-				notificationManager.setListener(cancellingUser);
-				notificationManager.setMessage("Dear user, your ride with ID : " + rideIDToBeDeleted + " has been deleted.");
-			    notificationManager.send();
+				rideToBeDeleted = r;
+				break;
 			}
 		}
 		
+		this.currentRides.remove(rideToBeDeleted);
+
+		notificationManager.reset();
+		notificationManager.setListener(cancellingUser);
+		notificationManager.setMessage("Dear user, your ride with ID : " + rideID + " has been deleted.");
+	    notificationManager.send();
+		
 		if(!rideFound){
 //			System.out.println("Rides after removal........");
-//	
-//			for(Ride r:this.currentRides){
-//				displayRideInfo(r);
-//			}
-			
+			for(Ride r:this.currentRides){
+				displayRideInfo(r);
+			}
 		}else{
 			System.out.println("Ride with ID:" + rideID + " not found.");
 		}

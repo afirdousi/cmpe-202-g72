@@ -40,10 +40,6 @@ public class Payment {
 			return rideAmount;
 		}
 
-
-
-
-
 		public void setRideAmount(int rideAmount) {
 			this.rideAmount = rideAmount;
 		}

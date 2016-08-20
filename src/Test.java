@@ -543,7 +543,7 @@ public class Test {
 		
 		
 		for (Member m : accManager.members) {
-			//System.out.println("ID :" + m.getnMemberID() + " | First Name " + m.getMemFname() + "| Email "  + m.getMemEmail());
+			System.out.println("ID :" + m.getnMemberID() + " | First Name " + m.getMemFname() + "| Email "  + m.getMemEmail());
 		}
 		
 		System.out.println("\nSTATUS: 10 Members created.\n");
@@ -888,15 +888,8 @@ public class Test {
 	
 	public static void scheduleAllRides(){
 		
-//		System.out.println("TESTINT RIDES****");
-//		for(Ride r:schManager.currentRides){
-//			schManager.displayRideInfo(r);
-//		}
-//		System.out.println("TESTINT RIDES****");
-		
 		schManager.carpoolRides(vehManager.vehicles);
-		
-		
+	
 		List<List<Vertex>> suggestedRoutes;
 		ScheduledRide scheduleRideManager;
 		for (Ride ride : schManager.currentRides) {
@@ -915,7 +908,9 @@ public class Test {
 			paymentManager.holdPayment(10, accManager.members);
 			
 			//Step:4
-			scheduleRideManager.dispatchRide(suggestedRoutes,0);
+			//Selecting Shortest Distance Algo By Default
+			//Prompt User to choose algorithm - Shortest Distance(0) / Least Time(1)
+			scheduleRideManager.dispatchRide(suggestedRoutes,0); 
 			
 			//Step:5
 			paymentManager.proceesPayment(50, ride.getMembers());

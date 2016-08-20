@@ -9,7 +9,7 @@ class Edge
 	Edge(Vertex target, int weight, int time)
 	{
 		this.target = target;
-		this.distance = weight; //distance (in miles) 
+		this.distance = weight; //distance (in miles depending upon traffic) 
 		this.time = time;
 	}
 }
